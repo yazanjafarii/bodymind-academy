@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BodyMind Academy - Pain Science, Dopamine & Neuroplasticity</title>
+    <title>BodyMind Academy | Yazan Jafari - Pain Science, Dopamine & Neuroplasticity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* ═══════════════════════════════════════════════════════════════
+           ROOT VARIABLES & RESET
+           ═══════════════════════════════════════════════════════════════ */
+        :root {
+            --primary-dark: #0a0a1a;
+            --secondary-dark: #12122a;
+            --accent-purple: #7c3aed;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --glass-bg: rgba(124, 58, 237, 0.05);
+            --glass-border: rgba(124, 58, 237, 0.2);
+            --gradient-main: linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #ec4899 100%);
+            --gradient-text: linear-gradient(135deg, #7c3aed, #3b82f6, #ec4899);
+            --gradient-dark: linear-gradient(180deg, #0a0a1a 0%, #12122a 50%, #1a1a3a 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,82 +37,51 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            color: #e2e8f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
-            position: relative;
+            line-height: 1.6;
         }
 
-        /* Animated Background Blobs */
-        body::before {
-            content: '';
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -100px;
-            left: -100px;
-            animation: float 20s infinite ease-in-out;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -200px;
-            right: -100px;
-            animation: float 25s infinite ease-in-out reverse;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(20px, -50px); }
-            50% { transform: translate(-20px, 20px); }
-            75% { transform: translate(50px, 50px); }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Scroll Progress Bar */
+        /* ═══════════════════════════════════════════════════════════════
+           SCROLL PROGRESS BAR
+           ═══════════════════════════════════════════════════════════════ */
         .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            height: 3px;
+            background: var(--gradient-main);
             width: 0%;
-            z-index: 999;
-            transition: width 0.2s ease;
+            z-index: 10000;
+            transition: width 0.1s linear;
         }
 
-        /* Header & Navigation */
+        /* ═══════════════════════════════════════════════════════════════
+           HEADER & CREATIVE NAVIGATION
+           ═══════════════════════════════════════════════════════════════ */
         header {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-            padding: 1rem 0;
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.75rem 2rem;
+            background: rgba(10, 10, 26, 0.95);
         }
 
         .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -99,542 +89,873 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            font-weight: 800;
+            background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -0.5px;
         }
 
+        .logo span {
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
         nav {
             display: flex;
-            gap: 2rem;
+            gap: 0.5rem;
             align-items: center;
         }
 
-        nav a {
-            color: #cbd5e1;
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--glass-bg);
+        }
+
+        .nav-link .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Creative Dropdown Menu */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            min-width: 320px;
+            background: rgba(18, 18, 42, 0.98);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 100px rgba(124, 58, 237, 0.1);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid transparent;
+            border-bottom-color: var(--glass-border);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-main);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--glass-bg);
+            padding-left: 1.5rem;
+        }
+
+        .dropdown-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .dropdown-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .dropdown-icon.purple { background: rgba(124, 58, 237, 0.2); }
+        .dropdown-icon.blue { background: rgba(59, 130, 246, 0.2); }
+        .dropdown-icon.pink { background: rgba(236, 72, 153, 0.2); }
+        .dropdown-icon.cyan { background: rgba(6, 182, 212, 0.2); }
+        .dropdown-icon.orange { background: rgba(249, 115, 22, 0.2); }
+        .dropdown-icon.green { background: rgba(34, 197, 94, 0.2); }
+
+        .dropdown-text h4 {
             font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
-        nav a:hover {
-            color: #3b82f6;
+        .dropdown-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
+        .dropdown-divider {
+            height: 1px;
+            background: var(--glass-border);
+            margin: 0.75rem 0;
+        }
+
+        /* Mobile Menu */
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            gap: 5px;
+            gap: 6px;
+            padding: 10px;
         }
 
         .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #e2e8f0;
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
             border-radius: 2px;
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
+        /* ═══════════════════════════════════════════════════════════════
+           APPLE-STYLE HERO WITH PARALLAX TEXT
+           ═══════════════════════════════════════════════════════════════ */
+        .hero-parallax {
+            height: 400vh;
+            position: relative;
         }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        .hero-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--gradient-dark);
         }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        .cta-btn {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-        }
-
-        /* Mobile Menu */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            nav {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                flex-direction: column;
-                gap: 1rem;
-                background: rgba(15, 23, 42, 0.95);
-                backdrop-filter: blur(10px);
-                padding: 2rem;
-                border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-            }
-
-            nav.active {
-                display: flex;
-            }
-
-            nav a {
-                padding: 0.5rem 0;
-            }
-
-            .cta-btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            padding: 60px 20px;
+        .hero-content {
             text-align: center;
-            min-height: 100vh;
+            z-index: 10;
+            padding: 2rem;
+        }
+
+        .hero-text-container {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+        .hero-text-item {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-text-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-text-item.exit-up {
+            opacity: 0;
+            transform: translateY(-100px);
+        }
+
+        .hero-tagline {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInDown 1s ease-out;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease-out 0.4s both;
-            flex-wrap: wrap;
-        }
-
-        .hero-buttons .cta-btn {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-        }
-
-        .secondary-btn {
-            background: transparent;
-            border: 2px solid #3b82f6;
-            color: #3b82f6;
-        }
-
-        .secondary-btn:hover {
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .stat-box {
-            background: rgba(148, 163, 184, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .stat-box:hover {
-            background: rgba(148, 163, 184, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .stat-box h3 {
-            font-size: 2.5rem;
-            color: #3b82f6;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-box p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Section Styling */
-        section {
-            padding: 60px 20px;
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+        .hero-highlight {
+            color: var(--accent-pink);
+            font-weight: 600;
+            -webkit-text-fill-color: var(--accent-pink);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--text-muted);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .scroll-mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--accent-purple);
+            border-radius: 2px;
+            animation: scrollWheel 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes scrollWheel {
+            0%, 100% { opacity: 1; top: 8px; }
+            50% { opacity: 0; top: 20px; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ANATOMY BACKGROUND - FULL HUMAN BODY SYSTEM
+           ═══════════════════════════════════════════════════════════════ */
+        .anatomy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .anatomy-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .anatomy-layer.active {
+            opacity: 1;
+        }
+
+        .anatomy-svg {
+            max-height: 90vh;
+            width: auto;
+            filter: drop-shadow(0 0 50px rgba(124, 58, 237, 0.3));
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           MAIN CONTENT SECTIONS
+           ═══════════════════════════════════════════════════════════════ */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            background: transparent;
+        }
+
+        section {
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
             text-align: center;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 1rem;
         }
 
-        /* Interactive Anatomy */
-        #anatomy {
-            background: rgba(148, 163, 184, 0.02);
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .anatomy-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+        /* ═══════════════════════════════════════════════════════════════
+           COURSES SECTION - 2x2x2 GRID
+           ═══════════════════════════════════════════════════════════════ */
+        #courses {
+            background: linear-gradient(180deg, 
+                rgba(10, 10, 26, 0.9) 0%, 
+                rgba(18, 18, 42, 0.95) 100%);
         }
 
-        .svg-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .anatomy-info {
+        .courses-container {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        svg {
-            max-width: 100%;
-            height: auto;
-            filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.2));
-        }
-
-        .organ {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .organ:hover {
-            filter: brightness(1.2);
-        }
-
-        .organ-fact {
-            background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid #3b82f6;
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-        }
-
-        .organ-fact.active {
-            opacity: 1;
-            max-height: 200px;
-        }
-
-        .organ-fact h4 {
-            color: #3b82f6;
-            margin-bottom: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .anatomy-container {
-                grid-template-columns: 1fr;
-            }
-
-            svg {
-                max-width: 300px;
-            }
-        }
-
-        /* Courses Section */
-        #courses {
-            background: rgba(148, 163, 184, 0.02);
-        }
-
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .courses-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
         }
 
         .course-card {
-            background: rgba(148, 163, 184, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            border-radius: 12px;
+            background: rgba(124, 58, 237, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
             padding: 2rem;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         .course-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .course-card:hover::before {
-            left: 100%;
+            background: var(--gradient-main);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
         }
 
         .course-card:hover {
-            background: rgba(148, 163, 184, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-purple);
+            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.3),
+                        0 0 100px rgba(124, 58, 237, 0.1);
+        }
+
+        .course-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .course-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
         }
 
         .course-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: #3b82f6;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .course-card p {
-            color: #cbd5e1;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .course-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            border-top: 1px solid var(--glass-border);
         }
 
         .course-duration {
             font-size: 0.85rem;
-            color: #94a3b8;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .course-price {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #8b5cf6;
+            font-weight: 800;
+            color: var(--accent-pink);
         }
 
         .course-btn {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
             width: 100%;
+            padding: 1rem;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 12px;
+            color: white;
             font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
             transition: all 0.3s ease;
         }
 
         .course-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
         }
 
-        /* Pricing Section */
+        /* ═══════════════════════════════════════════════════════════════
+           PRICING SECTION
+           ═══════════════════════════════════════════════════════════════ */
         #pricing {
-            background: rgba(148, 163, 184, 0.02);
+            background: linear-gradient(180deg, 
+                rgba(18, 18, 42, 0.95) 0%, 
+                rgba(10, 10, 26, 0.9) 100%);
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-top: 3rem;
         }
 
         .pricing-card {
-            background: rgba(148, 163, 184, 0.05);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(148, 163, 184, 0.1);
-            border-radius: 12px;
-            padding: 2.5rem;
+            background: rgba(124, 58, 237, 0.05);
+            border: 2px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
             text-align: center;
-            transition: all 0.3s ease;
             position: relative;
+            transition: all 0.5s ease;
         }
 
         .pricing-card.featured {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-purple);
+            background: rgba(124, 58, 237, 0.1);
             transform: scale(1.05);
         }
 
-        .pricing-card:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .pricing-price {
-            font-size: 3rem;
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-main);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 700;
-            color: #3b82f6;
-            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
-        .pricing-price span {
-            font-size: 1rem;
-            color: #94a3b8;
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.2);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .pricing-amount span {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            -webkit-text-fill-color: var(--text-muted);
+        }
+
+        .pricing-period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
         }
 
         .pricing-features {
+            list-style: none;
             text-align: left;
             margin: 2rem 0;
-            list-style: none;
         }
 
         .pricing-features li {
             padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-            color: #cbd5e1;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
         }
 
-        .pricing-features li:before {
-            content: '✓ ';
-            color: #3b82f6;
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent-purple);
             font-weight: 700;
-            margin-right: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .pricing-btn {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
             width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 12px;
+            color: white;
             font-weight: 600;
-            margin-top: 1rem;
+            font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .pricing-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
         }
 
-        /* Testimonials Section */
+        .pricing-btn.outline {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .pricing-btn.outline:hover {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        /* Business Masterclass */
+        .business-section {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, 
+                rgba(124, 58, 237, 0.1) 0%, 
+                rgba(236, 72, 153, 0.1) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .business-section h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .business-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .business-option {
+            background: rgba(10, 10, 26, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .business-option h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-purple);
+        }
+
+        .business-option .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-pink);
+            margin: 1rem 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           TESTIMONIALS
+           ═══════════════════════════════════════════════════════════════ */
         #testimonials {
-            background: rgba(148, 163, 184, 0.02);
+            background: linear-gradient(180deg, 
+                rgba(10, 10, 26, 0.9) 0%, 
+                rgba(18, 18, 42, 0.95) 100%);
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
         .testimonial-card {
-            background: rgba(148, 163, 184, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            border-radius: 12px;
+            background: rgba(124, 58, 237, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
             padding: 2rem;
             transition: all 0.3s ease;
         }
 
         .testimonial-card:hover {
-            background: rgba(148, 163, 184, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
             transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
         }
 
-        .testimonial-rating {
+        .testimonial-stars {
             color: #fbbf24;
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
 
         .testimonial-text {
-            color: #cbd5e1;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
             margin-bottom: 1.5rem;
-            line-height: 1.6;
             font-style: italic;
         }
 
         .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-info h4 {
             font-weight: 600;
-            color: #3b82f6;
-            margin-bottom: 0.25rem;
+            color: var(--text-primary);
         }
 
-        .testimonial-role {
+        .testimonial-info p {
             font-size: 0.85rem;
-            color: #94a3b8;
+            color: var(--text-muted);
         }
 
-        /* Contact Form */
+        /* ═══════════════════════════════════════════════════════════════
+           CONTACT SECTION
+           ═══════════════════════════════════════════════════════════════ */
         #contact {
-            background: rgba(148, 163, 184, 0.02);
+            background: linear-gradient(180deg, 
+                rgba(18, 18, 42, 0.95) 0%, 
+                rgba(10, 10, 26, 1) 100%);
         }
 
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+            transform: translateX(10px);
+        }
+
+        .contact-link .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: var(--glass-bg);
+        }
+
+        .contact-form {
+            background: rgba(124, 58, 237, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
         }
 
         .form-group {
@@ -643,470 +964,1189 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: #cbd5e1;
+            color: var(--text-secondary);
             font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            background: rgba(148, 163, 184, 0.05);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 8px;
-            color: #e2e8f0;
+            padding: 1rem;
+            background: rgba(10, 10, 26, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
             font-family: inherit;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+            background: rgba(124, 58, 237, 0.05);
         }
 
         .form-group textarea {
+            min-height: 150px;
             resize: vertical;
-            min-height: 120px;
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
             width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 12px;
+            color: white;
             font-weight: 600;
             font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Footer */
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════════════════════ */
         footer {
-            background: rgba(15, 23, 42, 0.5);
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
-            padding: 2rem;
-            text-align: center;
-            color: #94a3b8;
-            margin-top: 3rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
         }
 
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
+            gap: 2rem;
         }
 
-        .footer-link {
-            color: #3b82f6;
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .footer-link:hover {
-            color: #8b5cf6;
+        .footer-links a:hover {
+            color: var(--accent-purple);
         }
 
-        /* Popup Modal */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .popup.active {
-            display: flex;
+        .footer-socials a:hover {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: white;
+            transform: translateY(-3px);
         }
 
-        .popup-content {
-            background: rgba(30, 27, 75, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            animation: slideIn 0.3s ease;
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .courses-row {
+                grid-template-columns: 1fr;
             }
-            to {
-                transform: translateY(0);
-                opacity: 1;
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        .popup-content h3 {
-            color: #3b82f6;
-            margin-bottom: 1rem;
-        }
-
-        .popup-content p {
-            color: #cbd5e1;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: #e2e8f0;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .popup-close:hover {
-            color: #3b82f6;
-        }
-
-        .popup-content {
-            position: relative;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            header {
+                padding: 1rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 26, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1rem;
+                border-bottom: 1px solid var(--glass-border);
             }
 
-            section h2 {
-                font-size: 1.8rem;
+            nav.active {
+                display: flex;
             }
 
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .hamburger {
+                display: flex;
             }
 
-            .courses-grid {
-                grid-template-columns: 1fr;
+            .dropdown {
+                position: static;
+                transform: none;
+                width: 100%;
+                min-width: auto;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                padding: 0 1rem;
+            }
+
+            .nav-item:hover .dropdown {
+                transform: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
             }
 
             .pricing-card.featured {
                 transform: scale(1);
             }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Scroll Progress Bar -->
+    <!-- Scroll Progress -->
     <div class="scroll-progress"></div>
 
-    <!-- Header & Navigation -->
+    <!-- Anatomy Background Layers -->
+    <div class="anatomy-background">
+        <!-- Layer 1: Muscular System -->
+        <div class="anatomy-layer" id="layer-muscle" data-layer="1">
+            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
+                <!-- Human Muscular System -->
+                <defs>
+                    <linearGradient id="muscleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#dc2626;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#991b1b;stop-opacity:0.9" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                
+                <!-- Head -->
+                <ellipse cx="200" cy="60" rx="45" ry="55" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                
+                <!-- Neck muscles -->
+                <path d="M 175 110 Q 200 120 225 110 L 220 140 Q 200 145 180 140 Z" fill="url(#muscleGrad)"/>
+                
+                <!-- Trapezius -->
+                <path d="M 140 140 Q 200 160 260 140 Q 250 180 200 185 Q 150 180 140 140" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                
+                <!-- Deltoids -->
+                <ellipse cx="130" cy="170" rx="30" ry="25" fill="url(#muscleGrad)"/>
+                <ellipse cx="270" cy="170" rx="30" ry="25" fill="url(#muscleGrad)"/>
+                
+                <!-- Pectorals -->
+                <path d="M 155 175 Q 200 200 245 175 Q 240 220 200 230 Q 160 220 155 175" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                
+                <!-- Biceps -->
+                <ellipse cx="115" cy="230" rx="18" ry="40" fill="url(#muscleGrad)"/>
+                <ellipse cx="285" cy="230" rx="18" ry="40" fill="url(#muscleGrad)"/>
+                
+                <!-- Forearms -->
+                <ellipse cx="105" cy="310" rx="12" ry="35" fill="url(#muscleGrad)"/>
+                <ellipse cx="295" cy="310" rx="12" ry="35" fill="url(#muscleGrad)"/>
+                
+                <!-- Abdominals -->
+                <rect x="175" y="235" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
+                <rect x="175" y="255" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
+                <rect x="175" y="275" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
+                <rect x="175" y="295" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
+                <rect x="175" y="315" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
+                <rect x="175" y="335" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
+                
+                <!-- Obliques -->
+                <path d="M 155 240 Q 145 290 155 340 L 170 340 Q 165 290 170 240 Z" fill="url(#muscleGrad)"/>
+                <path d="M 245 240 Q 255 290 245 340 L 230 340 Q 235 290 230 240 Z" fill="url(#muscleGrad)"/>
+                
+                <!-- Quadriceps -->
+                <ellipse cx="170" cy="440" rx="28" ry="70" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                <ellipse cx="230" cy="440" rx="28" ry="70" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                
+                <!-- Inner thigh -->
+                <ellipse cx="185" cy="430" rx="12" ry="50" fill="url(#muscleGrad)"/>
+                <ellipse cx="215" cy="430" rx="12" ry="50" fill="url(#muscleGrad)"/>
+                
+                <!-- Calves -->
+                <ellipse cx="165" cy="590" rx="18" ry="50" fill="url(#muscleGrad)"/>
+                <ellipse cx="235" cy="590" rx="18" ry="50" fill="url(#muscleGrad)"/>
+                
+                <!-- Tibialis -->
+                <ellipse cx="175" cy="600" rx="10" ry="40" fill="url(#muscleGrad)"/>
+                <ellipse cx="225" cy="600" rx="10" ry="40" fill="url(#muscleGrad)"/>
+                
+                <!-- Hands -->
+                <ellipse cx="95" cy="370" rx="12" ry="18" fill="url(#muscleGrad)"/>
+                <ellipse cx="305" cy="370" rx="12" ry="18" fill="url(#muscleGrad)"/>
+                
+                <!-- Feet -->
+                <ellipse cx="165" cy="690" rx="20" ry="12" fill="url(#muscleGrad)"/>
+                <ellipse cx="235" cy="690" rx="20" ry="12" fill="url(#muscleGrad)"/>
+            </svg>
+        </div>
+
+        <!-- Layer 2: Skeletal System -->
+        <div class="anatomy-layer" id="layer-skeleton" data-layer="2">
+            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
+                <defs>
+                    <linearGradient id="boneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f5f5f4;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#a8a29e;stop-opacity:0.8" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Skull -->
+                <ellipse cx="200" cy="55" rx="40" ry="50" fill="url(#boneGrad)" filter="url(#glow)"/>
+                <ellipse cx="185" cy="45" rx="8" ry="6" fill="#1a1a2e"/>
+                <ellipse cx="215" cy="45" rx="8" ry="6" fill="#1a1a2e"/>
+                <path d="M 190 70 Q 200 75 210 70" stroke="#1a1a2e" stroke-width="2" fill="none"/>
+                <ellipse cx="200" cy="60" rx="6" ry="4" fill="#1a1a2e"/>
+                
+                <!-- Jaw -->
+                <path d="M 170 75 Q 200 100 230 75 L 225 65 Q 200 85 175 65 Z" fill="url(#boneGrad)"/>
+                
+                <!-- Cervical Spine -->
+                <rect x="195" y="105" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="115" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="125" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="135" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
+                
+                <!-- Clavicles -->
+                <path d="M 200 145 Q 160 150 120 160" stroke="url(#boneGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path d="M 200 145 Q 240 150 280 160" stroke="url(#boneGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                
+                <!-- Scapulae -->
+                <path d="M 130 160 L 145 210 L 160 160 Z" fill="url(#boneGrad)"/>
+                <path d="M 270 160 L 255 210 L 240 160 Z" fill="url(#boneGrad)"/>
+                
+                <!-- Ribcage -->
+                <ellipse cx="200" cy="220" rx="55" ry="70" fill="none" stroke="url(#boneGrad)" stroke-width="3"/>
+                <ellipse cx="200" cy="220" rx="45" ry="60" fill="none" stroke="url(#boneGrad)" stroke-width="2"/>
+                <ellipse cx="200" cy="220" rx="35" ry="50" fill="none" stroke="url(#boneGrad)" stroke-width="2"/>
+                <ellipse cx="200" cy="220" rx="25" ry="40" fill="none" stroke="url(#boneGrad)" stroke-width="2"/>
+                
+                <!-- Sternum -->
+                <rect x="195" y="150" width="10" height="100" rx="3" fill="url(#boneGrad)"/>
+                
+                <!-- Thoracic/Lumbar Spine -->
+                <rect x="195" y="260" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="272" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="284" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="296" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="308" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
+                <rect x="195" y="320" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
+                
+                <!-- Pelvis -->
+                <path d="M 150 340 Q 130 370 145 400 Q 200 420 255 400 Q 270 370 250 340 Q 200 360 150 340" fill="url(#boneGrad)" filter="url(#glow)"/>
+                <ellipse cx="165" cy="385" rx="12" ry="15" fill="#1a1a2e"/>
+                <ellipse cx="235" cy="385" rx="12" ry="15" fill="#1a1a2e"/>
+                
+                <!-- Humerus -->
+                <rect x="108" y="170" width="12" height="80" rx="6" fill="url(#boneGrad)"/>
+                <rect x="280" y="170" width="12" height="80" rx="6" fill="url(#boneGrad)"/>
+                
+                <!-- Radius/Ulna -->
+                <rect x="103" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
+                <rect x="112" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
+                <rect x="280" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
+                <rect x="289" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
+                
+                <!-- Hands -->
+                <ellipse cx="110" cy="340" rx="15" ry="20" fill="url(#boneGrad)"/>
+                <ellipse cx="290" cy="340" rx="15" ry="20" fill="url(#boneGrad)"/>
+                
+                <!-- Femurs -->
+                <rect x="160" y="400" width="18" height="110" rx="9" fill="url(#boneGrad)" filter="url(#glow)"/>
+                <rect x="222" y="400" width="18" height="110" rx="9" fill="url(#boneGrad)" filter="url(#glow)"/>
+                
+                <!-- Patella -->
+                <ellipse cx="169" cy="520" rx="10" ry="12" fill="url(#boneGrad)"/>
+                <ellipse cx="231" cy="520" rx="10" ry="12" fill="url(#boneGrad)"/>
+                
+                <!-- Tibia/Fibula -->
+                <rect x="162" y="535" width="10" height="100" rx="5" fill="url(#boneGrad)"/>
+                <rect x="172" y="535" width="6" height="100" rx="3" fill="url(#boneGrad)"/>
+                <rect x="224" y="535" width="10" height="100" rx="5" fill="url(#boneGrad)"/>
+                <rect x="234" y="535" width="6" height="100" rx="3" fill="url(#boneGrad)"/>
+                
+                <!-- Feet -->
+                <path d="M 145 650 L 190 650 L 185 680 L 150 680 Z" fill="url(#boneGrad)"/>
+                <path d="M 210 650 L 255 650 L 250 680 L 215 680 Z" fill="url(#boneGrad)"/>
+            </svg>
+        </div>
+
+        <!-- Layer 3: Nervous System -->
+        <div class="anatomy-layer" id="layer-nervous" data-layer="3">
+            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
+                <defs>
+                    <linearGradient id="nerveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#facc15;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.8" />
+                    </linearGradient>
+                    <filter id="nerveGlow">
+                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                
+                <!-- Brain -->
+                <ellipse cx="200" cy="55" rx="38" ry="45" fill="url(#nerveGrad)" filter="url(#nerveGlow)"/>
+                <path d="M 170 40 Q 200 35 230 40 Q 210 50 200 45 Q 190 50 170 40" fill="#f59e0b"/>
+                <path d="M 170 55 Q 200 50 230 55" stroke="#f59e0b" stroke-width="2" fill="none"/>
+                <path d="M 175 65 Q 200 60 225 65" stroke="#f59e0b" stroke-width="2" fill="none"/>
+                
+                <!-- Brain Stem -->
+                <rect x="195" y="95" width="10" height="25" rx="5" fill="url(#nerveGrad)"/>
+                
+                <!-- Spinal Cord -->
+                <rect x="197" y="120" width="6" height="280" rx="3" fill="url(#nerveGrad)" filter="url(#nerveGlow)"/>
+                
+                <!-- Cervical Nerves -->
+                <path d="M 200 130 Q 150 135 120 150" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <path d="M 200 130 Q 250 135 280 150" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <path d="M 200 145 Q 150 150 115 170" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <path d="M 200 145 Q 250 150 285 170" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                
+                <!-- Brachial Plexus -->
+                <path d="M 200 160 Q 160 165 125 180 Q 115 220 110 280" stroke="url(#nerveGrad)" stroke-width="3" fill="none" filter="url(#nerveGlow)"/>
+                <path d="M 200 160 Q 240 165 275 180 Q 285 220 290 280" stroke="url(#nerveGrad)" stroke-width="3" fill="none" filter="url(#nerveGlow)"/>
+                
+                <!-- Arm nerves -->
+                <path d="M 110 280 Q 108 310 105 360" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <path d="M 290 280 Q 292 310 295 360" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                
+                <!-- Thoracic Nerves -->
+                <path d="M 200 200 Q 160 205 140 210" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 200 Q 240 205 260 210" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 220 Q 160 225 135 230" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 220 Q 240 225 265 230" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 240 Q 160 245 140 250" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 240 Q 240 245 260 250" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                
+                <!-- Lumbar Plexus -->
+                <ellipse cx="200" cy="360" rx="25" ry="20" fill="url(#nerveGrad)" filter="url(#nerveGlow)" opacity="0.7"/>
+                
+                <!-- Sciatic Nerve -->
+                <path d="M 185 380 Q 170 450 165 520 Q 165 580 165 640" stroke="url(#nerveGrad)" stroke-width="4" fill="none" filter="url(#nerveGlow)"/>
+                <path d="M 215 380 Q 230 450 235 520 Q 235 580 235 640" stroke="url(#nerveGrad)" stroke-width="4" fill="none" filter="url(#nerveGlow)"/>
+                
+                <!-- Leg nerve branches -->
+                <path d="M 165 520 Q 150 540 145 580" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <path d="M 235 520 Q 250 540 255 580" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <path d="M 165 580 Q 160 620 155 660" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M 235 580 Q 240 620 245 660" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- Layer 4: Organs -->
+        <div class="anatomy-layer" id="layer-organs" data-layer="4">
+            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
+                <defs>
+                    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#dc2626;stop-opacity:0.8" />
+                    </linearGradient>
+                    <linearGradient id="lungGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#be185d;stop-opacity:0.7" />
+                    </linearGradient>
+                    <linearGradient id="liverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.7" />
+                    </linearGradient>
+                    <linearGradient id="stomachGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#ea580c;stop-opacity:0.7" />
+                    </linearGradient>
+                    <linearGradient id="intestineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.7" />
+                    </linearGradient>
+                    <linearGradient id="kidneyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.7" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Brain -->
+                <ellipse cx="200" cy="55" rx="35" ry="42" fill="#f472b6" filter="url(#glow)"/>
+                <path d="M 170 45 Q 200 40 230 45" stroke="#be185d" stroke-width="2" fill="none"/>
+                <path d="M 172 55 Q 200 50 228 55" stroke="#be185d" stroke-width="2" fill="none"/>
+                <path d="M 175 65 Q 200 60 225 65" stroke="#be185d" stroke-width="2" fill="none"/>
+                
+                <!-- Lungs -->
+                <ellipse cx="160" cy="200" rx="35" ry="55" fill="url(#lungGrad)" filter="url(#glow)"/>
+                <ellipse cx="240" cy="200" rx="35" ry="55" fill="url(#lungGrad)" filter="url(#glow)"/>
+                <path d="M 140 180 Q 160 200 140 220" stroke="#be185d" stroke-width="1" fill="none"/>
+                <path d="M 145 175 Q 165 195 145 225" stroke="#be185d" stroke-width="1" fill="none"/>
+                <path d="M 260 180 Q 240 200 260 220" stroke="#be185d" stroke-width="1" fill="none"/>
+                <path d="M 255 175 Q 235 195 255 225" stroke="#be185d" stroke-width="1" fill="none"/>
+                
+                <!-- Trachea -->
+                <rect x="195" y="120" width="10" height="50" rx="5" fill="#94a3b8"/>
+                
+                <!-- Heart -->
+                <path d="M 200 180 Q 175 165 165 180 Q 155 195 170 215 Q 200 250 200 250 Q 200 250 230 215 Q 245 195 235 180 Q 225 165 200 180" fill="url(#heartGrad)" filter="url(#glow)"/>
+                
+                <!-- Liver -->
+                <path d="M 150 280 Q 130 290 130 310 Q 130 340 180 350 Q 230 350 240 320 Q 245 290 220 280 Q 185 270 150 280" fill="url(#liverGrad)" filter="url(#glow)"/>
+                
+                <!-- Stomach -->
+                <path d="M 220 290 Q 250 300 260 330 Q 265 360 240 380 Q 210 390 190 370 Q 180 350 190 320 Q 200 295 220 290" fill="url(#stomachGrad)" filter="url(#glow)"/>
+                
+                <!-- Kidneys -->
+                <ellipse cx="145" cy="340" rx="18" ry="28" fill="url(#kidneyGrad)"/>
+                <ellipse cx="255" cy="340" rx="18" ry="28" fill="url(#kidneyGrad)"/>
+                
+                <!-- Small Intestine -->
+                <path d="M 180 400 Q 160 410 170 430 Q 180 440 200 435 Q 220 430 230 445 Q 235 460 215 470 Q 195 475 185 465 Q 175 455 190 445 Q 205 440 210 455 Q 215 470 195 475" stroke="url(#intestineGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                
+                <!-- Large Intestine -->
+                <path d="M 140 400 L 140 480 Q 140 500 160 500 L 240 500 Q 260 500 260 480 L 260 400" stroke="#22c55e" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.6"/>
+                
+                <!-- Bladder -->
+                <ellipse cx="200" cy="530" rx="25" ry="20" fill="#06b6d4" opacity="0.7"/>
+            </svg>
+        </div>
+
+        <!-- Layer 5: Tissues -->
+        <div class="anatomy-layer" id="layer-tissue" data-layer="5">
+            <svg class="anatomy-svg" viewBox="0 0 400 500" width="350">
+                <defs>
+                    <linearGradient id="tissueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f472b6;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.8" />
+                    </linearGradient>
+                    <pattern id="tissuePattern" patternUnits="userSpaceOnUse" width="20" height="20">
+                        <circle cx="10" cy="10" r="3" fill="rgba(124, 58, 237, 0.3)"/>
+                    </pattern>
+                </defs>
+                
+                <!-- Tissue Title -->
+                <text x="200" y="40" text-anchor="middle" fill="#f472b6" font-size="18" font-weight="bold">TISSUE LAYER</text>
+                
+                <!-- Epithelial Tissue -->
+                <rect x="50" y="70" width="300" height="80" rx="10" fill="url(#tissueGrad)" filter="url(#glow)"/>
+                <text x="200" y="100" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Epithelial Tissue</text>
+                <text x="200" y="120" text-anchor="middle" fill="white" font-size="10">Covers body surfaces</text>
+                <!-- Cell representation -->
+                <rect x="70" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="90" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="110" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="130" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="150" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="170" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="190" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="210" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="230" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="250" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="270" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="290" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <rect x="310" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                
+                <!-- Connective Tissue -->
+                <rect x="50" y="170" width="300" height="80" rx="10" fill="#3b82f6" opacity="0.7" filter="url(#glow)"/>
+                <text x="200" y="200" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Connective Tissue</text>
+                <text x="200" y="220" text-anchor="middle" fill="white" font-size="10">Supports and binds</text>
+                <!-- Fiber representation -->
+                <line x1="70" y1="230" x2="120" y2="240" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                <line x1="90" y1="235" x2="150" y2="230" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                <line x1="130" y1="228" x2="190" y2="238" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                <line x1="170" y1="232" x2="230" y2="228" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                <line x1="210" y1="230" x2="270" y2="235" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                <line x1="250" y1="235" x2="320" y2="230" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                
+                <!-- Muscle Tissue -->
+                <rect x="50" y="270" width="300" height="80" rx="10" fill="#ef4444" opacity="0.7" filter="url(#glow)"/>
+                <text x="200" y="300" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Muscle Tissue</text>
+                <text x="200" y="320" text-anchor="middle" fill="white" font-size="10">Movement and contraction</text>
+                <!-- Striation representation -->
+                <line x1="70" y1="330" x2="70" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="85" y1="330" x2="85" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="100" y1="330" x2="100" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="115" y1="330" x2="115" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="130" y1="330" x2="130" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="145" y1="330" x2="145" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="160" y1="330" x2="160" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="175" y1="330" x2="175" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="190" y1="330" x2="190" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="205" y1="330" x2="205" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="220" y1="330" x2="220" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="235" y1="330" x2="235" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="250" y1="330" x2="250" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="265" y1="330" x2="265" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="280" y1="330" x2="280" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="295" y1="330" x2="295" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="310" y1="330" x2="310" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+                <line x1="325" y1="330" x2="325" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                
+                <!-- Nervous Tissue -->
+                <rect x="50" y="370" width="300" height="80" rx="10" fill="#facc15" opacity="0.7" filter="url(#glow)"/>
+                <text x="200" y="400" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="bold">Nervous Tissue</text>
+                <text x="200" y="420" text-anchor="middle" fill="#1a1a2e" font-size="10">Transmits signals</text>
+                <!-- Neuron representation -->
+                <circle cx="100" cy="435" r="8" fill="rgba(26,26,46,0.5)"/>
+                <line x1="108" y1="435" x2="180" y2="435" stroke="rgba(26,26,46,0.5)" stroke-width="2"/>
+                <circle cx="200" cy="435" r="8" fill="rgba(26,26,46,0.5)"/>
+                <line x1="208" y1="435" x2="280" y2="435" stroke="rgba(26,26,46,0.5)" stroke-width="2"/>
+                <circle cx="300" cy="435" r="8" fill="rgba(26,26,46,0.5)"/>
+            </svg>
+        </div>
+
+        <!-- Layer 6: Cells -->
+        <div class="anatomy-layer" id="layer-cells" data-layer="6">
+            <svg class="anatomy-svg" viewBox="0 0 400 400" width="400">
+                <defs>
+                    <radialGradient id="cellGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.3" />
+                        <stop offset="70%" style="stop-color:#7c3aed;stop-opacity:0.5" />
+                        <stop offset="100%" style="stop-color:#5b21b6;stop-opacity:0.7" />
+                    </radialGradient>
+                    <radialGradient id="nucleusGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#be185d;stop-opacity:0.8" />
+                    </radialGradient>
+                </defs>
+                
+                <!-- Title -->
+                <text x="200" y="30" text-anchor="middle" fill="#a855f7" font-size="18" font-weight="bold">CELLULAR LEVEL</text>
+                
+                <!-- Main Cell -->
+                <ellipse cx="200" cy="200" rx="150" ry="130" fill="url(#cellGrad)" stroke="#7c3aed" stroke-width="3" filter="url(#glow)"/>
+                
+                <!-- Cell Membrane (double layer) -->
+                <ellipse cx="200" cy="200" rx="148" ry="128" fill="none" stroke="#9333ea" stroke-width="1" stroke-dasharray="5,5"/>
+                <ellipse cx="200" cy="200" rx="152" ry="132" fill="none" stroke="#9333ea" stroke-width="1" stroke-dasharray="5,5"/>
+                
+                <!-- Nucleus -->
+                <ellipse cx="200" cy="200" rx="45" ry="40" fill="url(#nucleusGrad)" filter="url(#glow)"/>
+                <ellipse cx="200" cy="200" rx="43" ry="38" fill="none" stroke="#f472b6" stroke-width="2"/>
+                
+                <!-- Nucleolus -->
+                <circle cx="210" cy="195" r="12" fill="#f9a8d4"/>
+                
+                <!-- Chromatin -->
+                <path d="M 175 190 Q 185 200 175 210" stroke="#fce7f3" stroke-width="2" fill="none"/>
+                <path d="M 190 185 Q 200 195 190 205" stroke="#fce7f3" stroke-width="2" fill="none"/>
+                <path d="M 215 195 Q 225 205 215 215" stroke="#fce7f3" stroke-width="2" fill="none"/>
+                
+                <!-- Endoplasmic Reticulum -->
+                <path d="M 80 180 Q 100 170 110 190 Q 120 210 100 220 Q 80 230 90 250" stroke="#06b6d4" stroke-width="3" fill="none" opacity="0.7"/>
+                <path d="M 85 175 Q 105 165 115 185 Q 125 205 105 215 Q 85 225 95 245" stroke="#06b6d4" stroke-width="3" fill="none" opacity="0.7"/>
+                
+                <!-- Rough ER with ribosomes -->
+                <path d="M 280 150 Q 300 160 290 180 Q 280 200 300 210" stroke="#3b82f6" stroke-width="4" fill="none" opacity="0.7"/>
+                <circle cx="285" cy="155" r="3" fill="#f472b6"/>
+                <circle cx="295" cy="165" r="3" fill="#f472b6"/>
+                <circle cx="290" cy="175" r="3" fill="#f472b6"/>
+                <circle cx="285" cy="190" r="3" fill="#f472b6"/>
+                <circle cx="295" cy="205" r="3" fill="#f472b6"/>
+                
+                <!-- Golgi Apparatus -->
+                <path d="M 290 240 Q 310 245 290 255" stroke="#22c55e" stroke-width="5" fill="none" opacity="0.8"/>
+                <path d="M 285 250 Q 305 255 285 265" stroke="#22c55e" stroke-width="5" fill="none" opacity="0.7"/>
+                <path d="M 280 260 Q 300 265 280 275" stroke="#22c55e" stroke-width="5" fill="none" opacity="0.6"/>
+                
+                <!-- Mitochondria -->
+                <ellipse cx="120" cy="280" rx="25" ry="12" fill="#ef4444" opacity="0.7" transform="rotate(-20 120 280)"/>
+                <path d="M 100 278 Q 110 285 100 290" stroke="#fca5a5" stroke-width="1" fill="none"/>
+                <path d="M 110 276 Q 120 283 110 288" stroke="#fca5a5" stroke-width="1" fill="none"/>
+                <path d="M 120 275 Q 130 282 120 287" stroke="#fca5a5" stroke-width="1" fill="none"/>
+                <path d="M 130 276 Q 140 283 130 288" stroke="#fca5a5" stroke-width="1" fill="none"/>
+                
+                <ellipse cx="310" cy="290" rx="22" ry="10" fill="#ef4444" opacity="0.7" transform="rotate(15 310 290)"/>
+                <path d="M 295 288 Q 305 295 295 300" stroke="#fca5a5" stroke-width="1" fill="none"/>
+                <path d="M 305 287 Q 315 294 305 299" stroke="#fca5a5" stroke-width="1" fill="none"/>
+                <path d="M 315 288 Q 325 295 315 300" stroke="#fca5a5" stroke-width="1" fill="none"/>
+                
+                <!-- Lysosomes -->
+                <circle cx="100" cy="140" r="12" fill="#f97316" opacity="0.7"/>
+                <circle cx="320" cy="180" r="10" fill="#f97316" opacity="0.7"/>
+                
+                <!-- Ribosomes (free) -->
+                <circle cx="150" cy="120" r="4" fill="#ec4899"/>
+                <circle cx="165" cy="130" r="4" fill="#ec4899"/>
+                <circle cx="180" cy="115" r="4" fill="#ec4899"/>
+                <circle cx="140" cy="270" r="4" fill="#ec4899"/>
+                <circle cx="160" cy="290" r="4" fill="#ec4899"/>
+                <circle cx="180" cy="280" r="4" fill="#ec4899"/>
+                <circle cx="250" cy="120" r="4" fill="#ec4899"/>
+                <circle cx="270" cy="110" r="4" fill="#ec4899"/>
+                
+                <!-- Centrioles -->
+                <rect x="250" cy="270" width="20" height="8" rx="4" fill="#8b5cf6" transform="rotate(30 260 274)"/>
+                <rect x="255" cy="280" width="20" height="8" rx="4" fill="#8b5cf6" transform="rotate(120 265 284)"/>
+                
+                <!-- Cytoskeleton -->
+                <line x1="70" y1="200" x2="140" y2="200" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
+                <line x1="260" y1="200" x2="330" y2="200" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
+                <line x1="200" y1="80" x2="200" y2="150" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
+                <line x1="200" y1="250" x2="200" y2="310" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
+                
+                <!-- Labels -->
+                <text x="200" y="360" text-anchor="middle" fill="#94a3b8" font-size="11">
+                    <tspan x="200" dy="0">Nucleus • Mitochondria • Golgi • ER</tspan>
+                    <tspan x="200" dy="15">Ribosomes • Lysosomes • Cytoskeleton</tspan>
+                </text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">BodyMind Academy</div>
-                <nav id="nav">
-                    <a href="#hero">Home</a>
-                    <a href="#anatomy">Anatomy</a>
-                    <a href="#courses">Courses</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="#testimonials">Testimonials</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+        <div class="header-content">
+            <div class="logo">BodyMind <span>Academy</span></div>
+            
+            <nav id="nav">
+                <!-- Home -->
+                <div class="nav-item">
+                    <a href="#hero" class="nav-link">Home</a>
+                </div>
+
+                <!-- Anatomy Dropdown -->
+                <div class="nav-item">
+                    <a href="#anatomy-section" class="nav-link">
+                        Anatomy <span class="arrow">▼</span>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon purple">💪</div>
+                            <div class="dropdown-text">
+                                <h4>Muscular System</h4>
+                                <p>Over 600 muscles explained</p>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon blue">🦴</div>
+                            <div class="dropdown-text">
+                                <h4>Skeletal System</h4>
+                                <p>206 bones and joints</p>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon pink">🧠</div>
+                            <div class="dropdown-text">
+                                <h4>Nervous System</h4>
+                                <p>Brain, spine & nerves</p>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon cyan">🫀</div>
+                            <div class="dropdown-text">
+                                <h4>Organ Systems</h4>
+                                <p>Vital organs & functions</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Courses Dropdown -->
+                <div class="nav-item">
+                    <a href="#courses" class="nav-link">
+                        Courses <span class="arrow">▼</span>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon purple">🧬</div>
+                            <div class="dropdown-text">
+                                <h4>Science Behind Pain</h4>
+                                <p>Understand pain neuroscience</p>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon pink">⚡</div>
+                            <div class="dropdown-text">
+                                <h4>Dopamine Mastery</h4>
+                                <p>Your motivation molecule</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon blue">🌊</div>
+                            <div class="dropdown-text">
+                                <h4>Nervous System Regulation</h4>
+                                <p>Master your autonomic response</p>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon cyan">🔄</div>
+                            <div class="dropdown-text">
+                                <h4>Neuroplasticity Masterclass</h4>
+                                <p>Rewire your brain</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon orange">🩺</div>
+                            <div class="dropdown-text">
+                                <h4>Kinesiology Taping</h4>
+                                <p>Professional taping techniques</p>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-icon green">🏋️</div>
+                            <div class="dropdown-text">
+                                <h4>Injury Prevention</h4>
+                                <p>Stay strong, stay safe</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pricing -->
+                <div class="nav-item">
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                </div>
+
+                <!-- Testimonials -->
+                <div class="nav-item">
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                </div>
+
+                <!-- Contact -->
+                <div class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </nav>
+
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="container">
-            <h1>Master Your Mind & Body</h1>
-            <p>Understand pain, dopamine, nervous system regulation, and neuroplasticity</p>
-            <div class="hero-buttons">
-                <button class="cta-btn">Start Learning</button>
-                <button class="cta-btn secondary-btn">Watch Demo</button>
+    <!-- Hero Parallax Section -->
+    <section class="hero-parallax" id="hero">
+        <div class="hero-sticky">
+            <div class="hero-content">
+                <div class="hero-text-container">
+                    <!-- Text 1 -->
+                    <div class="hero-text-item active" data-index="0">
+                        <div class="hero-tagline">Welcome to BodyMind Academy</div>
+                        <h1 class="hero-title">Master Your Mind & Body</h1>
+                        <p class="hero-subtitle">The intersection of <span class="hero-highlight">neuroscience</span> and human performance</p>
+                    </div>
+
+                    <!-- Text 2 -->
+                    <div class="hero-text-item" data-index="1">
+                        <div class="hero-tagline">Pain Science</div>
+                        <h1 class="hero-title">Pain Is An Output</h1>
+                        <p class="hero-subtitle">Not a measure of tissue damage — it's your brain's <span class="hero-highlight">protective response</span></p>
+                    </div>
+
+                    <!-- Text 3 -->
+                    <div class="hero-text-item" data-index="2">
+                        <div class="hero-tagline">Dopamine</div>
+                        <h1 class="hero-title">Your Motivation Molecule</h1>
+                        <p class="hero-subtitle">The chemical that drives <span class="hero-highlight">desire, drive, and determination</span></p>
+                    </div>
+
+                    <!-- Text 4 -->
+                    <div class="hero-text-item" data-index="3">
+                        <div class="hero-tagline">Nervous System</div>
+                        <h1 class="hero-title">Regulate Your State</h1>
+                        <p class="hero-subtitle">From <span class="hero-highlight">fight-or-flight</span> to rest-and-digest mastery</p>
+                    </div>
+
+                    <!-- Text 5 -->
+                    <div class="hero-text-item" data-index="4">
+                        <div class="hero-tagline">Neuroplasticity</div>
+                        <h1 class="hero-title">Rewire Your Brain</h1>
+                        <p class="hero-subtitle">Your brain can <span class="hero-highlight">change at any age</span> — that's the science of hope</p>
+                    </div>
+
+                    <!-- Text 6 - CTA -->
+                    <div class="hero-text-item" data-index="5">
+                        <div class="hero-tagline">Begin Your Journey</div>
+                        <h1 class="hero-title">Transform Today</h1>
+                        <p class="hero-subtitle">Join <span class="hero-highlight">1000+</span> students already mastering their bodies</p>
+                        <div style="margin-top: 2rem;">
+                            <button class="cta-btn" style="padding: 1rem 2.5rem; font-size: 1.1rem; background: var(--gradient-main); border: none; border-radius: 12px; color: white; cursor: pointer;">Start Learning Now</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stats">
-                <div class="stat-box">
-                    <h3>1000+</h3>
-                    <p>Active Students</p>
-                </div>
-                <div class="stat-box">
-                    <h3>4.9★</h3>
-                    <p>Average Rating</p>
-                </div>
-                <div class="stat-box">
-                    <h3>50+</h3>
-                    <p>Video Lessons</p>
-                </div>
+            <div class="hero-scroll-indicator">
+                <div class="scroll-mouse"></div>
+                <span>Scroll to explore</span>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Anatomy Section -->
-    <section id="anatomy">
-        <div class="container">
-            <h2>Interactive Anatomy</h2>
-            <div class="anatomy-container">
-                <div class="svg-container">
-                    <svg viewBox="0 0 200 400" width="200" height="400">
-                        <!-- Brain -->
-                        <ellipse id="brain" class="organ" cx="100" cy="60" rx="35" ry="40" fill="#3b82f6" opacity="0.7"/>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Courses Section -->
+        <section id="courses">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Our Curriculum</div>
+                    <h2 class="section-title">Transformative Courses</h2>
+                    <p class="section-subtitle">Science-backed education to unlock your body's potential</p>
+                </div>
+
+                <div class="courses-container">
+                    <!-- Row 1 -->
+                    <div class="courses-row">
+                        <div class="course-card">
+                            <div class="course-icon">🧬</div>
+                            <h3>Science Behind Pain</h3>
+                            <p>Understand why pain persists and how to break the cycle. Learn the neurobiology that changes everything about managing chronic conditions.</p>
+                            <div class="course-meta">
+                                <span class="course-duration">⏱️ 8 weeks</span>
+                                <span class="course-price">$149.99</span>
+                            </div>
+                            <button class="course-btn">Enroll Now</button>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course-icon">⚡</div>
+                            <h3>Dopamine Mastery</h3>
+                            <p>Your motivation molecule decoded. Learn to optimize dopamine for focus, drive, and sustainable motivation without burnout.</p>
+                            <div class="course-meta">
+                                <span class="course-duration">⏱️ 6 weeks</span>
+                                <span class="course-price">$199.99</span>
+                            </div>
+                            <button class="course-btn">Enroll Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="courses-row">
+                        <div class="course-card">
+                            <div class="course-icon">🌊</div>
+                            <h3>Nervous System Regulation</h3>
+                            <p>Master your autonomic nervous system. Move from chronic stress to calm, collected, and in control of your physiological state.</p>
+                            <div class="course-meta">
+                                <span class="course-duration">⏱️ 6 weeks</span>
+                                <span class="course-price">$179.99</span>
+                            </div>
+                            <button class="course-btn">Enroll Now</button>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course-icon">🔄</div>
+                            <h3>Neuroplasticity Masterclass</h3>
+                            <p>Your brain can change at any age. Learn advanced strategies to create lasting neurological changes and build new neural pathways.</p>
+                            <div class="course-meta">
+                                <span class="course-duration">⏱️ 10 weeks</span>
+                                <span class="course-price">$249.99</span>
+                            </div>
+                            <button class="course-btn">Enroll Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="courses-row">
+                        <div class="course-card">
+                            <div class="course-icon">🩺</div>
+                            <h3>Kinesiology Taping</h3>
+                            <p>Professional taping techniques for pain relief, performance enhancement, and injury support. Learn the science behind the tape.</p>
+                            <div class="course-meta">
+                                <span class="course-duration">⏱️ 4 weeks</span>
+                                <span class="course-price">$129.99</span>
+                            </div>
+                            <button class="course-btn">Enroll Now</button>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course-icon">🏋️</div>
+                            <h3>Injury Prevention</h3>
+                            <p>Stay strong, stay safe. Evidence-based strategies to prevent injuries, including special tests of the shoulder and movement analysis.</p>
+                            <div class="course-meta">
+                                <span class="course-duration">⏱️ 5 weeks</span>
+                                <span class="course-price">$159.99</span>
+                            </div>
+                            <button class="course-btn">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Investment</div>
+                    <h2 class="section-title">Choose Your Path</h2>
+                    <p class="section-subtitle">Flexible options for every level of commitment</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 class="pricing-name">Starter</h3>
+                        <p class="pricing-description">Perfect for exploration</p>
+                        <div class="pricing-amount">$0<span>.00</span></div>
+                        <p class="pricing-period">Free forever</p>
+                        <ul class="pricing-features">
+                            <li>2 Free introductory courses</li>
+                            <li>Community forum access</li>
+                            <li>Basic resource library</li>
+                            <li>Email support</li>
+                        </ul>
+                        <button class="pricing-btn outline">Get Started Free</button>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <h3 class="pricing-name">Professional</h3>
+                        <p class="pricing-description">Most popular choice</p>
+                        <div class="pricing-amount">$299<span>.99</span></div>
+                        <p class="pricing-period">One-time payment</p>
+                        <ul class="pricing-features">
+                            <li>All 6 courses included</li>
+                            <li>Lifetime access</li>
+                            <li>Downloadable resources</li>
+                            <li>Priority support</li>
+                            <li>Certificate of completion</li>
+                            <li>Monthly Q&A sessions</li>
+                        </ul>
+                        <button class="pricing-btn">Get Professional</button>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3 class="pricing-name">Premium</h3>
+                        <p class="pricing-description">Ultimate transformation</p>
+                        <div class="pricing-amount">$999<span>.99</span></div>
+                        <p class="pricing-period">One-time payment</p>
+                        <ul class="pricing-features">
+                            <li>Everything in Professional</li>
+                            <li>1-on-1 coaching sessions</li>
+                            <li>Custom learning path</li>
+                            <li>Private community access</li>
+                            <li>VIP support line</li>
+                            <li>Future course updates</li>
+                        </ul>
+                        <button class="pricing-btn">Go Premium</button>
+                    </div>
+                </div>
+
+                <!-- Business Masterclass -->
+                <div class="business-section">
+                    <h3>🏢 Business Masterclass</h3>
+                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Connect your entire team with transformative workshops. Available online or in-person worldwide.</p>
+                    
+                    <div class="business-options">
+                        <div class="business-option">
+                            <h4>💻 Online Workshop</h4>
+                            <div class="price">$2,499.99</div>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Full-day virtual workshop for up to 50 team members. Includes recordings and materials.</p>
+                            <button class="pricing-btn" style="margin-top: 1rem;">Book Online</button>
+                        </div>
+
+                        <div class="business-option">
+                            <h4>✈️ In-Person Workshop</h4>
+                            <div class="price">$7,999.99+</div>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">On-site workshop at your location. Price includes travel and accommodation for Yazan.</p>
+                            <button class="pricing-btn" style="margin-top: 1rem;">Request Quote</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Success Stories</div>
+                    <h2 class="section-title">What Students Say</h2>
+                    <p class="section-subtitle">Real transformations from real people</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The pain science course completely changed my understanding of chronic pain. I've been able to help my clients in ways I never thought possible. Yazan's teaching is exceptional."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">SJ</div>
+                            <div class="testimonial-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Physical Therapist</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The dopamine mastery content is incredible. As an entrepreneur, understanding my motivation system has transformed my productivity and helped me avoid burnout."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">MC</div>
+                            <div class="testimonial-info">
+                                <h4>Marcus Chen</h4>
+                                <p>Tech Entrepreneur</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Nervous system regulation techniques have transformed how I manage my anxiety. The science-backed approach made it click for me like nothing else has."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">ER</div>
+                            <div class="testimonial-info">
+                                <h4>Emily Rodriguez</h4>
+                                <p>Clinical Psychologist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Get In Touch</div>
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="section-subtitle">Have questions? We'd love to hear from you.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Reach Out</h3>
+                        <p>Whether you have questions about our courses, need guidance on which program is right for you, or want to discuss corporate training opportunities, I'm here to help.</p>
                         
-                        <!-- Heart -->
-                        <path id="heart" class="organ" d="M 100 120 Q 85 110 75 120 Q 65 130 75 145 Q 100 165 100 165 Q 100 165 125 145 Q 135 130 125 120 Q 115 110 100 120" fill="#ef4444" opacity="0.7"/>
-                        
-                        <!-- Lungs -->
-                        <ellipse id="lungs" class="organ" cx="75" cy="160" rx="15" ry="25" fill="#06b6d4" opacity="0.7"/>
-                        <ellipse cx="125" cy="160" rx="15" ry="25" fill="#06b6d4" opacity="0.7"/>
-                        
-                        <!-- Liver -->
-                        <rect id="liver" class="organ" x="80" y="210" width="40" height="30" fill="#eab308" opacity="0.7" rx="5"/>
-                        
-                        <!-- Stomach -->
-                        <path id="stomach" class="organ" d="M 85 250 Q 80 260 85 270 Q 90 280 100 280 Q 110 280 115 270 Q 120 260 115 250" fill="#a855f7" opacity="0.7"/>
-                        
-                        <!-- Spine -->
-                        <line id="spine" class="organ" x1="100" y1="80" x2="100" y2="300" stroke="#f97316" stroke-width="3" opacity="0.7"/>
-                    </svg>
-                </div>
-                <div class="anatomy-info">
-                    <div class="organ-fact" id="brain-fact">
-                        <h4>🧠 Brain</h4>
-                        <p>The brain is the command center of your nervous system. It processes pain signals, regulates dopamine levels, and controls neuroplasticity—your brain's ability to rewire itself.</p>
+                        <div class="contact-links">
+                            <a href="mailto:info@bodymindacademy.com" class="contact-link">
+                                <div class="icon">📧</div>
+                                <span>info@bodymindacademy.com</span>
+                            </a>
+                            <a href="https://instagram.com/" target="_blank" class="contact-link">
+                                <div class="icon">📸</div>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://tiktok.com/" target="_blank" class="contact-link">
+                                <div class="icon">🎵</div>
+                                <span>TikTok</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="organ-fact" id="heart-fact">
-                        <h4>❤️ Heart</h4>
-                        <p>Your heart is intricately connected to your nervous system. Heart rate variability reflects nervous system health and is key to managing stress and pain.</p>
-                    </div>
-                    <div class="organ-fact" id="lungs-fact">
-                        <h4>🫁 Lungs</h4>
-                        <p>Breathing directly impacts nervous system regulation. Deep breathing activates the parasympathetic nervous system, reducing pain and promoting relaxation.</p>
-                    </div>
-                    <div class="organ-fact" id="liver-fact">
-                        <h4>🟨 Liver</h4>
-                        <p>Your liver processes neurotransmitters and toxins, impacting dopamine metabolism and overall nervous system function.</p>
-                    </div>
-                    <div class="organ-fact" id="stomach-fact">
-                        <h4>🟣 Stomach</h4>
-                        <p>The gut-brain axis shows that your digestive system and brain communicate extensively. Gut health directly affects neurotransmitter production and mood.</p>
-                    </div>
-                    <div class="organ-fact" id="spine-fact">
-                        <h4>🧴 Spine</h4>
-                        <p>The spine houses the spinal cord, your primary pain highway. Understanding spinal health is crucial for managing chronic pain and neuroplasticity.</p>
-                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section id="courses">
-        <div class="container">
-            <h2>Our Courses</h2>
-            <div class="courses-grid">
-                <div class="course-card">
-                    <h3>Pain Science 101</h3>
-                    <p>Understand the neurobiology of pain, why it persists, and how to manage it effectively through science-based strategies.</p>
-                    <div class="course-meta">
-                        <span class="course-duration">8 weeks</span>
-                        <span class="course-price">$149</span>
-                    </div>
-                    <button class="course-btn">Enroll Now</button>
-                </div>
-
-                <div class="course-card">
-                    <h3>Dopamine Mastery</h3>
-                    <p>Learn how dopamine affects motivation, pleasure, and focus. Discover science-backed methods to optimize your dopamine system.</p>
-                    <div class="course-meta">
-                        <span class="course-duration">6 weeks</span>
-                        <span class="course-price">$199</span>
-                    </div>
-                    <button class="course-btn">Enroll Now</button>
-                </div>
-
-                <div class="course-card">
-                    <h3>Nervous System Regulation</h3>
-                    <p>Master techniques to regulate your autonomic nervous system, reduce anxiety, and improve your overall wellbeing.</p>
-                    <div class="course-meta">
-                        <span class="course-duration">6 weeks</span>
-                        <span class="course-price">$179</span>
-                    </div>
-                    <button class="course-btn">Enroll Now</button>
-                </div>
-
-                <div class="course-card">
-                    <h3>Neuroplasticity Masterclass</h3>
-                    <p>Unlock your brain's potential to rewire itself. Learn advanced strategies to create lasting neurological changes.</p>
-                    <div class="course-meta">
-                        <span class="course-duration">10 weeks</span>
-                        <span class="course-price">$249</span>
-                    </div>
-                    <button class="course-btn">Enroll Now</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing">
-        <div class="container">
-            <h2>Flexible Pricing</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Starter</h3>
-                    <div class="pricing-price">$0<span>/free</span></div>
-                    <ul class="pricing-features">
-                        <li>2 Free Courses</li>
-                        <li>Community Access</li>
-                        <li>Basic Resources</li>
-                        <li>Email Support</li>
-                    </ul>
-                    <button class="pricing-btn">Get Started</button>
-                </div>
-
-                <div class="pricing-card featured">
-                    <h3>Professional</h3>
-                    <div class="pricing-price">$297<span>/one-time</span></div>
-                    <ul class="pricing-features">
-                        <li>All 4 Courses</li>
-                        <li>Lifetime Access</li>
-                        <li>Download Resources</li>
-                        <li>Priority Support</li>
-                        <li>Certificate</li>
-                    </ul>
-                    <button class="pricing-btn">Choose Plan</button>
-                </div>
-
-                <div class="pricing-card">
-                    <h3>Premium</h3>
-                    <div class="pricing-price">$997<span>/one-time</span></div>
-                    <ul class="pricing-features">
-                        <li>All Courses + Masterclass</li>
-                        <li>1-on-1 Coaching</li>
-                        <li>Custom Curriculum</li>
-                        <li>Group Workshops</li>
-                        <li>VIP Support</li>
-                    </ul>
-                    <button class="pricing-btn">Premium Access</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="container">
-            <h2>What Our Students Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"This course changed my understanding of pain. I finally have tools to manage my chronic pain effectively."</p>
-                    <div class="testimonial-author">Sarah Johnson</div>
-                    <div class="testimonial-role">Pain Management Coach</div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"The dopamine content is incredible. It helped me understand my motivation and improve my productivity."</p>
-                    <div class="testimonial-author">Marcus Chen</div>
-                    <div class="testimonial-role">Entrepreneur</div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Nervous system regulation techniques have transformed my anxiety management. Highly recommend!"</p>
-                    <div class="testimonial-author">Emily Rodriguez</div>
-                    <div class="testimonial-role">Therapist</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-container">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-                <div style="margin-top: 2rem; text-align: center; color: #cbd5e1;">
-                    <p><strong>📧 Email:</strong> info@bodymindacademy.com</p>
-                    <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/961312345" style="color: #3b82f6;">+961 31 234 567</a></p>
-                    <p><strong>📱 Instagram:</strong> <a href="https://instagram.com/yazanjafarir" style="color: #3b82f6;">@yazanjafarir</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Contact Us</a>
+            <div class="footer-brand">BodyMind Academy</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://instagram.com/" target="_blank">📸</a>
+                <a href="https://tiktok.com/" target="_blank">🎵</a>
+                <a href="mailto:info@bodymindacademy.com">📧</a>
+            </div>
         </div>
-        <p>&copy; 2024 BodyMind Academy. All rights reserved. | Designed by Yazan Jafar</p>
+        <div class="footer-bottom">
+            <p>© 2024 BodyMind Academy. All rights reserved. Created by <strong>Yazan Jafari</strong></p>
+        </div>
     </footer>
 
-    <!-- Popup Modal -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <button class="popup-close">&times;</button>
-            <h3 id="popup-title"></h3>
-            <p id="popup-text"></p>
-        </div>
-    </div>
-
     <script>
-        // Scroll Progress Bar
+        // ═══════════════════════════════════════════════════════════════
+        // SCROLL PROGRESS BAR
+        // ═══════════════════════════════════════════════════════════════
         const scrollProgress = document.querySelector('.scroll-progress');
+        
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1114,7 +2154,9 @@
             scrollProgress.style.width = scrollPercent + '%';
         });
 
-        // Mobile Menu Toggle
+        // ═══════════════════════════════════════════════════════════════
+        // MOBILE MENU
+        // ═══════════════════════════════════════════════════════════════
         const hamburger = document.getElementById('hamburger');
         const nav = document.getElementById('nav');
 
@@ -1123,68 +2165,81 @@
             nav.classList.toggle('active');
         });
 
-        // Close mobile menu when link is clicked
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
-            });
+        // ═══════════════════════════════════════════════════════════════
+        // HEADER SCROLL EFFECT
+        // ═══════════════════════════════════════════════════════════════
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
 
-        // Interactive Anatomy
-        const organFacts = {
-            brain: {
-                title: '🧠 Brain',
-                text: 'The brain is the command center of your nervous system. It processes pain signals, regulates dopamine levels, and controls neuroplasticity—your brain\'s ability to rewire itself.'
-            },
-            heart: {
-                title: '❤️ Heart',
-                text: 'Your heart is intricately connected to your nervous system. Heart rate variability reflects nervous system health and is key to managing stress and pain.'
-            },
-            lungs: {
-                title: '🫁 Lungs',
-                text: 'Breathing directly impacts nervous system regulation. Deep breathing activates the parasympathetic nervous system, reducing pain and promoting relaxation.'
-            },
-            liver: {
-                title: '🟨 Liver',
-                text: 'Your liver processes neurotransmitters and toxins, impacting dopamine metabolism and overall nervous system function.'
-            },
-            stomach: {
-                title: '🟣 Stomach',
-                text: 'The gut-brain axis shows that your digestive system and brain communicate extensively. Gut health directly affects neurotransmitter production and mood.'
-            },
-            spine: {
-                title: '🧴 Spine',
-                text: 'The spine houses the spinal cord, your primary pain highway. Understanding spinal health is crucial for managing chronic pain and neuroplasticity.'
-            }
-        };
+        // ═══════════════════════════════════════════════════════════════
+        // APPLE-STYLE HERO PARALLAX TEXT
+        // ═══════════════════════════════════════════════════════════════
+        const heroParallax = document.querySelector('.hero-parallax');
+        const heroTextItems = document.querySelectorAll('.hero-text-item');
+        const totalTexts = heroTextItems.length;
 
-        document.querySelectorAll('.organ').forEach(organ => {
-            organ.addEventListener('click', (e) => {
-                const organId = e.target.id;
-                const fact = organFacts[organId];
+        window.addEventListener('scroll', () => {
+            const heroRect = heroParallax.getBoundingClientRect();
+            const heroHeight = heroParallax.offsetHeight;
+            const scrolled = -heroRect.top;
+            const viewportHeight = window.innerHeight;
+            
+            // Calculate progress through the hero section (0 to 1)
+            const totalScrollableDistance = heroHeight - viewportHeight;
+            const progress = Math.max(0, Math.min(1, scrolled / totalScrollableDistance));
+            
+            // Determine which text should be active
+            const textIndex = Math.min(Math.floor(progress * totalTexts), totalTexts - 1);
+            
+            heroTextItems.forEach((item, index) => {
+                item.classList.remove('active', 'exit-up');
                 
-                if (fact) {
-                    document.getElementById('popup-title').textContent = fact.title;
-                    document.getElementById('popup-text').textContent = fact.text;
-                    document.getElementById('popup').classList.add('active');
+                if (index === textIndex) {
+                    item.classList.add('active');
+                } else if (index < textIndex) {
+                    item.classList.add('exit-up');
                 }
             });
         });
 
-        // Popup Close
-        const popup = document.getElementById('popup');
-        document.querySelector('.popup-close').addEventListener('click', () => {
-            popup.classList.remove('active');
+        // ═══════════════════════════════════════════════════════════════
+        // ANATOMY LAYER TRANSITIONS
+        // ═══════════════════════════════════════════════════════════════
+        const anatomyLayers = document.querySelectorAll('.anatomy-layer');
+        const totalLayers = anatomyLayers.length;
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = scrollTop / docHeight;
+            
+            // Calculate which layer should be visible based on scroll
+            const layerIndex = Math.min(Math.floor(scrollProgress * totalLayers), totalLayers - 1);
+            
+            anatomyLayers.forEach((layer, index) => {
+                if (index === layerIndex) {
+                    layer.classList.add('active');
+                } else {
+                    layer.classList.remove('active');
+                }
+            });
         });
 
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.classList.remove('active');
-            }
-        });
+        // Initialize first layer
+        if (anatomyLayers.length > 0) {
+            anatomyLayers[0].classList.add('active');
+        }
 
-        // Intersection Observer for scroll triggers
+        // ═══════════════════════════════════════════════════════════════
+        // SCROLL ANIMATIONS
+        // ═══════════════════════════════════════════════════════════════
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -1199,15 +2254,17 @@
             });
         }, observerOptions);
 
-        // Observe cards for animations
+        // Observe cards
         document.querySelectorAll('.course-card, .pricing-card, .testimonial-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.5s ease';
+            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(card);
         });
 
-        // Form Submission
+        // ═══════════════════════════════════════════════════════════════
+        // FORM SUBMISSION
+        // ═══════════════════════════════════════════════════════════════
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -1215,26 +2272,44 @@
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            // Here you would normally send data to a server
-            console.log('Form Data:', { name, email, message });
+            console.log('Form submitted:', { name, email, message });
             
-            // Show success message
-            alert('Thank you for your message! We\'ll get back to you soon.');
-            document.getElementById('contactForm').reset();
+            alert('Thank you for your message! Yazan will get back to you soon.');
+            e.target.reset();
         });
 
-        // Smooth scroll for navigation links
+        // ═══════════════════════════════════════════════════════════════
+        // SMOOTH SCROLL FOR NAVIGATION
+        // ═══════════════════════════════════════════════════════════════
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        // Close mobile menu if open
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                        
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // INITIALIZE
+        // ═══════════════════════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set first hero text as active
+            heroTextItems[0].classList.add('active');
+            
+            // Set first anatomy layer as active
+            anatomyLayers[0].classList.add('active');
         });
     </script>
 </body>
