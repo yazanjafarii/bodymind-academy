@@ -6,6 +6,9 @@
     <title>BodyMind Academy | Yazan Jafari</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* ============================================
+           1. CSS RESET & VARIABLES
+        ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -37,7 +40,9 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* ============================================
+           2. NAVIGATION STYLES
+        ============================================ */
         nav {
             position: fixed;
             top: 0;
@@ -65,6 +70,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-decoration: none;
         }
 
         .nav-links {
@@ -103,7 +109,9 @@
             transform: rotate(180deg);
         }
 
-        /* Dropdown Styles */
+        /* ============================================
+           3. DROPDOWN STYLES
+        ============================================ */
         .dropdown {
             position: absolute;
             top: 100%;
@@ -175,7 +183,9 @@
             font-size: 0.7rem;
         }
 
-        /* Mobile Menu */
+        /* ============================================
+           4. MOBILE MENU
+        ============================================ */
         .mobile-menu-btn {
             display: none;
             flex-direction: column;
@@ -193,7 +203,9 @@
             transition: all 0.3s ease;
         }
 
-        /* Hero Section */
+        /* ============================================
+           5. HERO SECTION STYLES
+        ============================================ */
         .hero-scroll-container {
             height: 200vh;
             position: relative;
@@ -220,7 +232,9 @@
             gap: 2rem;
         }
 
-        /* Side Quotes */
+        /* ============================================
+           6. QUOTES COLUMN STYLES
+        ============================================ */
         .quotes-column {
             display: flex;
             flex-direction: column;
@@ -281,35 +295,58 @@
             color: var(--text-secondary);
         }
 
-        /* Anatomy Center */
+        /* ============================================
+           7. ANATOMY CENTER - SKETCHFAB 3D MODEL
+        ============================================ */
         .anatomy-center {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             flex: 1;
-            max-width: 500px;
+            max-width: 600px;
         }
 
         .anatomy-figure {
             width: 100%;
-            max-width: 400px;
-            height: auto;
-            perspective: 1000px;
+            height: 500px;
+            position: relative;
         }
 
-        .anatomy-image-container {
+        .sketchfab-embed-wrapper {
             width: 100%;
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
+            height: 100%;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
         }
 
-        .anatomy-image {
+        .sketchfab-embed-wrapper iframe {
             width: 100%;
-            height: auto;
-            max-height: 70vh;
-            object-fit: contain;
-            filter: drop-shadow(0 0 30px rgba(124, 58, 237, 0.3));
+            height: 100%;
+            border: none;
+        }
+
+        /* Glow effect around the 3D model */
+        .anatomy-figure::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--purple), var(--pink), var(--blue), var(--cyan));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
         .anatomy-title {
@@ -334,7 +371,35 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Scroll Progress */
+        /* Interaction hint */
+        .interaction-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--cyan);
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+
+        .interaction-hint span {
+            animation: rotateHint 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes rotateHint {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        /* ============================================
+           8. SCROLL PROGRESS DOTS
+        ============================================ */
         .scroll-progress {
             position: fixed;
             bottom: 2rem;
@@ -352,6 +417,7 @@
             background: var(--bg-tertiary);
             border: 2px solid var(--purple);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .progress-dot.active {
@@ -359,7 +425,13 @@
             box-shadow: 0 0 10px var(--purple);
         }
 
-        /* Modal Styles */
+        .progress-dot:hover {
+            transform: scale(1.2);
+        }
+
+        /* ============================================
+           9. MODAL STYLES
+        ============================================ */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -471,7 +543,9 @@
             color: var(--text-secondary);
         }
 
-        /* Sections */
+        /* ============================================
+           10. SECTION STYLES
+        ============================================ */
         section {
             padding: 100px 2rem;
         }
@@ -498,7 +572,9 @@
             margin: 0 auto;
         }
 
-        /* Courses Grid */
+        /* ============================================
+           11. COURSES GRID
+        ============================================ */
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -572,7 +648,9 @@
             background-clip: text;
         }
 
-        /* Pricing Section */
+        /* ============================================
+           12. PRICING SECTION
+        ============================================ */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -661,6 +739,9 @@
             font-weight: bold;
         }
 
+        /* ============================================
+           13. BUTTONS
+        ============================================ */
         .btn {
             display: inline-block;
             padding: 1rem 2rem;
@@ -693,7 +774,9 @@
             background: var(--purple);
         }
 
-        /* Mentorship Section */
+        /* ============================================
+           14. MENTORSHIP SECTION
+        ============================================ */
         .mentorship-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -751,7 +834,9 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Testimonials */
+        /* ============================================
+           15. TESTIMONIALS
+        ============================================ */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -807,7 +892,9 @@
             color: var(--text-secondary);
         }
 
-        /* Contact Section */
+        /* ============================================
+           16. CONTACT SECTION
+        ============================================ */
         .contact-container {
             max-width: 600px;
             margin: 0 auto;
@@ -854,7 +941,9 @@
             resize: vertical;
         }
 
-        /* Footer */
+        /* ============================================
+           17. FOOTER
+        ============================================ */
         footer {
             background: var(--bg-secondary);
             padding: 4rem 2rem 2rem;
@@ -941,7 +1030,9 @@
             color: var(--text-secondary);
         }
 
-        /* Responsive */
+        /* ============================================
+           18. RESPONSIVE STYLES
+        ============================================ */
         @media (max-width: 1024px) {
             .courses-grid,
             .pricing-grid,
@@ -955,6 +1046,10 @@
 
             .quotes-column {
                 width: 200px;
+            }
+
+            .anatomy-figure {
+                height: 400px;
             }
         }
 
@@ -1002,6 +1097,7 @@
 
             .hero-content {
                 flex-direction: column;
+                padding-top: 80px;
             }
 
             .quotes-column {
@@ -1009,6 +1105,25 @@
                 width: 100%;
                 justify-content: center;
                 gap: 1rem;
+                flex-wrap: wrap;
+                order: 2;
+            }
+
+            .anatomy-center {
+                order: 1;
+            }
+
+            .left-quotes {
+                order: 2;
+            }
+
+            .right-quotes {
+                order: 3;
+            }
+
+            .quote-item {
+                flex: 1;
+                min-width: 140px;
             }
 
             .quote-item.left,
@@ -1017,11 +1132,16 @@
             }
 
             .quote-text {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
             .anatomy-figure {
-                max-width: 300px;
+                height: 350px;
+                max-width: 100%;
+            }
+
+            .anatomy-title h2 {
+                font-size: 1.5rem;
             }
 
             .courses-grid,
@@ -1055,7 +1175,9 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- ============================================
+         NAVIGATION
+    ============================================ -->
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">BodyMind Academy</a>
@@ -1072,25 +1194,25 @@
                         <li>
                             <a href="#">Regional <span class="nested-arrow">▶</span></a>
                             <ul class="nested-dropdown">
-                                <li><a href="#" onclick="openModal('upper-limb')">Upper Limb</a></li>
-                                <li><a href="#" onclick="openModal('lower-limb')">Lower Limb</a></li>
-                                <li><a href="#" onclick="openModal('head-neck')">Head & Neck</a></li>
-                                <li><a href="#" onclick="openModal('thorax')">Thorax</a></li>
-                                <li><a href="#" onclick="openModal('abdomen')">Abdomen</a></li>
-                                <li><a href="#" onclick="openModal('back')">Back</a></li>
-                                <li><a href="#" onclick="openModal('pelvis')">Pelvis & Perineum</a></li>
+                                <li><a href="#" onclick="openModal('upper-limb'); return false;">Upper Limb</a></li>
+                                <li><a href="#" onclick="openModal('lower-limb'); return false;">Lower Limb</a></li>
+                                <li><a href="#" onclick="openModal('head-neck'); return false;">Head & Neck</a></li>
+                                <li><a href="#" onclick="openModal('thorax'); return false;">Thorax</a></li>
+                                <li><a href="#" onclick="openModal('abdomen'); return false;">Abdomen</a></li>
+                                <li><a href="#" onclick="openModal('back'); return false;">Back</a></li>
+                                <li><a href="#" onclick="openModal('pelvis'); return false;">Pelvis & Perineum</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">Systematic <span class="nested-arrow">▶</span></a>
                             <ul class="nested-dropdown">
-                                <li><a href="#" onclick="openModal('muscular')">Muscular System</a></li>
-                                <li><a href="#" onclick="openModal('skeletal')">Skeletal System</a></li>
-                                <li><a href="#" onclick="openModal('nervous')">Nervous System</a></li>
-                                <li><a href="#" onclick="openModal('cardiovascular')">Cardiovascular System</a></li>
-                                <li><a href="#" onclick="openModal('respiratory')">Respiratory System</a></li>
-                                <li><a href="#" onclick="openModal('digestive')">Digestive System</a></li>
-                                <li><a href="#" onclick="openModal('lymphatic')">Lymphatic System</a></li>
+                                <li><a href="#" onclick="openModal('muscular'); return false;">Muscular System</a></li>
+                                <li><a href="#" onclick="openModal('skeletal'); return false;">Skeletal System</a></li>
+                                <li><a href="#" onclick="openModal('nervous'); return false;">Nervous System</a></li>
+                                <li><a href="#" onclick="openModal('cardiovascular'); return false;">Cardiovascular System</a></li>
+                                <li><a href="#" onclick="openModal('respiratory'); return false;">Respiratory System</a></li>
+                                <li><a href="#" onclick="openModal('digestive'); return false;">Digestive System</a></li>
+                                <li><a href="#" onclick="openModal('lymphatic'); return false;">Lymphatic System</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -1120,7 +1242,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Scrolling Anatomy -->
+    <!-- ============================================
+         HERO SECTION WITH SKETCHFAB 3D MODEL
+    ============================================ -->
     <div class="hero-scroll-container" id="home">
         <div class="hero-sticky">
             <div class="hero-content">
@@ -1140,16 +1264,31 @@
                     </div>
                 </div>
 
-                <!-- Center Anatomy -->
+                <!-- Center - Sketchfab 3D Model -->
                 <div class="anatomy-center">
                     <div class="anatomy-figure">
-                        <div class="anatomy-image-container" id="anatomyContainer">
-                            <img src="https://www.kenhub.com/thumbor/_4cuBAa6nxDiy_QQW4rJxbqtp3I=/fit-in/800x1600/filters:watermark(/images/logo_url.png,-10,-10,0):background_color(FFFFFF):format(jpeg)/images/library/13918/musculoskeletal-system.png" alt="Human Anatomy" class="anatomy-image" id="anatomyImage">
+                        <div class="sketchfab-embed-wrapper">
+                            <iframe 
+                                title="Human Muscular Skeletal System" 
+                                frameborder="0" 
+                                allowfullscreen 
+                                mozallowfullscreen="true" 
+                                webkitallowfullscreen="true" 
+                                allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                xr-spatial-tracking 
+                                execution-while-out-of-viewport 
+                                execution-while-not-rendered 
+                                web-share 
+                                src="https://sketchfab.com/models/99ed50c60bbe424a8133f42408f58b56/embed?autostart=1&ui_theme=dark&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0&ui_watermark_link=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0&preload=1">
+                            </iframe>
                         </div>
                     </div>
                     <div class="anatomy-title">
                         <h2 id="anatomyTitle">The Human Body</h2>
                         <p id="anatomySubtitle">Scroll to explore the systems within</p>
+                        <div class="interaction-hint">
+                            <span>🖱️</span> Click & drag to rotate the 3D model
+                        </div>
                     </div>
                 </div>
 
@@ -1180,7 +1319,9 @@
         </div>
     </div>
 
-    <!-- Anatomy Modals -->
+    <!-- ============================================
+         ANATOMY MODAL
+    ============================================ -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1193,7 +1334,9 @@
         </div>
     </div>
 
-    <!-- Courses Section -->
+    <!-- ============================================
+         COURSES SECTION
+    ============================================ -->
     <section id="courses">
         <div class="section-header">
             <h2>Our Courses</h2>
@@ -1239,7 +1382,9 @@
         </div>
     </section>
 
-    <!-- Mentorship Section -->
+    <!-- ============================================
+         MENTORSHIP SECTION
+    ============================================ -->
     <section id="mentorship" style="background: var(--bg-secondary);">
         <div class="section-header">
             <h2>Mentorship Programs</h2>
@@ -1263,7 +1408,9 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- ============================================
+         PRICING SECTION
+    ============================================ -->
     <section id="pricing">
         <div class="section-header">
             <h2>Investment Tiers</h2>
@@ -1311,7 +1458,9 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- ============================================
+         TESTIMONIALS SECTION
+    ============================================ -->
     <section id="testimonials" style="background: var(--bg-secondary);">
         <div class="section-header">
             <h2>What Our Students Say</h2>
@@ -1351,7 +1500,9 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ============================================
+         CONTACT SECTION
+    ============================================ -->
     <section id="contact">
         <div class="section-header">
             <h2>Get In Touch</h2>
@@ -1361,11 +1512,11 @@
             <form class="contact-form">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Your name">
+                    <input type="text" id="name" placeholder="Your name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="your@email.com">
+                    <input type="email" id="email" placeholder="your@email.com" required>
                 </div>
                 <div class="form-group">
                     <label for="subject">Subject</label>
@@ -1373,14 +1524,16 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" placeholder="Tell us more..."></textarea>
+                    <textarea id="message" placeholder="Tell us more..." required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -1424,10 +1577,14 @@
         </div>
     </footer>
 
+    <!-- ============================================
+         JAVASCRIPT
+    ============================================ -->
     <script>
-        // Anatomy data for modals
+        // ============================================
+        // ANATOMY DATA FOR MODALS
+        // ============================================
         const anatomyData = {
-            // Regional Anatomy
             'upper-limb': {
                 title: 'Upper Limb Regional Anatomy',
                 sections: [
@@ -1466,17 +1623,6 @@
                             { name: 'Radial Nerve', desc: 'Posterior arm nerve' },
                             { name: 'Musculocutaneous', desc: 'Biceps nerve' },
                             { name: 'Axillary Nerve', desc: 'Deltoid nerve' }
-                        ]
-                    },
-                    {
-                        name: 'Joints',
-                        items: [
-                            { name: 'Shoulder (Glenohumeral)', desc: 'Ball and socket' },
-                            { name: 'Elbow', desc: 'Hinge joint' },
-                            { name: 'Wrist (Radiocarpal)', desc: 'Condyloid joint' },
-                            { name: 'MCP Joints', desc: 'Knuckle joints' },
-                            { name: 'IP Joints', desc: 'Finger joints' },
-                            { name: 'Acromioclavicular', desc: 'AC joint' }
                         ]
                     }
                 ]
@@ -1520,17 +1666,6 @@
                             { name: 'Obturator Nerve', desc: 'Adductor nerve' },
                             { name: 'Saphenous Nerve', desc: 'Sensory leg nerve' }
                         ]
-                    },
-                    {
-                        name: 'Joints',
-                        items: [
-                            { name: 'Hip Joint', desc: 'Ball and socket' },
-                            { name: 'Knee Joint', desc: 'Modified hinge' },
-                            { name: 'Ankle (Talocrural)', desc: 'Hinge joint' },
-                            { name: 'Subtalar Joint', desc: 'Inversion/eversion' },
-                            { name: 'MTP Joints', desc: 'Toe joints' },
-                            { name: 'Tibiofibular Joints', desc: 'Syndesmosis' }
-                        ]
                     }
                 ]
             },
@@ -1545,7 +1680,6 @@
                             { name: 'Temporal Bones', desc: 'Sides of skull (2)' },
                             { name: 'Occipital Bone', desc: 'Back of skull' },
                             { name: 'Sphenoid', desc: 'Butterfly-shaped base' },
-                            { name: 'Ethmoid', desc: 'Between eyes' },
                             { name: 'Mandible', desc: 'Lower jaw' },
                             { name: 'Maxilla', desc: 'Upper jaw' }
                         ]
@@ -1557,8 +1691,7 @@
                             { name: 'Trapezius', desc: 'Shoulder elevation' },
                             { name: 'Scalenes', desc: 'Lateral neck flexion' },
                             { name: 'Platysma', desc: 'Superficial neck muscle' },
-                            { name: 'Longus Colli', desc: 'Deep neck flexor' },
-                            { name: 'Suboccipitals', desc: 'Head extension' }
+                            { name: 'Longus Colli', desc: 'Deep neck flexor' }
                         ]
                     },
                     {
@@ -1570,17 +1703,6 @@
                             { name: 'CN VII - Facial', desc: 'Facial expression' },
                             { name: 'CN X - Vagus', desc: 'Parasympathetic' },
                             { name: 'CN XII - Hypoglossal', desc: 'Tongue movement' }
-                        ]
-                    },
-                    {
-                        name: 'Cervical Spine',
-                        items: [
-                            { name: 'Atlas (C1)', desc: 'Supports skull' },
-                            { name: 'Axis (C2)', desc: 'Allows rotation' },
-                            { name: 'C3-C7', desc: 'Typical cervical vertebrae' },
-                            { name: 'Intervertebral Discs', desc: 'Shock absorbers' },
-                            { name: 'Facet Joints', desc: 'Guide movement' },
-                            { name: 'Ligaments', desc: 'Stabilize spine' }
                         ]
                     }
                 ]
@@ -1595,8 +1717,7 @@
                             { name: 'Ribs 1-7', desc: 'True ribs' },
                             { name: 'Ribs 8-10', desc: 'False ribs' },
                             { name: 'Ribs 11-12', desc: 'Floating ribs' },
-                            { name: 'Thoracic Vertebrae', desc: '12 vertebrae (T1-T12)' },
-                            { name: 'Costal Cartilage', desc: 'Rib-sternum connection' }
+                            { name: 'Thoracic Vertebrae', desc: '12 vertebrae (T1-T12)' }
                         ]
                     },
                     {
@@ -1606,8 +1727,7 @@
                             { name: 'Pectoralis Minor', desc: 'Deep chest muscle' },
                             { name: 'Intercostals', desc: 'Between ribs' },
                             { name: 'Diaphragm', desc: 'Primary breathing muscle' },
-                            { name: 'Serratus Anterior', desc: 'Boxer\'s muscle' },
-                            { name: 'Subclavius', desc: 'Below clavicle' }
+                            { name: 'Serratus Anterior', desc: 'Boxer\'s muscle' }
                         ]
                     },
                     {
@@ -1617,19 +1737,7 @@
                             { name: 'Lungs', desc: 'Gas exchange' },
                             { name: 'Esophagus', desc: 'Food passage' },
                             { name: 'Trachea', desc: 'Windpipe' },
-                            { name: 'Thymus', desc: 'Immune organ' },
-                            { name: 'Great Vessels', desc: 'Major arteries/veins' }
-                        ]
-                    },
-                    {
-                        name: 'Structures',
-                        items: [
-                            { name: 'Pleura', desc: 'Lung membrane' },
-                            { name: 'Pericardium', desc: 'Heart sac' },
-                            { name: 'Mediastinum', desc: 'Central compartment' },
-                            { name: 'Thoracic Duct', desc: 'Lymph drainage' },
-                            { name: 'Brachial Plexus', desc: 'Nerve network' },
-                            { name: 'Azygos System', desc: 'Venous drainage' }
+                            { name: 'Thymus', desc: 'Immune organ' }
                         ]
                     }
                 ]
@@ -1664,21 +1772,7 @@
                         items: [
                             { name: 'Spleen', desc: 'Blood filtration' },
                             { name: 'Kidneys', desc: 'Waste filtration' },
-                            { name: 'Adrenal Glands', desc: 'Stress hormones' },
-                            { name: 'Ureters', desc: 'Urine transport' },
-                            { name: 'Abdominal Aorta', desc: 'Main artery' },
-                            { name: 'Inferior Vena Cava', desc: 'Main vein' }
-                        ]
-                    },
-                    {
-                        name: 'Regions (9 Quadrants)',
-                        items: [
-                            { name: 'Epigastric', desc: 'Upper middle' },
-                            { name: 'Umbilical', desc: 'Center' },
-                            { name: 'Hypogastric', desc: 'Lower middle' },
-                            { name: 'Right/Left Hypochondriac', desc: 'Upper sides' },
-                            { name: 'Right/Left Lumbar', desc: 'Middle sides' },
-                            { name: 'Right/Left Iliac', desc: 'Lower sides' }
+                            { name: 'Adrenal Glands', desc: 'Stress hormones' }
                         ]
                     }
                 ]
@@ -1693,8 +1787,7 @@
                             { name: 'Thoracic (12)', desc: 'Mid-back vertebrae' },
                             { name: 'Lumbar (5)', desc: 'Lower back vertebrae' },
                             { name: 'Sacrum', desc: '5 fused vertebrae' },
-                            { name: 'Coccyx', desc: 'Tailbone (3-5 fused)' },
-                            { name: 'Intervertebral Discs', desc: '23 total discs' }
+                            { name: 'Coccyx', desc: 'Tailbone (3-5 fused)' }
                         ]
                     },
                     {
@@ -1703,8 +1796,7 @@
                             { name: 'Trapezius', desc: 'Upper back/neck' },
                             { name: 'Latissimus Dorsi', desc: 'Largest back muscle' },
                             { name: 'Rhomboids', desc: 'Scapular retractors' },
-                            { name: 'Levator Scapulae', desc: 'Scapular elevator' },
-                            { name: 'Serratus Posterior', desc: 'Breathing assistance' }
+                            { name: 'Levator Scapulae', desc: 'Scapular elevator' }
                         ]
                     },
                     {
@@ -1712,19 +1804,7 @@
                         items: [
                             { name: 'Erector Spinae', desc: 'Spinal extensors' },
                             { name: 'Multifidus', desc: 'Spinal stabilizers' },
-                            { name: 'Rotatores', desc: 'Rotation & proprioception' },
-                            { name: 'Interspinales', desc: 'Between spinous processes' },
-                            { name: 'Intertransversarii', desc: 'Between transverse processes' }
-                        ]
-                    },
-                    {
-                        name: 'Ligaments',
-                        items: [
-                            { name: 'Anterior Longitudinal', desc: 'Front of spine' },
-                            { name: 'Posterior Longitudinal', desc: 'Back of vertebrae' },
-                            { name: 'Ligamentum Flavum', desc: 'Yellow ligament' },
-                            { name: 'Interspinous', desc: 'Between spinous processes' },
-                            { name: 'Supraspinous', desc: 'Tips of spinous processes' }
+                            { name: 'Rotatores', desc: 'Rotation & proprioception' }
                         ]
                     }
                 ]
@@ -1739,8 +1819,7 @@
                             { name: 'Ischium', desc: 'Sit bone' },
                             { name: 'Pubis', desc: 'Front pelvic bone' },
                             { name: 'Sacrum', desc: 'Base of spine' },
-                            { name: 'Coccyx', desc: 'Tailbone' },
-                            { name: 'Acetabulum', desc: 'Hip socket' }
+                            { name: 'Coccyx', desc: 'Tailbone' }
                         ]
                     },
                     {
@@ -1750,33 +1829,19 @@
                             { name: 'Gluteus Medius', desc: 'Hip abductor' },
                             { name: 'Gluteus Minimus', desc: 'Hip stabilizer' },
                             { name: 'Piriformis', desc: 'External rotator' },
-                            { name: 'Pelvic Floor', desc: 'Support muscles' },
-                            { name: 'Obturator Internus', desc: 'Deep rotator' }
+                            { name: 'Pelvic Floor', desc: 'Support muscles' }
                         ]
                     },
                     {
-                        name: 'Organs',
-                        items: [
-                            { name: 'Bladder', desc: 'Urine storage' },
-                            { name: 'Rectum', desc: 'Feces storage' },
-                            { name: 'Reproductive Organs', desc: 'Varies by sex' },
-                            { name: 'Sigmoid Colon', desc: 'End of large intestine' },
-                            { name: 'Iliac Vessels', desc: 'Blood supply' }
-                        ]
-                    },
-                    {
-                        name: 'Joints & Ligaments',
+                        name: 'Joints',
                         items: [
                             { name: 'Sacroiliac Joint', desc: 'Sacrum-ilium connection' },
                             { name: 'Pubic Symphysis', desc: 'Front pelvic joint' },
-                            { name: 'Sacrotuberous Ligament', desc: 'Sacrum to ischium' },
-                            { name: 'Sacrospinous Ligament', desc: 'Sacrum to spine' },
-                            { name: 'Inguinal Ligament', desc: 'Groin region' }
+                            { name: 'Hip Joint', desc: 'Ball and socket' }
                         ]
                     }
                 ]
             },
-            // Systematic Anatomy
             'muscular': {
                 title: 'Muscular System',
                 sections: [
@@ -1808,17 +1873,7 @@
                             { name: 'Extension', desc: 'Increase angle' },
                             { name: 'Abduction', desc: 'Away from midline' },
                             { name: 'Adduction', desc: 'Toward midline' },
-                            { name: 'Rotation', desc: 'Turn around axis' },
-                            { name: 'Circumduction', desc: 'Circular movement' }
-                        ]
-                    },
-                    {
-                        name: 'Muscle Properties',
-                        items: [
-                            { name: 'Contractility', desc: 'Ability to shorten' },
-                            { name: 'Excitability', desc: 'Response to stimuli' },
-                            { name: 'Extensibility', desc: 'Ability to stretch' },
-                            { name: 'Elasticity', desc: 'Return to original length' }
+                            { name: 'Rotation', desc: 'Turn around axis' }
                         ]
                     }
                 ]
@@ -1832,8 +1887,7 @@
                             { name: 'Skull', desc: '22 bones' },
                             { name: 'Vertebral Column', desc: '26 bones' },
                             { name: 'Thoracic Cage', desc: '25 bones' },
-                            { name: 'Hyoid', desc: '1 bone' },
-                            { name: 'Auditory Ossicles', desc: '6 bones' }
+                            { name: 'Hyoid', desc: '1 bone' }
                         ]
                     },
                     {
@@ -1853,17 +1907,6 @@
                             { name: 'Flat Bones', desc: 'Skull, scapula' },
                             { name: 'Irregular Bones', desc: 'Vertebrae' },
                             { name: 'Sesamoid Bones', desc: 'Patella' }
-                        ]
-                    },
-                    {
-                        name: 'Joint Types',
-                        items: [
-                            { name: 'Fibrous', desc: 'Sutures, no movement' },
-                            { name: 'Cartilaginous', desc: 'Limited movement' },
-                            { name: 'Synovial', desc: 'Free movement' },
-                            { name: 'Ball & Socket', desc: 'Hip, shoulder' },
-                            { name: 'Hinge', desc: 'Elbow, knee' },
-                            { name: 'Pivot', desc: 'Atlas/axis' }
                         ]
                     }
                 ]
@@ -1895,18 +1938,7 @@
                         items: [
                             { name: 'Sympathetic', desc: 'Fight or flight' },
                             { name: 'Parasympathetic', desc: 'Rest and digest' },
-                            { name: 'Enteric', desc: 'Gut nervous system' },
                             { name: 'Vagus Nerve', desc: 'Main parasympathetic' }
-                        ]
-                    },
-                    {
-                        name: 'Neural Components',
-                        items: [
-                            { name: 'Neurons', desc: 'Nerve cells' },
-                            { name: 'Glial Cells', desc: 'Support cells' },
-                            { name: 'Synapses', desc: 'Neural connections' },
-                            { name: 'Neurotransmitters', desc: 'Chemical messengers' },
-                            { name: 'Myelin', desc: 'Insulating sheath' }
                         ]
                     }
                 ]
@@ -1921,36 +1953,16 @@
                             { name: 'Right Ventricle', desc: 'Pumps to lungs' },
                             { name: 'Left Atrium', desc: 'Receives oxygenated blood' },
                             { name: 'Left Ventricle', desc: 'Pumps to body' },
-                            { name: 'Valves', desc: 'Prevent backflow' },
-                            { name: 'Cardiac Muscle', desc: 'Heart wall' }
+                            { name: 'Valves', desc: 'Prevent backflow' }
                         ]
                     },
                     {
                         name: 'Blood Vessels',
                         items: [
-                            { name: 'Arteries', desc: 'Carry blood away from heart' },
-                            { name: 'Veins', desc: 'Return blood to heart' },
+                            { name: 'Arteries', desc: 'Away from heart' },
+                            { name: 'Veins', desc: 'Return to heart' },
                             { name: 'Capillaries', desc: 'Gas exchange' },
-                            { name: 'Aorta', desc: 'Largest artery' },
-                            { name: 'Vena Cava', desc: 'Largest veins' }
-                        ]
-                    },
-                    {
-                        name: 'Blood Components',
-                        items: [
-                            { name: 'Red Blood Cells', desc: 'Oxygen transport' },
-                            { name: 'White Blood Cells', desc: 'Immune defense' },
-                            { name: 'Platelets', desc: 'Blood clotting' },
-                            { name: 'Plasma', desc: 'Liquid component' }
-                        ]
-                    },
-                    {
-                        name: 'Circulation',
-                        items: [
-                            { name: 'Pulmonary', desc: 'Heart to lungs' },
-                            { name: 'Systemic', desc: 'Heart to body' },
-                            { name: 'Coronary', desc: 'Heart muscle supply' },
-                            { name: 'Portal', desc: 'Digestive to liver' }
+                            { name: 'Aorta', desc: 'Largest artery' }
                         ]
                     }
                 ]
@@ -1959,16 +1971,15 @@
                 title: 'Respiratory System',
                 sections: [
                     {
-                        name: 'Upper Respiratory Tract',
+                        name: 'Upper Respiratory',
                         items: [
-                            { name: 'Nasal Cavity', desc: 'Air filtering, warming' },
+                            { name: 'Nasal Cavity', desc: 'Air filtering' },
                             { name: 'Pharynx', desc: 'Throat' },
-                            { name: 'Larynx', desc: 'Voice box' },
-                            { name: 'Epiglottis', desc: 'Prevents aspiration' }
+                            { name: 'Larynx', desc: 'Voice box' }
                         ]
                     },
                     {
-                        name: 'Lower Respiratory Tract',
+                        name: 'Lower Respiratory',
                         items: [
                             { name: 'Trachea', desc: 'Windpipe' },
                             { name: 'Bronchi', desc: 'Main airways' },
@@ -1981,17 +1992,7 @@
                         items: [
                             { name: 'Right Lung', desc: '3 lobes' },
                             { name: 'Left Lung', desc: '2 lobes' },
-                            { name: 'Pleura', desc: 'Protective membrane' },
-                            { name: 'Hilum', desc: 'Entry point for vessels' }
-                        ]
-                    },
-                    {
-                        name: 'Breathing Mechanics',
-                        items: [
-                            { name: 'Diaphragm', desc: 'Primary breathing muscle' },
-                            { name: 'Intercostals', desc: 'Rib cage expansion' },
-                            { name: 'Inspiration', desc: 'Air intake' },
-                            { name: 'Expiration', desc: 'Air release' }
+                            { name: 'Diaphragm', desc: 'Breathing muscle' }
                         ]
                     }
                 ]
@@ -2000,42 +2001,21 @@
                 title: 'Digestive System',
                 sections: [
                     {
-                        name: 'Alimentary Canal',
+                        name: 'GI Tract',
                         items: [
                             { name: 'Mouth', desc: 'Mechanical digestion' },
                             { name: 'Esophagus', desc: 'Food transport' },
                             { name: 'Stomach', desc: 'Chemical digestion' },
-                            { name: 'Small Intestine', desc: 'Nutrient absorption' },
-                            { name: 'Large Intestine', desc: 'Water absorption' },
-                            { name: 'Rectum/Anus', desc: 'Waste elimination' }
+                            { name: 'Small Intestine', desc: 'Absorption' },
+                            { name: 'Large Intestine', desc: 'Water absorption' }
                         ]
                     },
                     {
                         name: 'Accessory Organs',
                         items: [
-                            { name: 'Liver', desc: 'Bile production, metabolism' },
+                            { name: 'Liver', desc: 'Bile production' },
                             { name: 'Gallbladder', desc: 'Bile storage' },
-                            { name: 'Pancreas', desc: 'Digestive enzymes' },
-                            { name: 'Salivary Glands', desc: 'Saliva production' }
-                        ]
-                    },
-                    {
-                        name: 'Small Intestine Parts',
-                        items: [
-                            { name: 'Duodenum', desc: 'First 25cm' },
-                            { name: 'Jejunum', desc: 'Middle section' },
-                            { name: 'Ileum', desc: 'Final section' },
-                            { name: 'Villi', desc: 'Absorption surface' }
-                        ]
-                    },
-                    {
-                        name: 'Large Intestine Parts',
-                        items: [
-                            { name: 'Cecum', desc: 'Beginning' },
-                            { name: 'Ascending Colon', desc: 'Right side' },
-                            { name: 'Transverse Colon', desc: 'Across abdomen' },
-                            { name: 'Descending Colon', desc: 'Left side' },
-                            { name: 'Sigmoid Colon', desc: 'S-shaped end' }
+                            { name: 'Pancreas', desc: 'Enzymes' }
                         ]
                     }
                 ]
@@ -2046,46 +2026,27 @@
                     {
                         name: 'Lymphatic Organs',
                         items: [
-                            { name: 'Lymph Nodes', desc: '600+ filtering stations' },
+                            { name: 'Lymph Nodes', desc: '600+ filters' },
                             { name: 'Spleen', desc: 'Blood filtration' },
                             { name: 'Thymus', desc: 'T-cell maturation' },
-                            { name: 'Tonsils', desc: 'First line defense' },
-                            { name: 'Bone Marrow', desc: 'Cell production' }
-                        ]
-                    },
-                    {
-                        name: 'Lymphatic Vessels',
-                        items: [
-                            { name: 'Lymph Capillaries', desc: 'Fluid collection' },
-                            { name: 'Lymph Vessels', desc: 'Transport fluid' },
-                            { name: 'Thoracic Duct', desc: 'Main drainage' },
-                            { name: 'Right Lymphatic Duct', desc: 'Upper right body' }
+                            { name: 'Tonsils', desc: 'First defense' }
                         ]
                     },
                     {
                         name: 'Immune Cells',
                         items: [
-                            { name: 'B Lymphocytes', desc: 'Antibody production' },
-                            { name: 'T Lymphocytes', desc: 'Cell-mediated immunity' },
-                            { name: 'Macrophages', desc: 'Phagocytosis' },
-                            { name: 'Natural Killer Cells', desc: 'Destroy infected cells' },
-                            { name: 'Dendritic Cells', desc: 'Antigen presentation' }
-                        ]
-                    },
-                    {
-                        name: 'Functions',
-                        items: [
-                            { name: 'Fluid Balance', desc: 'Return interstitial fluid' },
-                            { name: 'Fat Absorption', desc: 'Intestinal lipids' },
-                            { name: 'Immunity', desc: 'Defense against pathogens' },
-                            { name: 'Waste Removal', desc: 'Cellular debris' }
+                            { name: 'B Lymphocytes', desc: 'Antibodies' },
+                            { name: 'T Lymphocytes', desc: 'Cell immunity' },
+                            { name: 'Macrophages', desc: 'Phagocytosis' }
                         ]
                     }
                 ]
             }
         };
 
-        // Quote rotations data
+        // ============================================
+        // QUOTE ROTATIONS DATA
+        // ============================================
         const quoteRotations = [
             {
                 title: 'The Human Body',
@@ -2145,7 +2106,9 @@
             }
         ];
 
-        // Scroll handling
+        // ============================================
+        // SCROLL HANDLING
+        // ============================================
         let currentRotation = 0;
 
         function handleScroll() {
@@ -2153,26 +2116,17 @@
             const rect = container.getBoundingClientRect();
             const scrollProgress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)));
             
-            // Calculate rotation (0-3 for 4 phases)
             const newRotation = Math.min(3, Math.floor(scrollProgress * 4));
             
-            // Update anatomy rotation (360 degrees)
-            const anatomyContainer = document.getElementById('anatomyContainer');
-            const rotationDegree = scrollProgress * 360;
-            anatomyContainer.style.transform = `rotateY(${rotationDegree}deg)`;
-            
-            // Update progress dots
             document.querySelectorAll('.progress-dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === newRotation);
             });
             
-            // Update quotes if rotation changed
             if (newRotation !== currentRotation) {
                 currentRotation = newRotation;
                 updateQuotes(newRotation);
             }
             
-            // Fade in quotes
             document.querySelectorAll('.quote-item').forEach(quote => {
                 quote.classList.add('visible');
             });
@@ -2181,11 +2135,9 @@
         function updateQuotes(rotationIndex) {
             const rotation = quoteRotations[rotationIndex];
             
-            // Update title
             document.getElementById('anatomyTitle').textContent = rotation.title;
             document.getElementById('anatomySubtitle').textContent = rotation.subtitle;
             
-            // Update left quotes
             const leftQuotes = document.querySelectorAll('.left-quotes .quote-item');
             leftQuotes.forEach((quote, index) => {
                 quote.classList.remove('visible');
@@ -2196,7 +2148,6 @@
                 }, 100);
             });
             
-            // Update right quotes
             const rightQuotes = document.querySelectorAll('.right-quotes .quote-item');
             rightQuotes.forEach((quote, index) => {
                 quote.classList.remove('visible');
@@ -2208,7 +2159,9 @@
             });
         }
 
-        // Modal functions
+        // ============================================
+        // MODAL FUNCTIONS
+        // ============================================
         function openModal(type) {
             const data = anatomyData[type];
             if (!data) return;
@@ -2242,7 +2195,9 @@
             document.body.style.overflow = '';
         }
 
-        // Mobile menu toggle
+        // ============================================
+        // MOBILE MENU
+        // ============================================
         function toggleMobileMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
@@ -2251,8 +2206,10 @@
         document.querySelectorAll('.nav-links > li').forEach(item => {
             item.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768 && this.querySelector('.dropdown')) {
-                    e.preventDefault();
-                    this.classList.toggle('dropdown-open');
+                    if (e.target.closest('a') && e.target.closest('a').querySelector('.dropdown-arrow')) {
+                        e.preventDefault();
+                        this.classList.toggle('dropdown-open');
+                    }
                 }
             });
         });
@@ -2260,12 +2217,19 @@
         document.querySelectorAll('.dropdown > li').forEach(item => {
             item.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768 && this.querySelector('.nested-dropdown')) {
-                    e.stopPropagation();
-                    this.classList.toggle('dropdown-open');
+                    if (e.target.closest('a') && e.target.closest('a').querySelector('.nested-arrow')) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.classList.toggle('dropdown-open');
+                    }
                 }
             });
         });
 
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        
         // Close modal on overlay click
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
             if (e.target === this) {
@@ -2273,18 +2237,17 @@
             }
         });
 
-        // Close modal on escape key
+        // Close modal on escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Initialize
+        // Initialize scroll handling
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('load', () => {
             handleScroll();
-            // Show initial quotes
             setTimeout(() => {
                 document.querySelectorAll('.quote-item').forEach(quote => {
                     quote.classList.add('visible');
