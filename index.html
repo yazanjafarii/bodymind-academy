@@ -135,6 +135,19 @@
             transform: translateY(0);
         }
 
+        /* Two-column dropdown for Systematic */
+        .dropdown.two-column {
+            min-width: 580px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .dropdown-column {
+            display: flex;
+            flex-direction: column;
+        }
+
         .dropdown-item {
             position: relative;
         }
@@ -376,11 +389,11 @@
             min-height: 60px;
         }
 
-        /* Anatomy Image */
+        /* Anatomy Image - BIGGER */
         .anatomy-image-container {
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -389,7 +402,7 @@
 
         .anatomy-image {
             max-width: 100%;
-            max-height: 35vh;
+            max-height: 50vh;
             width: auto;
             height: auto;
             object-fit: contain;
@@ -1327,6 +1340,11 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+
+            .dropdown.two-column {
+                min-width: 280px;
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1362,8 +1380,17 @@
                 display: none;
             }
 
+            .dropdown.two-column {
+                display: none;
+                grid-template-columns: 1fr;
+            }
+
             .nav-item.active > .dropdown {
                 display: block;
+            }
+
+            .nav-item.active > .dropdown.two-column {
+                display: grid;
             }
 
             .dropdown-item.active > .nested-dropdown {
@@ -1381,7 +1408,7 @@
             }
 
             .anatomy-image {
-                max-height: 28vh;
+                max-height: 35vh;
             }
 
             .hero-main-title {
@@ -1558,236 +1585,241 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Systematic <span class="arrow">▼</span></a>
-                    <div class="dropdown">
-                        <div class="dropdown-section-title">Structural Systems</div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">🦴</span>
-                                <span class="content">
-                                    <span class="title">Skeletal System</span>
-                                    <span class="desc">206 bones</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('axial-skeleton'); return false;">Axial Skeleton</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('appendicular-skeleton'); return false;">Appendicular Skeleton</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('bone-tissue'); return false;">Bone Tissue & Growth</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('joints'); return false;">Joints & Articulations</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('cartilage'); return false;">Cartilage</a>
+                    <div class="dropdown two-column">
+                        <!-- Column 1: Structural & Exchange Systems -->
+                        <div class="dropdown-column">
+                            <div class="dropdown-section-title">Structural Systems</div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">🦴</span>
+                                    <span class="content">
+                                        <span class="title">Skeletal System</span>
+                                        <span class="desc">206 bones</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('axial-skeleton'); return false;">Axial Skeleton</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('appendicular-skeleton'); return false;">Appendicular Skeleton</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('bone-tissue'); return false;">Bone Tissue & Growth</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('joints'); return false;">Joints & Articulations</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('cartilage'); return false;">Cartilage</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">💪</span>
+                                    <span class="content">
+                                        <span class="title">Muscular System</span>
+                                        <span class="desc">600+ muscles</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('skeletal-muscle'); return false;">Skeletal Muscle</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('smooth-muscle'); return false;">Smooth Muscle</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('cardiac-muscle'); return false;">Cardiac Muscle</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('tendons-ligaments'); return false;">Tendons & Ligaments</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('fascia'); return false;">Fascia</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">🔗</span>
+                                    <span class="content">
+                                        <span class="title">Integumentary System</span>
+                                        <span class="desc">Skin, hair, nails</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('epidermis'); return false;">Epidermis</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('dermis'); return false;">Dermis</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('hypodermis'); return false;">Hypodermis</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('hair-follicles'); return false;">Hair Follicles</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('nails'); return false;">Nails</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('skin-glands'); return false;">Skin Glands</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section-title">Exchange Systems</div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">🫁</span>
+                                    <span class="content">
+                                        <span class="title">Respiratory System</span>
+                                        <span class="desc">Gas exchange</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('nasal-cavity'); return false;">Nasal Cavity</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('pharynx'); return false;">Pharynx</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('larynx'); return false;">Larynx</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('trachea'); return false;">Trachea</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('bronchi'); return false;">Bronchi</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('lungs'); return false;">Lungs</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('alveoli'); return false;">Alveoli</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('pleura'); return false;">Pleura</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">🍽️</span>
+                                    <span class="content">
+                                        <span class="title">Digestive System</span>
+                                        <span class="desc">GI tract</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('oral'); return false;">Oral Cavity</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('salivary'); return false;">Salivary Glands</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('esophagus'); return false;">Esophagus</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('stomach'); return false;">Stomach</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('small-intestine'); return false;">Small Intestine</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('large-intestine'); return false;">Large Intestine</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('liver'); return false;">Liver</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('gallbladder'); return false;">Gallbladder</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('pancreas'); return false;">Pancreas</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">💦</span>
+                                    <span class="content">
+                                        <span class="title">Urinary System</span>
+                                        <span class="desc">Filtration</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('kidneys'); return false;">Kidneys</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('nephrons'); return false;">Nephrons</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('ureters'); return false;">Ureters</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('bladder'); return false;">Urinary Bladder</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('urethra'); return false;">Urethra</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">💪</span>
-                                <span class="content">
-                                    <span class="title">Muscular System</span>
-                                    <span class="desc">600+ muscles</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('skeletal-muscle'); return false;">Skeletal Muscle</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('smooth-muscle'); return false;">Smooth Muscle</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('cardiac-muscle'); return false;">Cardiac Muscle</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('tendons-ligaments'); return false;">Tendons & Ligaments</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('fascia'); return false;">Fascia</a>
+                        <!-- Column 2: Control, Transport, Reproductive & Immune -->
+                        <div class="dropdown-column">
+                            <div class="dropdown-section-title">Control Systems</div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">⚡</span>
+                                    <span class="content">
+                                        <span class="title">Nervous System</span>
+                                        <span class="desc">86 billion neurons</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('brain'); return false;">Brain</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('spinal-cord'); return false;">Spinal Cord</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('cranial-nerves'); return false;">Cranial Nerves</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('peripheral-nerves'); return false;">Peripheral Nerves</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('autonomic'); return false;">Autonomic NS</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('sympathetic'); return false;">Sympathetic NS</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('parasympathetic'); return false;">Parasympathetic NS</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('enteric'); return false;">Enteric NS</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">🔗</span>
-                                <span class="content">
-                                    <span class="title">Integumentary System</span>
-                                    <span class="desc">Skin, hair, nails</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('epidermis'); return false;">Epidermis</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('dermis'); return false;">Dermis</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('hypodermis'); return false;">Hypodermis</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('hair-follicles'); return false;">Hair Follicles</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('nails'); return false;">Nails</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('skin-glands'); return false;">Skin Glands</a>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">🧪</span>
+                                    <span class="content">
+                                        <span class="title">Endocrine System</span>
+                                        <span class="desc">Hormonal control</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('pituitary'); return false;">Pituitary Gland</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('hypothalamus'); return false;">Hypothalamus</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('thyroid'); return false;">Thyroid Gland</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('parathyroid'); return false;">Parathyroid Glands</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('adrenal'); return false;">Adrenal Glands</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('pineal'); return false;">Pineal Gland</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('pancreas-endo'); return false;">Pancreatic Islets</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('gonads'); return false;">Gonads</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('thymus'); return false;">Thymus</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-section-title">Control Systems</div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">⚡</span>
-                                <span class="content">
-                                    <span class="title">Nervous System</span>
-                                    <span class="desc">86 billion neurons</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('brain'); return false;">Brain</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('spinal-cord'); return false;">Spinal Cord</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('cranial-nerves'); return false;">Cranial Nerves</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('peripheral-nerves'); return false;">Peripheral Nerves</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('autonomic'); return false;">Autonomic NS</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('sympathetic'); return false;">Sympathetic NS</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('parasympathetic'); return false;">Parasympathetic NS</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('enteric'); return false;">Enteric NS</a>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section-title">Transport Systems</div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">❤️</span>
+                                    <span class="content">
+                                        <span class="title">Cardiovascular System</span>
+                                        <span class="desc">Heart & vessels</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('heart'); return false;">Heart</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('arteries'); return false;">Arteries</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('veins'); return false;">Veins</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('capillaries'); return false;">Capillaries</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('blood'); return false;">Blood</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('cardiac-cycle'); return false;">Cardiac Cycle</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">🧪</span>
-                                <span class="content">
-                                    <span class="title">Endocrine System</span>
-                                    <span class="desc">Hormonal control</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('pituitary'); return false;">Pituitary Gland</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('hypothalamus'); return false;">Hypothalamus</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('thyroid'); return false;">Thyroid Gland</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('parathyroid'); return false;">Parathyroid Glands</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('adrenal'); return false;">Adrenal Glands</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('pineal'); return false;">Pineal Gland</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('pancreas-endo'); return false;">Pancreatic Islets</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('gonads'); return false;">Gonads</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('thymus'); return false;">Thymus</a>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">💧</span>
+                                    <span class="content">
+                                        <span class="title">Lymphatic System</span>
+                                        <span class="desc">Immune transport</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('lymph-nodes'); return false;">Lymph Nodes</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('lymph-vessels'); return false;">Lymph Vessels</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('spleen'); return false;">Spleen</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('thymus'); return false;">Thymus</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('tonsils'); return false;">Tonsils</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('lymph-fluid'); return false;">Lymph Fluid</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-section-title">Transport Systems</div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">❤️</span>
-                                <span class="content">
-                                    <span class="title">Cardiovascular System</span>
-                                    <span class="desc">Heart & vessels</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('heart'); return false;">Heart</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('arteries'); return false;">Arteries</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('veins'); return false;">Veins</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('capillaries'); return false;">Capillaries</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('blood'); return false;">Blood</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('cardiac-cycle'); return false;">Cardiac Cycle</a>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section-title">Reproductive & Immune</div>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">👶</span>
+                                    <span class="content">
+                                        <span class="title">Reproductive System</span>
+                                        <span class="desc">Male & Female</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('male-repro'); return false;">Male Reproductive</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('female-repro'); return false;">Female Reproductive</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('testes'); return false;">Testes</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('ovaries'); return false;">Ovaries</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('uterus'); return false;">Uterus</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('mammary'); return false;">Mammary Glands</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">💧</span>
-                                <span class="content">
-                                    <span class="title">Lymphatic System</span>
-                                    <span class="desc">Immune transport</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('lymph-nodes'); return false;">Lymph Nodes</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('lymph-vessels'); return false;">Lymph Vessels</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('spleen'); return false;">Spleen</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('thymus'); return false;">Thymus</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('tonsils'); return false;">Tonsils</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('lymph-fluid'); return false;">Lymph Fluid</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-section-title">Exchange Systems</div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">🫁</span>
-                                <span class="content">
-                                    <span class="title">Respiratory System</span>
-                                    <span class="desc">Gas exchange</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('nasal-cavity'); return false;">Nasal Cavity</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('pharynx'); return false;">Pharynx</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('larynx'); return false;">Larynx</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('trachea'); return false;">Trachea</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('bronchi'); return false;">Bronchi</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('lungs'); return false;">Lungs</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('alveoli'); return false;">Alveoli</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('pleura'); return false;">Pleura</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">🍽️</span>
-                                <span class="content">
-                                    <span class="title">Digestive System</span>
-                                    <span class="desc">GI tract</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('oral'); return false;">Oral Cavity</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('salivary'); return false;">Salivary Glands</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('esophagus'); return false;">Esophagus</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('stomach'); return false;">Stomach</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('small-intestine'); return false;">Small Intestine</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('large-intestine'); return false;">Large Intestine</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('liver'); return false;">Liver</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('gallbladder'); return false;">Gallbladder</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('pancreas'); return false;">Pancreas</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">💦</span>
-                                <span class="content">
-                                    <span class="title">Urinary System</span>
-                                    <span class="desc">Filtration</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('kidneys'); return false;">Kidneys</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('nephrons'); return false;">Nephrons</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('ureters'); return false;">Ureters</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('bladder'); return false;">Urinary Bladder</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('urethra'); return false;">Urethra</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-section-title">Reproductive & Immune</div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">👶</span>
-                                <span class="content">
-                                    <span class="title">Reproductive System</span>
-                                    <span class="desc">Male & Female</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('male-repro'); return false;">Male Reproductive</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('female-repro'); return false;">Female Reproductive</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('testes'); return false;">Testes</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('ovaries'); return false;">Ovaries</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('uterus'); return false;">Uterus</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('mammary'); return false;">Mammary Glands</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span class="icon">🛡️</span>
-                                <span class="content">
-                                    <span class="title">Immune System</span>
-                                    <span class="desc">Defense network</span>
-                                </span>
-                                <span class="arrow">▶</span>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="nested-link" onclick="showDetailPage('innate-immunity'); return false;">Innate Immunity</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('adaptive-immunity'); return false;">Adaptive Immunity</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('white-blood-cells'); return false;">White Blood Cells</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('antibodies'); return false;">Antibodies</a>
-                                <a href="#" class="nested-link" onclick="showDetailPage('complement'); return false;">Complement System</a>
+                            <div class="dropdown-item">
+                                <a href="#" class="dropdown-link">
+                                    <span class="icon">🛡️</span>
+                                    <span class="content">
+                                        <span class="title">Immune System</span>
+                                        <span class="desc">Defense network</span>
+                                    </span>
+                                    <span class="arrow">▶</span>
+                                </a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-link" onclick="showDetailPage('innate-immunity'); return false;">Innate Immunity</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('adaptive-immunity'); return false;">Adaptive Immunity</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('white-blood-cells'); return false;">White Blood Cells</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('antibodies'); return false;">Antibodies</a>
+                                    <a href="#" class="nested-link" onclick="showDetailPage('complement'); return false;">Complement System</a>
+                                </div>
                             </div>
                         </div>
                     </div>
