@@ -47,7 +47,7 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 2rem;
-            background: rgba(10, 10, 26, 0.8);
+            background: rgba(10, 10, 26, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -67,6 +67,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-decoration: none;
         }
 
         .nav-menu {
@@ -218,7 +219,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Hero Section - Apple Style Parallax */
+        /* Hero Section */
         .hero-wrapper {
             height: 200vh;
             position: relative;
@@ -264,25 +265,25 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 100px; /* Increased padding to prevent overlap with nav */
         }
 
-        /* Titles at very top */
+        /* Titles at top */
         .hero-titles {
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.25rem;
             background: rgba(99, 102, 241, 0.2);
             border: 1px solid rgba(99, 102, 241, 0.3);
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
             color: #8b5cf6;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .hero-main-title {
@@ -290,6 +291,10 @@
             font-weight: 800;
             margin-bottom: 0.5rem;
             line-height: 1.1;
+        }
+
+        .hero-main-title .line {
+            display: block;
         }
 
         .hero-main-title .gradient-text {
@@ -300,10 +305,11 @@
         }
 
         .hero-subtitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 1rem auto 0;
+            line-height: 1.7;
         }
 
         /* Top Quotes Section */
@@ -319,7 +325,7 @@
         .anatomy-image-container {
             position: relative;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -328,9 +334,14 @@
 
         .anatomy-image {
             max-width: 100%;
-            max-height: 45vh;
+            max-height: 50vh;
+            width: auto;
+            height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
+            filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.3));
+            /* Force high quality rendering */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         /* Bottom Quotes Section */
@@ -996,6 +1007,10 @@
             .pricing-grid, .mentorship-grid {
                 grid-template-columns: 1fr;
             }
+
+            .hero-content {
+                padding-top: 120px;
+            }
         }
     </style>
 </head>
@@ -1003,13 +1018,13 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#" class="logo" onclick="showHome()">BodyMind Academy</a>
+            <a href="#" class="logo" onclick="showHome(); return false;">BodyMind Academy</a>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
                     <a href="#" class="nav-link">Regional Anatomy <span class="arrow">▼</span></a>
                     <div class="dropdown">
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('head-neck')">
+                            <a href="#" class="dropdown-link" onclick="openModal('head-neck'); return false;">
                                 <span class="icon">🧠</span>
                                 <span class="content">
                                     <span class="title">Head & Neck</span>
@@ -1018,7 +1033,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('thorax')">
+                            <a href="#" class="dropdown-link" onclick="openModal('thorax'); return false;">
                                 <span class="icon">🫁</span>
                                 <span class="content">
                                     <span class="title">Thorax</span>
@@ -1027,7 +1042,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('abdomen')">
+                            <a href="#" class="dropdown-link" onclick="openModal('abdomen'); return false;">
                                 <span class="icon">🫃</span>
                                 <span class="content">
                                     <span class="title">Abdomen</span>
@@ -1045,8 +1060,8 @@
                                 <span class="arrow">▶</span>
                             </a>
                             <div class="nested-dropdown">
-                                <a href="#" class="dropdown-link" onclick="openModal('shoulder')">Shoulder & Arm</a>
-                                <a href="#" class="dropdown-link" onclick="openModal('forearm')">Forearm & Hand</a>
+                                <a href="#" class="dropdown-link" onclick="openModal('shoulder'); return false;">Shoulder & Arm</a>
+                                <a href="#" class="dropdown-link" onclick="openModal('forearm'); return false;">Forearm & Hand</a>
                             </div>
                         </div>
                         <div class="dropdown-item">
@@ -1059,13 +1074,13 @@
                                 <span class="arrow">▶</span>
                             </a>
                             <div class="nested-dropdown">
-                                <a href="#" class="dropdown-link" onclick="openModal('hip')">Hip & Thigh</a>
-                                <a href="#" class="dropdown-link" onclick="openModal('leg')">Leg & Foot</a>
+                                <a href="#" class="dropdown-link" onclick="openModal('hip'); return false;">Hip & Thigh</a>
+                                <a href="#" class="dropdown-link" onclick="openModal('leg'); return false;">Leg & Foot</a>
                             </div>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('back')">
-                                <span class="icon">🔙</span>
+                            <a href="#" class="dropdown-link" onclick="openModal('back'); return false;">
+                                <span class="icon">𖠣</span>
                                 <span class="content">
                                     <span class="title">Back & Spine</span>
                                     <span class="desc">Vertebral column & posterior muscles</span>
@@ -1078,7 +1093,7 @@
                     <a href="#" class="nav-link">Systematic Anatomy <span class="arrow">▼</span></a>
                     <div class="dropdown">
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('skeletal')">
+                            <a href="#" class="dropdown-link" onclick="openModal('skeletal'); return false;">
                                 <span class="icon">🦴</span>
                                 <span class="content">
                                     <span class="title">Skeletal System</span>
@@ -1087,7 +1102,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('muscular')">
+                            <a href="#" class="dropdown-link" onclick="openModal('muscular'); return false;">
                                 <span class="icon">💪</span>
                                 <span class="content">
                                     <span class="title">Muscular System</span>
@@ -1096,7 +1111,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('nervous')">
+                            <a href="#" class="dropdown-link" onclick="openModal('nervous'); return false;">
                                 <span class="icon">⚡</span>
                                 <span class="content">
                                     <span class="title">Nervous System</span>
@@ -1105,7 +1120,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('cardiovascular')">
+                            <a href="#" class="dropdown-link" onclick="openModal('cardiovascular'); return false;">
                                 <span class="icon">❤️</span>
                                 <span class="content">
                                     <span class="title">Cardiovascular System</span>
@@ -1114,7 +1129,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('respiratory')">
+                            <a href="#" class="dropdown-link" onclick="openModal('respiratory'); return false;">
                                 <span class="icon">🫁</span>
                                 <span class="content">
                                     <span class="title">Respiratory System</span>
@@ -1123,7 +1138,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="#" class="dropdown-link" onclick="openModal('digestive')">
+                            <a href="#" class="dropdown-link" onclick="openModal('digestive'); return false;">
                                 <span class="icon">🍽️</span>
                                 <span class="content">
                                     <span class="title">Digestive System</span>
@@ -1134,7 +1149,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="show3DAnatomy()">3D Anatomy</a>
+                    <a href="#" class="nav-link" onclick="show3DAnatomy(); return false;">3D Anatomy</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Courses <span class="arrow">▼</span></a>
@@ -1204,11 +1219,13 @@
                 <div class="hero-content">
                     <!-- Titles -->
                     <div class="hero-titles">
-                        <span class="hero-badge">Explore The Human Body</span>
+                        <span class="hero-badge">✦ Explore The Human Body</span>
                         <h1 class="hero-main-title">
-                            <span class="gradient-text">BodyMind Academy</span>
+                            <span class="line">Master Your Body</span>
+                            <span class="line">Through</span>
+                            <span class="line gradient-text">Science & Understanding</span>
                         </h1>
-                        <p class="hero-subtitle">Pain Science • Dopamine • Nervous System • Neuroplasticity</p>
+                        <p class="hero-subtitle">Unlock the secrets of pain science, dopamine optimization, nervous system regulation, and neuroplasticity with our revolutionary learning platform.</p>
                     </div>
 
                     <!-- Top 3 Quotes -->
@@ -1218,7 +1235,7 @@
 
                     <!-- Anatomy Image -->
                     <div class="anatomy-image-container">
-                        <img src="https://i.postimg.cc/GpKpjNyS/temp-Imagetmb-Xo-D.avif" alt="Human Anatomy Systems" class="anatomy-image">
+                        <img src="https://www.image2url.com/r2/default/images/1782642252742-d59c1c71-55f6-4ffe-bbb6-9a3fbbb5f050.webp" alt="Human Anatomy Systems" class="anatomy-image" loading="eager">
                     </div>
 
                     <!-- Bottom 3 Quotes -->
@@ -1350,7 +1367,7 @@
     <!-- 3D Anatomy Section (Hidden by default) -->
     <section class="anatomy-3d-section" id="anatomy3DSection">
         <div class="anatomy-3d-container">
-            <a href="#" class="back-home-btn" onclick="showHome()">
+            <a href="#" class="back-home-btn" onclick="showHome(); return false;">
                 ← Back to Home
             </a>
             <div class="anatomy-3d-header">
