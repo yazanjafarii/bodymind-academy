@@ -39,6 +39,11 @@
             line-height: 1.6;
         }
 
+        /* Scroll Lock for Quote Rotation */
+        body.scroll-locked {
+            overflow: hidden;
+        }
+
         /* Navigation */
         .nav {
             position: fixed;
@@ -107,7 +112,7 @@
             transform: rotate(180deg);
         }
 
-        /* Dropdown Menus */
+        /* Dropdown Menus - No Scrollbars */
         .dropdown {
             position: absolute;
             top: 100%;
@@ -122,8 +127,6 @@
             transform: translateY(10px);
             transition: all 0.3s ease;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            max-height: 70vh;
-            overflow-y: auto;
         }
 
         .nav-item:hover > .dropdown {
@@ -196,7 +199,7 @@
             margin: 0.5rem 0;
         }
 
-        /* Nested Dropdown */
+        /* Nested Dropdown - No Scrollbars */
         .nested-dropdown {
             position: absolute;
             left: 100%;
@@ -211,8 +214,6 @@
             transform: translateX(10px);
             transition: all 0.3s ease;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            max-height: 60vh;
-            overflow-y: auto;
         }
 
         .dropdown-item:hover > .nested-dropdown {
@@ -268,7 +269,7 @@
             justify-content: flex-start;
             padding: 1rem 2rem 2rem;
             overflow: hidden;
-            padding-top: 70px;
+            padding-top: 80px;
         }
 
         .hero-background {
@@ -298,6 +299,36 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* Stage Indicator */
+        .stage-indicator {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stage-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stage-dot.active {
+            background: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        .stage-label {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Titles */
@@ -342,6 +373,7 @@
             gap: 1.5rem;
             margin: 0.75rem 0;
             flex-wrap: wrap;
+            min-height: 60px;
         }
 
         /* Anatomy Image */
@@ -357,7 +389,7 @@
 
         .anatomy-image {
             max-width: 100%;
-            max-height: 38vh;
+            max-height: 35vh;
             width: auto;
             height: auto;
             object-fit: contain;
@@ -372,6 +404,7 @@
             gap: 1.5rem;
             margin: 0.75rem 0;
             flex-wrap: wrap;
+            min-height: 60px;
         }
 
         /* Quote Item Styling */
@@ -434,8 +467,8 @@
             color: var(--text-secondary);
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
+        /* Scroll Instruction */
+        .scroll-instruction {
             margin-top: 1rem;
             display: flex;
             flex-direction: column;
@@ -443,9 +476,14 @@
             gap: 0.4rem;
             color: var(--text-secondary);
             font-size: 0.75rem;
+            transition: opacity 0.3s ease;
         }
 
-        .scroll-indicator .mouse {
+        .scroll-instruction.hidden {
+            opacity: 0;
+        }
+
+        .scroll-instruction .mouse {
             width: 20px;
             height: 32px;
             border: 2px solid var(--text-secondary);
@@ -455,7 +493,7 @@
             padding-top: 6px;
         }
 
-        .scroll-indicator .wheel {
+        .scroll-instruction .wheel {
             width: 2px;
             height: 6px;
             background: var(--text-secondary);
@@ -466,6 +504,12 @@
         @keyframes scroll {
             0%, 100% { opacity: 1; transform: translateY(0); }
             50% { opacity: 0.5; transform: translateY(4px); }
+        }
+
+        .scroll-progress {
+            font-size: 0.7rem;
+            color: var(--accent-primary);
+            margin-top: 0.25rem;
         }
 
         /* Detail Page Styles */
@@ -906,11 +950,44 @@
         }
 
         /* Mentorship Section */
+        .mentorship-category {
+            margin-bottom: 3rem;
+        }
+
+        .mentorship-category-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .mentorship-category-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .mentorship-category-title h3.personal-title {
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mentorship-category-title h3.business-title {
+            background: var(--gradient-4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mentorship-category-title p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
         .mentorship-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
         }
 
         .mentorship-card {
@@ -926,13 +1003,19 @@
             transform: translateY(-5px);
         }
 
+        .mentorship-card.premium {
+            border-color: rgba(251, 191, 36, 0.5);
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(249, 115, 22, 0.1));
+        }
+
         .mentorship-card .tag {
             display: inline-block;
             padding: 0.2rem 0.6rem;
             border-radius: 20px;
             font-size: 0.7rem;
             font-weight: 500;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+            margin-right: 0.25rem;
         }
 
         .mentorship-card .tag.fitness { background: rgba(34, 211, 238, 0.2); color: #22d3ee; }
@@ -941,7 +1024,7 @@
         .mentorship-card .tag.online { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
         .mentorship-card .tag.inperson { background: rgba(244, 114, 182, 0.2); color: #f472b6; }
 
-        .mentorship-card h3 {
+        .mentorship-card h4 {
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 0.4rem;
@@ -978,6 +1061,178 @@
             padding: 0.35rem 0;
             color: var(--text-secondary);
             font-size: 0.8rem;
+        }
+
+        .mentorship-btn {
+            width: 100%;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: white;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .mentorship-btn:hover {
+            background: rgba(99, 102, 241, 0.3);
+        }
+
+        .mentorship-btn.premium-btn {
+            background: var(--gradient-4);
+            border: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-secondary);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info h2 span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-method .icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(99, 102, 241, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .contact-method .details h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-method .details p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            background: var(--bg-tertiary);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-form h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-1);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
         }
 
         /* Footer */
@@ -1067,6 +1322,11 @@
             .detail-content {
                 grid-template-columns: 1fr;
             }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1100,7 +1360,6 @@
                 background: rgba(255, 255, 255, 0.05);
                 margin-top: 0.5rem;
                 display: none;
-                max-height: none;
             }
 
             .nav-item.active > .dropdown {
@@ -1122,7 +1381,7 @@
             }
 
             .anatomy-image {
-                max-height: 30vh;
+                max-height: 28vh;
             }
 
             .hero-main-title {
@@ -1134,11 +1393,16 @@
             }
 
             .hero {
-                padding-top: 65px;
+                padding-top: 70px;
             }
 
             .info-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                padding: 2rem;
+                margin: 1rem;
             }
         }
     </style>
@@ -1579,7 +1843,7 @@
                     <a href="#pricing" class="nav-link">Pricing</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </li>
             </ul>
             <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobileMenu()">
@@ -1596,6 +1860,15 @@
         <section class="hero">
             <div class="hero-background"></div>
             <div class="hero-content">
+                <!-- Stage Indicator -->
+                <div class="stage-indicator">
+                    <div class="stage-dot active" data-stage="0"></div>
+                    <div class="stage-dot" data-stage="1"></div>
+                    <div class="stage-dot" data-stage="2"></div>
+                    <div class="stage-dot" data-stage="3"></div>
+                </div>
+                <div class="stage-label" id="stageLabel">The Human Body</div>
+
                 <!-- Titles -->
                 <div class="hero-titles">
                     <span class="hero-badge">✦ Explore The Human Body</span>
@@ -1612,7 +1885,7 @@
 
                 <!-- Anatomy Image -->
                 <div class="anatomy-image-container">
-                    <img src="https://i.postimg.cc/d1wwJBzP/Chat-GPT-Image-Jun-8-2025-04-01-07-AM.png" alt="Human Anatomy Systems" class="anatomy-image" loading="eager">
+                    <img src="https://www.image2url.com/r2/default/images/1782642252742-d59c1c71-55f6-4ffe-bbb6-9a3fbbb5f050.webp" alt="Human Anatomy Systems" class="anatomy-image" loading="eager">
                 </div>
 
                 <!-- Bottom 3 Quotes -->
@@ -1620,12 +1893,13 @@
                     <!-- Populated by JavaScript -->
                 </div>
 
-                <!-- Scroll Indicator -->
-                <div class="scroll-indicator">
+                <!-- Scroll Instruction -->
+                <div class="scroll-instruction" id="scrollInstruction">
                     <div class="mouse">
                         <div class="wheel"></div>
                     </div>
-                    <span>Scroll to explore</span>
+                    <span>Scroll to explore more insights</span>
+                    <span class="scroll-progress" id="scrollProgress">Stage 1 of 4</span>
                 </div>
             </div>
         </section>
@@ -1708,63 +1982,156 @@
         <!-- Mentorship Section -->
         <section class="section" id="mentorship">
             <div class="section-header">
-                <h2>Personal <span style="background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mentorship</span></h2>
+                <h2>1-on-1 <span style="background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mentorship</span></h2>
                 <p>Work directly with Yazan Jafari for transformative results</p>
             </div>
-            <div class="mentorship-grid">
-                <div class="mentorship-card">
-                    <span class="tag fitness">Fitness</span>
-                    <h3>1:1 Fitness Coaching</h3>
-                    <div class="price">$499/month</div>
-                    <p>Personalized training programs, nutrition guidance, and weekly check-ins.</p>
-                    <ul class="mentorship-list">
-                        <li>✓ Custom workout programming</li>
-                        <li>✓ Movement assessment</li>
-                        <li>✓ Weekly video calls</li>
-                        <li>✓ Unlimited messaging</li>
-                    </ul>
+
+            <!-- Personal Mentorship -->
+            <div class="mentorship-category">
+                <div class="mentorship-category-title">
+                    <h3 class="personal-title">🧠 Personal Mentorship</h3>
+                    <p>Transform your health, fitness, and mindset with personalized guidance</p>
                 </div>
-                <div class="mentorship-card">
-                    <span class="tag neuro">Neuroscience</span>
-                    <h3>NeuroMind Mastery</h3>
-                    <div class="price">$799/month</div>
-                    <p>Deep dive into pain science, nervous system regulation, and neuroplasticity.</p>
-                    <ul class="mentorship-list">
-                        <li>✓ Comprehensive assessment</li>
-                        <li>✓ Custom neuro protocols</li>
-                        <li>✓ Bi-weekly sessions</li>
-                        <li>✓ Progress tracking</li>
-                    </ul>
+                <div class="mentorship-grid">
+                    <div class="mentorship-card">
+                        <span class="tag fitness">Fitness</span>
+                        <h4>1:1 Fitness Coaching</h4>
+                        <div class="price">$499/month</div>
+                        <p>Personalized training programs, nutrition guidance, and weekly check-ins.</p>
+                        <ul class="mentorship-list">
+                            <li>✓ Custom workout programming</li>
+                            <li>✓ Movement assessment</li>
+                            <li>✓ Weekly video calls</li>
+                            <li>✓ Unlimited messaging</li>
+                        </ul>
+                        <button class="mentorship-btn">Apply Now</button>
+                    </div>
+                    <div class="mentorship-card">
+                        <span class="tag neuro">Neuroscience</span>
+                        <h4>NeuroMind Mastery</h4>
+                        <div class="price">$799/month</div>
+                        <p>Deep dive into pain science, nervous system regulation, and neuroplasticity.</p>
+                        <ul class="mentorship-list">
+                            <li>✓ Comprehensive assessment</li>
+                            <li>✓ Custom neuro protocols</li>
+                            <li>✓ Bi-weekly sessions</li>
+                            <li>✓ Progress tracking</li>
+                        </ul>
+                        <button class="mentorship-btn">Apply Now</button>
+                    </div>
                 </div>
-                <div class="mentorship-card">
-                    <span class="tag business">Business</span>
-                    <span class="tag online">Online</span>
-                    <h3>Business Mentorship - Online</h3>
-                    <div class="price">$1,499/month</div>
-                    <p>Strategic guidance for health & wellness entrepreneurs looking to scale.</p>
-                    <ul class="mentorship-list">
-                        <li>✓ Business strategy sessions</li>
-                        <li>✓ Marketing & branding guidance</li>
-                        <li>✓ Systems & operations</li>
-                        <li>✓ Weekly Zoom calls</li>
-                        <li>✓ Email & chat support</li>
-                    </ul>
+            </div>
+
+            <!-- Business Mentorship -->
+            <div class="mentorship-category">
+                <div class="mentorship-category-title">
+                    <h3 class="business-title">💼 Business Mentorship</h3>
+                    <p>Strategic guidance for health & wellness entrepreneurs looking to scale</p>
                 </div>
-                <div class="mentorship-card">
-                    <span class="tag business">Business</span>
-                    <span class="tag inperson">In-Person</span>
-                    <h3>Business Mentorship - In-Person</h3>
-                    <div class="price">$3,999/month</div>
-                    <p class="price-note">Limited availability • Premium experience</p>
-                    <p>Intensive in-person mentorship for serious entrepreneurs ready to transform.</p>
-                    <ul class="mentorship-list">
-                        <li>✓ Full-day strategy sessions</li>
-                        <li>✓ On-site business audit</li>
-                        <li>✓ Team training included</li>
-                        <li>✓ Direct phone access</li>
-                        <li>✓ Implementation support</li>
-                        <li>✓ Networking introductions</li>
-                    </ul>
+                <div class="mentorship-grid">
+                    <div class="mentorship-card">
+                        <span class="tag business">Business</span>
+                        <span class="tag online">Online</span>
+                        <h4>Business Mentorship - Online</h4>
+                        <div class="price">$1,499/month</div>
+                        <p>Virtual strategic guidance for building and scaling your health business.</p>
+                        <ul class="mentorship-list">
+                            <li>✓ Business strategy sessions</li>
+                            <li>✓ Marketing & branding guidance</li>
+                            <li>✓ Systems & operations</li>
+                            <li>✓ Weekly Zoom calls</li>
+                            <li>✓ Email & chat support</li>
+                        </ul>
+                        <button class="mentorship-btn">Apply Now</button>
+                    </div>
+                    <div class="mentorship-card premium">
+                        <span class="tag business">Business</span>
+                        <span class="tag inperson">In-Person</span>
+                        <h4>Business Mentorship - In-Person</h4>
+                        <div class="price">$3,999/month</div>
+                        <p class="price-note">⭐ Limited availability • Premium experience</p>
+                        <p>Intensive in-person mentorship for serious entrepreneurs ready to transform.</p>
+                        <ul class="mentorship-list">
+                            <li>✓ Full-day strategy sessions</li>
+                            <li>✓ On-site business audit</li>
+                            <li>✓ Team training included</li>
+                            <li>✓ Direct phone access 24/7</li>
+                            <li>✓ Implementation support</li>
+                            <li>✓ Networking introductions</li>
+                        </ul>
+                        <button class="mentorship-btn premium-btn">Apply for Premium</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Get in <span>Touch</span></h2>
+                    <p>Have questions about our programs, mentorship opportunities, or want to collaborate? We'd love to hear from you. Reach out and let's start a conversation about your goals.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <span class="icon">📧</span>
+                            <div class="details">
+                                <h4>Email Us</h4>
+                                <p>hello@bodymindacademy.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="icon">📱</span>
+                            <div class="details">
+                                <h4>Call Us</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="icon">📍</span>
+                            <div class="details">
+                                <h4>Location</h4>
+                                <p>Available for in-person sessions worldwide</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="icon">💬</span>
+                            <div class="details">
+                                <h4>Social Media</h4>
+                                <p>@bodymindacademy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="">Select a topic</option>
+                                <option value="courses">Course Information</option>
+                                <option value="personal-mentorship">Personal Mentorship</option>
+                                <option value="business-mentorship">Business Mentorship</option>
+                                <option value="collaboration">Collaboration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -1863,7 +2230,7 @@
                 <h4>Company</h4>
                 <ul>
                     <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
                 </ul>
@@ -1875,9 +2242,197 @@
     </footer>
 
     <script>
-        // Comprehensive anatomy data for all structures
+        // All 24 quotes organized into 4 stages of 6 quotes each
+        const quoteStages = [
+            {
+                name: "The Human Body",
+                quotes: [
+                    { text: "Pain is an Opinion", subtitle: "The brain's protective output", gradient: "gradient-1" },
+                    { text: "600+ Muscles in Harmony", subtitle: "Orchestrated movement", gradient: "gradient-2" },
+                    { text: "Fascia: Living Matrix", subtitle: "Connecting every cell", gradient: "gradient-3" },
+                    { text: "Movement is Medicine", subtitle: "The body's natural healer", gradient: "gradient-4" },
+                    { text: "Breath Controls State", subtitle: "Gateway to regulation", gradient: "gradient-1" },
+                    { text: "Your Body Keeps Score", subtitle: "Stored trauma & tension", gradient: "gradient-2" }
+                ]
+            },
+            {
+                name: "Skeletal Architecture",
+                quotes: [
+                    { text: "206 Bones United", subtitle: "Framework of life", gradient: "gradient-3" },
+                    { text: "Joints: Points of Power", subtitle: "Where movement begins", gradient: "gradient-4" },
+                    { text: "Spine: Central Pillar", subtitle: "33 vertebrae of wisdom", gradient: "gradient-1" },
+                    { text: "Bones Constantly Remodel", subtitle: "Living tissue renewal", gradient: "gradient-2" },
+                    { text: "Posture Shapes Identity", subtitle: "Stand in your power", gradient: "gradient-3" },
+                    { text: "Skeleton: Mineral Bank", subtitle: "Calcium & phosphorus store", gradient: "gradient-4" }
+                ]
+            },
+            {
+                name: "Neural Networks",
+                quotes: [
+                    { text: "86 Billion Neurons", subtitle: "Your neural universe", gradient: "gradient-1" },
+                    { text: "Neuroplasticity is Real", subtitle: "Change your brain daily", gradient: "gradient-2" },
+                    { text: "Vagus: The Wanderer", subtitle: "Regulating your calm", gradient: "gradient-3" },
+                    { text: "Synapses Fire Together", subtitle: "Wire together forever", gradient: "gradient-4" },
+                    { text: "Brain Uses 20% Energy", subtitle: "Massive metabolic demand", gradient: "gradient-1" },
+                    { text: "Nervous System Never Rests", subtitle: "Always processing reality", gradient: "gradient-2" }
+                ]
+            },
+            {
+                name: "Cellular Intelligence",
+                quotes: [
+                    { text: "37 Trillion Cells", subtitle: "A universe within you", gradient: "gradient-3" },
+                    { text: "Mitochondria: Power Plants", subtitle: "ATP energy factories", gradient: "gradient-4" },
+                    { text: "DNA: Your Blueprint", subtitle: "3 billion base pairs", gradient: "gradient-1" },
+                    { text: "Cells Communicate Constantly", subtitle: "Chemical conversations", gradient: "gradient-2" },
+                    { text: "Autophagy: Self Cleaning", subtitle: "Cellular recycling system", gradient: "gradient-3" },
+                    { text: "Telomeres: Aging Clocks", subtitle: "Protecting your chromosomes", gradient: "gradient-4" }
+                ]
+            }
+        ];
+
+        let currentStage = 0;
+        let isScrollLocked = true;
+        let scrollAccumulator = 0;
+        const scrollThreshold = 150;
+
+        // Initialize quotes
+        function initializeQuotes() {
+            updateQuotes(0);
+            document.body.classList.add('scroll-locked');
+        }
+
+        function updateQuotes(stageIndex) {
+            const stage = quoteStages[stageIndex];
+            const quotesTopContainer = document.getElementById('quotesTop');
+            const quotesBottomContainer = document.getElementById('quotesBottom');
+            const stageLabel = document.getElementById('stageLabel');
+            const scrollProgress = document.getElementById('scrollProgress');
+
+            // Update stage label
+            stageLabel.textContent = stage.name;
+            scrollProgress.textContent = `Stage ${stageIndex + 1} of 4`;
+
+            // Update stage dots
+            document.querySelectorAll('.stage-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === stageIndex);
+            });
+
+            // Clear containers
+            quotesTopContainer.innerHTML = '';
+            quotesBottomContainer.innerHTML = '';
+
+            // Add top 3 quotes
+            for (let i = 0; i < 3; i++) {
+                const quote = stage.quotes[i];
+                quotesTopContainer.innerHTML += `
+                    <div class="quote-item">
+                        <div class="quote-text ${quote.gradient}">${quote.text}</div>
+                        <div class="quote-subtitle">${quote.subtitle}</div>
+                    </div>
+                `;
+            }
+
+            // Add bottom 3 quotes
+            for (let i = 3; i < 6; i++) {
+                const quote = stage.quotes[i];
+                quotesBottomContainer.innerHTML += `
+                    <div class="quote-item">
+                        <div class="quote-text ${quote.gradient}">${quote.text}</div>
+                        <div class="quote-subtitle">${quote.subtitle}</div>
+                    </div>
+                `;
+            }
+        }
+
+        // Handle scroll during locked phase
+        function handleLockedScroll(e) {
+            if (!isScrollLocked) return;
+            
+            e.preventDefault();
+            
+            const delta = e.deltaY || e.detail || -e.wheelDelta;
+            scrollAccumulator += Math.abs(delta);
+
+            if (scrollAccumulator >= scrollThreshold) {
+                scrollAccumulator = 0;
+                
+                if (delta > 0) {
+                    // Scrolling down
+                    if (currentStage < quoteStages.length - 1) {
+                        currentStage++;
+                        updateQuotes(currentStage);
+                    } else {
+                        // Unlock scrolling after last stage
+                        unlockScroll();
+                    }
+                } else {
+                    // Scrolling up
+                    if (currentStage > 0) {
+                        currentStage--;
+                        updateQuotes(currentStage);
+                    }
+                }
+            }
+        }
+
+        function unlockScroll() {
+            isScrollLocked = false;
+            document.body.classList.remove('scroll-locked');
+            document.getElementById('scrollInstruction').classList.add('hidden');
+            
+            // Remove wheel listener
+            window.removeEventListener('wheel', handleLockedScroll, { passive: false });
+        }
+
+        // Watch for scroll position to re-lock when back at top
+        function watchScrollPosition() {
+            if (!isScrollLocked && window.scrollY === 0) {
+                // Re-lock when scrolled back to top
+                isScrollLocked = true;
+                document.body.classList.add('scroll-locked');
+                document.getElementById('scrollInstruction').classList.remove('hidden');
+                window.addEventListener('wheel', handleLockedScroll, { passive: false });
+            }
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Show home
+        function showHome() {
+            document.getElementById('mainContent').classList.remove('hidden');
+            document.getElementById('anatomy3DSection').classList.remove('active');
+            document.getElementById('detailPage').classList.remove('active');
+            document.getElementById('footer').style.display = 'block';
+            window.scrollTo(0, 0);
+            
+            // Reset quote system
+            currentStage = 0;
+            updateQuotes(0);
+            isScrollLocked = true;
+            document.body.classList.add('scroll-locked');
+            document.getElementById('scrollInstruction').classList.remove('hidden');
+            window.addEventListener('wheel', handleLockedScroll, { passive: false });
+        }
+
+        // Show 3D Anatomy
+        function show3DAnatomy() {
+            document.getElementById('mainContent').classList.add('hidden');
+            document.getElementById('anatomy3DSection').classList.add('active');
+            document.getElementById('detailPage').classList.remove('active');
+            document.getElementById('footer').style.display = 'none';
+            window.scrollTo(0, 0);
+            
+            // Unlock scroll
+            isScrollLocked = false;
+            document.body.classList.remove('scroll-locked');
+        }
+
+        // Comprehensive anatomy data
         const anatomyDetailData = {
-            // BRAIN
             'brain': {
                 title: 'The Brain',
                 subtitle: 'The command center of the human body - 86 billion neurons orchestrating every thought, movement, and sensation',
@@ -1908,22 +2463,17 @@
                         items: ['Internal Carotid Arteries - Anterior circulation', 'Vertebral Arteries - Posterior circulation', 'Circle of Willis - Arterial anastomosis', 'Blood-Brain Barrier - Selective permeability', 'Receives 750ml blood per minute']
                     },
                     {
-                        title: '💧 Protective Structures',
-                        items: ['Meninges - Dura, arachnoid, pia mater', 'Cerebrospinal Fluid - Cushioning and nutrients', 'Skull - Bony protection', 'Blood-Brain Barrier - Chemical protection']
-                    },
-                    {
                         title: '🏥 Clinical Relevance',
-                        items: ['Stroke - Disrupted blood supply', 'Traumatic Brain Injury - Physical damage', 'Neurodegenerative diseases - Alzheimer\'s, Parkinson\'s', 'Epilepsy - Abnormal electrical activity', 'Brain tumors - Abnormal cell growth', 'Encephalitis - Brain inflammation']
+                        items: ['Stroke - Disrupted blood supply', 'Traumatic Brain Injury - Physical damage', 'Neurodegenerative diseases - Alzheimer\'s, Parkinson\'s', 'Epilepsy - Abnormal electrical activity', 'Brain tumors - Abnormal cell growth']
                     }
                 ]
             },
-            // HEART
             'heart': {
                 title: 'The Heart',
                 subtitle: 'The tireless pump that beats over 100,000 times per day, circulating 5 liters of blood every minute',
                 emoji: '❤️',
                 breadcrumb: 'Cardiovascular System',
-                overview: 'The heart is a muscular organ about the size of a fist, located slightly left of center in the chest. It pumps blood through the circulatory system, supplying oxygen and nutrients to tissues while removing carbon dioxide and waste. The heart beats approximately 100,000 times per day, pumping about 7,500 liters of blood.',
+                overview: 'The heart is a muscular organ about the size of a fist, located slightly left of center in the chest. It pumps blood through the circulatory system, supplying oxygen and nutrients to tissues while removing carbon dioxide and waste.',
                 infoCards: [
                     { title: 'Beats/Day', value: '~100,000' },
                     { title: 'Blood Pumped', value: '7,500 L/day' },
@@ -1933,201 +2483,24 @@
                 sections: [
                     {
                         title: '🔬 Chambers',
-                        items: ['Right Atrium - Receives deoxygenated blood from body', 'Right Ventricle - Pumps blood to lungs', 'Left Atrium - Receives oxygenated blood from lungs', 'Left Ventricle - Pumps blood to entire body', 'Interventricular Septum - Separates ventricles']
-                    },
-                    {
-                        title: '🚪 Valves',
-                        items: ['Tricuspid Valve - Right atrium to right ventricle', 'Pulmonary Valve - Right ventricle to pulmonary artery', 'Mitral (Bicuspid) Valve - Left atrium to left ventricle', 'Aortic Valve - Left ventricle to aorta', 'Chordae Tendineae - Anchor valve leaflets']
+                        items: ['Right Atrium - Receives deoxygenated blood', 'Right Ventricle - Pumps blood to lungs', 'Left Atrium - Receives oxygenated blood', 'Left Ventricle - Pumps blood to body']
                     },
                     {
                         title: '⚡ Electrical System',
-                        items: ['SA Node - Primary pacemaker (60-100 bpm)', 'AV Node - Delays signal for atrial emptying', 'Bundle of His - Conducts to ventricles', 'Bundle Branches - Left and right pathways', 'Purkinje Fibers - Final distribution to myocardium']
-                    },
-                    {
-                        title: '🩸 Coronary Circulation',
-                        items: ['Left Coronary Artery - LAD and Circumflex', 'Right Coronary Artery - Right heart and SA node', 'Coronary Sinus - Venous drainage', 'Cardiac Veins - Return deoxygenated blood']
+                        items: ['SA Node - Primary pacemaker', 'AV Node - Delays signal', 'Bundle of His - Conducts to ventricles', 'Purkinje Fibers - Final distribution']
                     },
                     {
                         title: '🏥 Clinical Relevance',
-                        items: ['Myocardial Infarction - Heart attack', 'Heart Failure - Pump dysfunction', 'Arrhythmias - Abnormal rhythms', 'Valvular Disease - Stenosis or regurgitation', 'Coronary Artery Disease - Atherosclerosis', 'Cardiomyopathy - Heart muscle disease']
+                        items: ['Myocardial Infarction - Heart attack', 'Heart Failure - Pump dysfunction', 'Arrhythmias - Abnormal rhythms', 'Valvular Disease - Stenosis or regurgitation']
                     }
                 ]
             },
-            // LUNGS
-            'lungs': {
-                title: 'The Lungs',
-                subtitle: 'The respiratory powerhouses containing 300 million alveoli with a surface area equal to a tennis court',
-                emoji: '🫁',
-                breadcrumb: 'Respiratory System',
-                overview: 'The lungs are paired organs located in the thoracic cavity, responsible for gas exchange between air and blood. The right lung has three lobes while the left has two (to accommodate the heart). Together, they contain approximately 300 million alveoli, providing a surface area of about 70 square meters for gas exchange.',
-                infoCards: [
-                    { title: 'Alveoli', value: '300 million' },
-                    { title: 'Surface Area', value: '70 m²' },
-                    { title: 'Breaths/Day', value: '~20,000' },
-                    { title: 'Air Capacity', value: '6 liters' }
-                ],
-                sections: [
-                    {
-                        title: '🔬 Anatomy',
-                        items: ['Right Lung - 3 lobes (superior, middle, inferior)', 'Left Lung - 2 lobes (superior, inferior)', 'Hilum - Entry point for bronchi, vessels, nerves', 'Pleura - Visceral and parietal layers', 'Fissures - Divide lobes']
-                    },
-                    {
-                        title: '🌳 Bronchial Tree',
-                        items: ['Primary Bronchi - One for each lung', 'Secondary (Lobar) Bronchi - One for each lobe', 'Tertiary (Segmental) Bronchi - 10 per lung', 'Bronchioles - Smaller airways', 'Terminal Bronchioles - End of conducting zone', 'Respiratory Bronchioles - Begin gas exchange']
-                    },
-                    {
-                        title: '💨 Gas Exchange',
-                        items: ['Alveoli - Primary gas exchange units', 'Type I Pneumocytes - Gas exchange cells', 'Type II Pneumocytes - Produce surfactant', 'Respiratory Membrane - 0.5 μm thick', 'Pulmonary Capillaries - Blood supply', 'Surfactant - Reduces surface tension']
-                    },
-                    {
-                        title: '🩸 Blood Supply',
-                        items: ['Pulmonary Arteries - Deoxygenated blood', 'Pulmonary Veins - Oxygenated blood', 'Bronchial Arteries - Nutrient supply', 'Pulmonary Circulation - Low pressure system']
-                    },
-                    {
-                        title: '🏥 Clinical Relevance',
-                        items: ['Pneumonia - Lung infection', 'COPD - Chronic obstructive disease', 'Asthma - Airway inflammation', 'Pulmonary Embolism - Blood clot', 'Lung Cancer - Malignant growth', 'Pneumothorax - Collapsed lung', 'Tuberculosis - Bacterial infection']
-                    }
-                ]
-            },
-            // LIVER
-            'liver': {
-                title: 'The Liver',
-                subtitle: 'The body\'s metabolic factory performing over 500 vital functions including detoxification and protein synthesis',
-                emoji: '🫁',
-                breadcrumb: 'Digestive System',
-                overview: 'The liver is the largest internal organ, weighing about 1.5 kg in adults. Located in the right upper quadrant of the abdomen, it performs over 500 essential functions including metabolism, detoxification, protein synthesis, and bile production. It\'s the only organ that can regenerate itself.',
-                infoCards: [
-                    { title: 'Weight', value: '~1.5 kg' },
-                    { title: 'Functions', value: '500+' },
-                    { title: 'Blood Flow', value: '1.5 L/min' },
-                    { title: 'Bile Production', value: '1 L/day' }
-                ],
-                sections: [
-                    {
-                        title: '🔬 Anatomy',
-                        items: ['Right Lobe - Larger portion', 'Left Lobe - Smaller portion', 'Caudate Lobe - Posterior', 'Quadrate Lobe - Inferior', 'Falciform Ligament - Attaches to abdominal wall', 'Porta Hepatis - Entry for vessels']
-                    },
-                    {
-                        title: '🩸 Blood Supply',
-                        items: ['Hepatic Artery - Oxygenated blood (25%)', 'Portal Vein - Nutrient-rich blood (75%)', 'Hepatic Veins - Drainage to IVC', 'Sinusoids - Specialized capillaries', 'Dual blood supply - Unique feature']
-                    },
-                    {
-                        title: '⚗️ Functions',
-                        items: ['Metabolism - Carbs, proteins, fats', 'Detoxification - Drugs, alcohol, toxins', 'Bile Production - Fat digestion', 'Protein Synthesis - Albumin, clotting factors', 'Storage - Glycogen, vitamins, iron', 'Immune Function - Kupffer cells']
-                    },
-                    {
-                        title: '🏥 Clinical Relevance',
-                        items: ['Hepatitis - Viral inflammation', 'Cirrhosis - Chronic scarring', 'Fatty Liver Disease - Fat accumulation', 'Liver Cancer - Hepatocellular carcinoma', 'Liver Failure - Loss of function', 'Portal Hypertension - Increased pressure']
-                    }
-                ]
-            },
-            // KIDNEYS
-            'kidneys': {
-                title: 'The Kidneys',
-                subtitle: 'The body\'s filtration system processing 180 liters of blood daily through 1 million nephrons per kidney',
-                emoji: '🫘',
-                breadcrumb: 'Urinary System',
-                overview: 'The kidneys are paired bean-shaped organs located in the retroperitoneal space. Each kidney contains about 1 million nephrons, the functional units responsible for filtering blood. They process approximately 180 liters of blood daily, producing about 1-2 liters of urine while maintaining fluid, electrolyte, and acid-base balance.',
-                infoCards: [
-                    { title: 'Nephrons', value: '1 million/kidney' },
-                    { title: 'Blood Filtered', value: '180 L/day' },
-                    { title: 'Urine Produced', value: '1-2 L/day' },
-                    { title: 'Size', value: '~11 cm long' }
-                ],
-                sections: [
-                    {
-                        title: '🔬 Gross Anatomy',
-                        items: ['Renal Cortex - Outer region with glomeruli', 'Renal Medulla - Inner pyramids', 'Renal Pelvis - Collects urine', 'Renal Hilum - Entry/exit point', 'Renal Capsule - Protective covering', 'Renal Columns - Cortex between pyramids']
-                    },
-                    {
-                        title: '🔬 Nephron Structure',
-                        items: ['Glomerulus - Filtration unit', 'Bowman\'s Capsule - Surrounds glomerulus', 'Proximal Convoluted Tubule - Reabsorption', 'Loop of Henle - Concentration gradient', 'Distal Convoluted Tubule - Fine-tuning', 'Collecting Duct - Final concentration']
-                    },
-                    {
-                        title: '⚗️ Functions',
-                        items: ['Filtration - Remove waste from blood', 'Reabsorption - Reclaim useful substances', 'Secretion - Add waste to urine', 'Hormone Production - EPO, renin, calcitriol', 'Blood Pressure Regulation - RAAS system', 'Acid-Base Balance - pH regulation']
-                    },
-                    {
-                        title: '🏥 Clinical Relevance',
-                        items: ['Chronic Kidney Disease - Progressive loss', 'Acute Kidney Injury - Sudden failure', 'Kidney Stones - Mineral deposits', 'Glomerulonephritis - Glomerular inflammation', 'Polycystic Kidney Disease - Genetic cysts', 'Renal Cell Carcinoma - Kidney cancer']
-                    }
-                ]
-            },
-            // SPINAL CORD
-            'spinal-cord': {
-                title: 'The Spinal Cord',
-                subtitle: 'The information superhighway connecting brain to body through 31 pairs of spinal nerves',
-                emoji: '🔌',
-                breadcrumb: 'Nervous System',
-                overview: 'The spinal cord is a cylindrical structure extending from the brainstem to the lumbar region, approximately 45 cm long in adults. It serves as the main pathway for information between the brain and peripheral nervous system, and contains neural circuits for reflexes. It gives rise to 31 pairs of spinal nerves.',
-                infoCards: [
-                    { title: 'Length', value: '~45 cm' },
-                    { title: 'Spinal Nerves', value: '31 pairs' },
-                    { title: 'Segments', value: '31' },
-                    { title: 'Ends At', value: 'L1-L2 vertebra' }
-                ],
-                sections: [
-                    {
-                        title: '🔬 Structure',
-                        items: ['Cervical Enlargement - Arms innervation (C4-T1)', 'Lumbar Enlargement - Legs innervation (L2-S3)', 'Conus Medullaris - Tapered end', 'Cauda Equina - Nerve roots below cord', 'Filum Terminale - Anchoring structure', 'Central Canal - Contains CSF']
-                    },
-                    {
-                        title: '🧬 Gray Matter',
-                        items: ['Dorsal Horn - Sensory processing', 'Ventral Horn - Motor neurons', 'Lateral Horn - Autonomic neurons (T1-L2)', 'Gray Commissure - Connects sides', 'Substantia Gelatinosa - Pain processing']
-                    },
-                    {
-                        title: '⚡ White Matter',
-                        items: ['Dorsal Columns - Fine touch, proprioception', 'Lateral Corticospinal - Voluntary movement', 'Spinothalamic Tract - Pain, temperature', 'Anterior Corticospinal - Axial muscles', 'Spinocerebellar Tracts - Proprioception to cerebellum']
-                    },
-                    {
-                        title: '🛡️ Protection',
-                        items: ['Vertebral Column - Bony protection', 'Meninges - Dura, arachnoid, pia', 'Cerebrospinal Fluid - Cushioning', 'Epidural Space - Contains fat and veins']
-                    },
-                    {
-                        title: '🏥 Clinical Relevance',
-                        items: ['Spinal Cord Injury - Trauma', 'Multiple Sclerosis - Demyelination', 'Syringomyelia - Fluid-filled cavity', 'Spinal Stenosis - Canal narrowing', 'Transverse Myelitis - Inflammation', 'Herniated Disc - Nerve compression']
-                    }
-                ]
-            },
-            // STOMACH
-            'stomach': {
-                title: 'The Stomach',
-                subtitle: 'The muscular mixing chamber that initiates protein digestion with powerful hydrochloric acid (pH 1.5-3.5)',
-                emoji: '🫃',
-                breadcrumb: 'Digestive System',
-                overview: 'The stomach is a J-shaped muscular organ located in the left upper quadrant of the abdomen. It serves as a temporary storage reservoir for food, initiates protein digestion through pepsin, and produces intrinsic factor essential for vitamin B12 absorption. It can expand to hold up to 1.5 liters of food.',
-                infoCards: [
-                    { title: 'Capacity', value: '1-1.5 L' },
-                    { title: 'pH', value: '1.5-3.5' },
-                    { title: 'Emptying Time', value: '2-6 hours' },
-                    { title: 'Muscle Layers', value: '3' }
-                ],
-                sections: [
-                    {
-                        title: '🔬 Regions',
-                        items: ['Cardia - Entry from esophagus', 'Fundus - Upper dome, gas storage', 'Body - Main portion', 'Pyloric Antrum - Grinding chamber', 'Pyloric Canal - Exit to duodenum', 'Pyloric Sphincter - Controls emptying']
-                    },
-                    {
-                        title: '🧬 Gastric Glands',
-                        items: ['Parietal Cells - HCl and intrinsic factor', 'Chief Cells - Pepsinogen', 'Mucous Cells - Protective mucus', 'G Cells - Gastrin hormone', 'Enterochromaffin Cells - Histamine']
-                    },
-                    {
-                        title: '⚗️ Functions',
-                        items: ['Storage - Temporary food reservoir', 'Mixing - Mechanical breakdown', 'Protein Digestion - Pepsin activation', 'Intrinsic Factor - B12 absorption', 'Gastric Emptying - Controlled release', 'Antimicrobial - Acid kills pathogens']
-                    },
-                    {
-                        title: '🏥 Clinical Relevance',
-                        items: ['Gastritis - Stomach inflammation', 'Peptic Ulcer Disease - Mucosal erosion', 'GERD - Acid reflux', 'H. pylori Infection - Bacterial', 'Gastric Cancer - Malignancy', 'Gastroparesis - Delayed emptying']
-                    }
-                ]
-            },
-            // Default template for other structures
             'default': {
                 title: 'Anatomical Structure',
                 subtitle: 'Comprehensive medical education content',
                 emoji: '🔬',
                 breadcrumb: 'Anatomy',
-                overview: 'Detailed information about this anatomical structure will be available soon. Our team of medical professionals is working to provide comprehensive, med-school level content for every structure in the human body.',
+                overview: 'Detailed information about this anatomical structure will be available soon. Our team is working to provide comprehensive, med-school level content.',
                 infoCards: [
                     { title: 'Status', value: 'Coming Soon' },
                     { title: 'Content', value: 'In Development' }
@@ -2135,85 +2508,11 @@
                 sections: [
                     {
                         title: '📚 Content Coming Soon',
-                        items: ['Detailed anatomy', 'Histology', 'Physiology', 'Clinical correlations', 'Pathology', 'Diagnostic approaches']
+                        items: ['Detailed anatomy', 'Histology', 'Physiology', 'Clinical correlations', 'Pathology']
                     }
                 ]
             }
         };
-
-        // Quote rotations
-        const quoteRotations = [
-            {
-                quotes: [
-                    { text: "Pain is an Opinion", subtitle: "The brain's protective output", gradient: "gradient-1" },
-                    { text: "600+ Muscles in Harmony", subtitle: "Orchestrated movement", gradient: "gradient-2" },
-                    { text: "Fascia: Living Matrix", subtitle: "Connecting every cell", gradient: "gradient-3" },
-                    { text: "Movement is Medicine", subtitle: "The body's natural healer", gradient: "gradient-4" },
-                    { text: "Breath Controls State", subtitle: "Gateway to regulation", gradient: "gradient-1" },
-                    { text: "Your Body Keeps Score", subtitle: "Stored trauma & tension", gradient: "gradient-2" }
-                ]
-            }
-        ];
-
-        let currentStage = 0;
-
-        // Initialize quotes
-        function initializeQuotes() {
-            updateQuotes(0);
-        }
-
-        function updateQuotes(stageIndex) {
-            const stage = quoteRotations[stageIndex];
-            const quotesTopContainer = document.getElementById('quotesTop');
-            const quotesBottomContainer = document.getElementById('quotesBottom');
-
-            quotesTopContainer.innerHTML = '';
-            quotesBottomContainer.innerHTML = '';
-
-            for (let i = 0; i < 3; i++) {
-                const quote = stage.quotes[i];
-                quotesTopContainer.innerHTML += `
-                    <div class="quote-item">
-                        <div class="quote-text ${quote.gradient}">${quote.text}</div>
-                        <div class="quote-subtitle">${quote.subtitle}</div>
-                    </div>
-                `;
-            }
-
-            for (let i = 3; i < 6; i++) {
-                const quote = stage.quotes[i];
-                quotesBottomContainer.innerHTML += `
-                    <div class="quote-item">
-                        <div class="quote-text ${quote.gradient}">${quote.text}</div>
-                        <div class="quote-subtitle">${quote.subtitle}</div>
-                    </div>
-                `;
-            }
-        }
-
-        // Toggle mobile menu
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Show home
-        function showHome() {
-            document.getElementById('mainContent').classList.remove('hidden');
-            document.getElementById('anatomy3DSection').classList.remove('active');
-            document.getElementById('detailPage').classList.remove('active');
-            document.getElementById('footer').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        // Show 3D Anatomy
-        function show3DAnatomy() {
-            document.getElementById('mainContent').classList.add('hidden');
-            document.getElementById('anatomy3DSection').classList.add('active');
-            document.getElementById('detailPage').classList.remove('active');
-            document.getElementById('footer').style.display = 'none';
-            window.scrollTo(0, 0);
-        }
 
         // Show detail page
         function showDetailPage(structureId) {
@@ -2226,7 +2525,6 @@
             document.getElementById('detailBreadcrumbItem').textContent = data.title;
             document.getElementById('detailOverview').textContent = data.overview;
 
-            // Info cards
             let infoHTML = '';
             data.infoCards.forEach(card => {
                 infoHTML += `
@@ -2238,7 +2536,6 @@
             });
             document.getElementById('detailInfoGrid').innerHTML = infoHTML;
 
-            // Sections
             let sectionsHTML = '';
             data.sections.forEach(section => {
                 let itemsHTML = section.items.map(item => `<li>${item}</li>`).join('');
@@ -2256,7 +2553,18 @@
             document.getElementById('detailPage').classList.add('active');
             document.getElementById('footer').style.display = 'block';
             window.scrollTo(0, 0);
+            
+            // Unlock scroll
+            isScrollLocked = false;
+            document.body.classList.remove('scroll-locked');
         }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
 
         // Mobile dropdown handling
         document.querySelectorAll('.nav-item > .nav-link').forEach(link => {
@@ -2278,7 +2586,11 @@
         });
 
         // Initialize
-        window.addEventListener('load', initializeQuotes);
+        window.addEventListener('load', function() {
+            initializeQuotes();
+            window.addEventListener('wheel', handleLockedScroll, { passive: false });
+            window.addEventListener('scroll', watchScrollPosition);
+        });
     </script>
 </body>
 </html>
