@@ -59,7 +59,7 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════
-           HEADER & CREATIVE NAVIGATION
+           HEADER & NAVIGATION
            ═══════════════════════════════════════════════════════════════ */
         header {
             position: fixed;
@@ -102,7 +102,6 @@
             opacity: 0.8;
         }
 
-        /* Navigation */
         nav {
             display: flex;
             gap: 0.5rem;
@@ -140,7 +139,7 @@
             transform: rotate(180deg);
         }
 
-        /* Creative Dropdown Menu */
+        /* Dropdown Menu */
         .dropdown {
             position: absolute;
             top: 100%;
@@ -155,24 +154,13 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
-                        0 0 100px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
         .nav-item:hover .dropdown {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 10px solid transparent;
-            border-bottom-color: var(--glass-border);
         }
 
         .dropdown-item {
@@ -184,29 +172,11 @@
             text-decoration: none;
             color: var(--text-primary);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dropdown-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--gradient-main);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
         }
 
         .dropdown-item:hover {
             background: var(--glass-bg);
             padding-left: 1.5rem;
-        }
-
-        .dropdown-item:hover::before {
-            transform: scaleY(1);
         }
 
         .dropdown-icon {
@@ -217,15 +187,12 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            flex-shrink: 0;
         }
 
         .dropdown-icon.purple { background: rgba(124, 58, 237, 0.2); }
         .dropdown-icon.blue { background: rgba(59, 130, 246, 0.2); }
         .dropdown-icon.pink { background: rgba(236, 72, 153, 0.2); }
         .dropdown-icon.cyan { background: rgba(6, 182, 212, 0.2); }
-        .dropdown-icon.orange { background: rgba(249, 115, 22, 0.2); }
-        .dropdown-icon.green { background: rgba(34, 197, 94, 0.2); }
 
         .dropdown-text h4 {
             font-size: 0.95rem;
@@ -262,10 +229,10 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════
-           APPLE-STYLE HERO WITH PARALLAX TEXT
+           HERO PARALLAX - FASTER SCROLL (250vh instead of 400vh)
            ═══════════════════════════════════════════════════════════════ */
         .hero-parallax {
-            height: 400vh;
+            height: 250vh;
             position: relative;
         }
 
@@ -280,6 +247,70 @@
             background: var(--gradient-dark);
         }
 
+        /* Side Quotes Container */
+        .side-quotes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        .quote-left, .quote-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 280px;
+            text-align: center;
+        }
+
+        .quote-left {
+            left: 5%;
+        }
+
+        .quote-right {
+            right: 5%;
+        }
+
+        .side-quote {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            width: 100%;
+        }
+
+        .side-quote.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .quote-line {
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-main);
+            margin: 1rem auto;
+        }
+
         .hero-content {
             text-align: center;
             z-index: 10;
@@ -288,8 +319,7 @@
 
         .hero-text-container {
             position: relative;
-            height: 400px;
-            overflow: hidden;
+            height: 300px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -300,8 +330,8 @@
             width: 100%;
             text-align: center;
             opacity: 0;
-            transform: translateY(100px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(80px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .hero-text-item.active {
@@ -311,23 +341,23 @@
 
         .hero-text-item.exit-up {
             opacity: 0;
-            transform: translateY(-100px);
+            transform: translateY(-80px);
         }
 
         .hero-tagline {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--accent-purple);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -335,10 +365,10 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             font-weight: 300;
             color: var(--text-secondary);
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -350,7 +380,7 @@
 
         .hero-scroll-indicator {
             position: absolute;
-            bottom: 50px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -358,26 +388,26 @@
             align-items: center;
             gap: 0.5rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             animation: bounce 2s infinite;
         }
 
         .scroll-mouse {
-            width: 24px;
-            height: 40px;
+            width: 22px;
+            height: 36px;
             border: 2px solid var(--text-muted);
-            border-radius: 12px;
+            border-radius: 11px;
             position: relative;
         }
 
         .scroll-mouse::before {
             content: '';
             position: absolute;
-            top: 8px;
+            top: 6px;
             left: 50%;
             transform: translateX(-50%);
-            width: 4px;
-            height: 8px;
+            width: 3px;
+            height: 6px;
             background: var(--accent-purple);
             border-radius: 2px;
             animation: scrollWheel 2s infinite;
@@ -385,16 +415,16 @@
 
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }
 
         @keyframes scrollWheel {
-            0%, 100% { opacity: 1; top: 8px; }
-            50% { opacity: 0; top: 20px; }
+            0%, 100% { opacity: 1; top: 6px; }
+            50% { opacity: 0; top: 16px; }
         }
 
         /* ═══════════════════════════════════════════════════════════════
-           ANATOMY BACKGROUND - FULL HUMAN BODY SYSTEM
+           REALISTIC ANATOMY BACKGROUND
            ═══════════════════════════════════════════════════════════════ */
         .anatomy-background {
             position: fixed;
@@ -404,7 +434,7 @@
             height: 100%;
             z-index: 1;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
         .anatomy-layer {
@@ -418,7 +448,7 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 1s ease;
+            transition: opacity 0.8s ease;
         }
 
         .anatomy-layer.active {
@@ -426,9 +456,8 @@
         }
 
         .anatomy-svg {
-            max-height: 90vh;
+            max-height: 85vh;
             width: auto;
-            filter: drop-shadow(0 0 50px rgba(124, 58, 237, 0.3));
         }
 
         /* ═══════════════════════════════════════════════════════════════
@@ -437,7 +466,6 @@
         .main-content {
             position: relative;
             z-index: 10;
-            background: transparent;
         }
 
         section {
@@ -482,12 +510,12 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════
-           COURSES SECTION - 2x2x2 GRID
+           COURSES SECTION
            ═══════════════════════════════════════════════════════════════ */
         #courses {
             background: linear-gradient(180deg, 
-                rgba(10, 10, 26, 0.9) 0%, 
-                rgba(18, 18, 42, 0.95) 100%);
+                rgba(10, 10, 26, 0.95) 0%, 
+                rgba(18, 18, 42, 0.98) 100%);
         }
 
         .courses-container {
@@ -532,8 +560,7 @@
         .course-card:hover {
             transform: translateY(-10px) scale(1.02);
             border-color: var(--accent-purple);
-            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.3),
-                        0 0 100px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.3);
         }
 
         .course-card:hover::before {
@@ -559,7 +586,7 @@
         }
 
         .course-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
             background: var(--gradient-text);
@@ -570,7 +597,7 @@
 
         .course-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 1.5rem;
             line-height: 1.7;
         }
@@ -586,13 +613,10 @@
         .course-duration {
             font-size: 0.85rem;
             color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .course-price {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--accent-pink);
         }
@@ -621,22 +645,21 @@
            ═══════════════════════════════════════════════════════════════ */
         #pricing {
             background: linear-gradient(180deg, 
-                rgba(18, 18, 42, 0.95) 0%, 
-                rgba(10, 10, 26, 0.9) 100%);
+                rgba(18, 18, 42, 0.98) 0%, 
+                rgba(10, 10, 26, 0.95) 100%);
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .pricing-card {
             background: rgba(124, 58, 237, 0.05);
             border: 2px solid var(--glass-border);
             border-radius: 24px;
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             position: relative;
             transition: all 0.5s ease;
@@ -657,7 +680,7 @@
             background: var(--gradient-main);
             padding: 0.5rem 1.5rem;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -665,7 +688,6 @@
         .pricing-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent-purple);
-            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.2);
         }
 
         .pricing-card.featured:hover {
@@ -673,19 +695,19 @@
         }
 
         .pricing-name {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .pricing-description {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
         }
 
         .pricing-amount {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 900;
             background: var(--gradient-text);
             -webkit-background-clip: text;
@@ -695,7 +717,7 @@
         }
 
         .pricing-amount span {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 400;
             color: var(--text-muted);
             -webkit-text-fill-color: var(--text-muted);
@@ -703,30 +725,30 @@
 
         .pricing-period {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
         }
 
         .pricing-features {
             list-style: none;
             text-align: left;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .pricing-features li {
-            padding: 0.75rem 0;
+            padding: 0.6rem 0;
             border-bottom: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             gap: 0.75rem;
             color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .pricing-features li::before {
             content: '✓';
             color: var(--accent-purple);
             font-weight: 700;
-            font-size: 1.1rem;
         }
 
         .pricing-btn {
@@ -737,7 +759,6 @@
             border-radius: 12px;
             color: white;
             font-weight: 600;
-            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -758,20 +779,18 @@
             color: white;
         }
 
-        /* Business Masterclass */
+        /* Business Section */
         .business-section {
             margin-top: 4rem;
             padding: 3rem;
-            background: linear-gradient(135deg, 
-                rgba(124, 58, 237, 0.1) 0%, 
-                rgba(236, 72, 153, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             text-align: center;
         }
 
         .business-section h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             background: var(--gradient-text);
             -webkit-background-clip: text;
@@ -782,7 +801,7 @@
 
         .business-options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -795,13 +814,13 @@
         }
 
         .business-option h4 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
             color: var(--accent-purple);
         }
 
         .business-option .price {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--accent-pink);
             margin: 1rem 0;
@@ -812,13 +831,13 @@
            ═══════════════════════════════════════════════════════════════ */
         #testimonials {
             background: linear-gradient(180deg, 
-                rgba(10, 10, 26, 0.9) 0%, 
-                rgba(18, 18, 42, 0.95) 100%);
+                rgba(10, 10, 26, 0.95) 0%, 
+                rgba(18, 18, 42, 0.98) 100%);
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -833,17 +852,16 @@
         .testimonial-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-purple);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
         }
 
         .testimonial-stars {
             color: #fbbf24;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
         }
 
         .testimonial-text {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 1.5rem;
@@ -857,24 +875,23 @@
         }
 
         .testimonial-avatar {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: var(--gradient-main);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.2rem;
         }
 
         .testimonial-info h4 {
             font-weight: 600;
-            color: var(--text-primary);
+            font-size: 0.95rem;
         }
 
         .testimonial-info p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
@@ -883,7 +900,7 @@
            ═══════════════════════════════════════════════════════════════ */
         #contact {
             background: linear-gradient(180deg, 
-                rgba(18, 18, 42, 0.95) 0%, 
+                rgba(18, 18, 42, 0.98) 0%, 
                 rgba(10, 10, 26, 1) 100%);
         }
 
@@ -891,15 +908,10 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-info {
-            padding: 2rem;
         }
 
         .contact-info h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 1rem;
             background: var(--gradient-text);
@@ -988,11 +1000,10 @@
             outline: none;
             border-color: var(--accent-purple);
             box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
-            background: rgba(124, 58, 237, 0.05);
         }
 
         .form-group textarea {
-            min-height: 150px;
+            min-height: 130px;
             resize: vertical;
         }
 
@@ -1004,7 +1015,6 @@
             border-radius: 12px;
             color: white;
             font-weight: 600;
-            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -1034,7 +1044,7 @@
         }
 
         .footer-brand {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             background: var(--gradient-text);
             -webkit-background-clip: text;
@@ -1050,6 +1060,7 @@
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
+            font-size: 0.9rem;
             transition: color 0.3s ease;
         }
 
@@ -1090,19 +1101,30 @@
             border-top: 1px solid var(--glass-border);
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* ═══════════════════════════════════════════════════════════════
            RESPONSIVE
            ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 1200px) {
+            .quote-left, .quote-right {
+                max-width: 200px;
+            }
+            .quote-text {
+                font-size: 1.1rem;
+            }
+        }
+
         @media (max-width: 1024px) {
             .courses-row {
                 grid-template-columns: 1fr;
             }
-
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+            .quote-left, .quote-right {
+                display: none;
             }
         }
 
@@ -1110,7 +1132,6 @@
             header {
                 padding: 1rem;
             }
-
             nav {
                 display: none;
                 position: absolute;
@@ -1121,17 +1142,13 @@
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 1rem;
-                border-bottom: 1px solid var(--glass-border);
             }
-
             nav.active {
                 display: flex;
             }
-
             .hamburger {
                 display: flex;
             }
-
             .dropdown {
                 position: static;
                 transform: none;
@@ -1140,30 +1157,20 @@
                 box-shadow: none;
                 border: none;
                 background: transparent;
-                padding: 0 1rem;
             }
-
             .nav-item:hover .dropdown {
                 transform: none;
             }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
             .pricing-card.featured {
                 transform: scale(1);
             }
-
             .pricing-card.featured:hover {
                 transform: translateY(-10px);
             }
-
             .footer-content {
                 flex-direction: column;
                 text-align: center;
             }
-
             .footer-links {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -1175,1142 +1182,864 @@
     <!-- Scroll Progress -->
     <div class="scroll-progress"></div>
 
-    <!-- Anatomy Background Layers -->
+    <!-- REALISTIC ANATOMY BACKGROUND -->
     <div class="anatomy-background">
-        <!-- Layer 1: Muscular System -->
-        <div class="anatomy-layer" id="layer-muscle" data-layer="1">
-            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
-                <!-- Human Muscular System -->
+        <!-- Layer 1: Muscular System - REALISTIC -->
+        <div class="anatomy-layer active" id="layer-muscle" data-layer="1">
+            <svg class="anatomy-svg" viewBox="0 0 400 850" width="320">
                 <defs>
-                    <linearGradient id="muscleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#dc2626;stop-opacity:0.8" />
-                        <stop offset="100%" style="stop-color:#991b1b;stop-opacity:0.9" />
+                    <!-- Realistic Muscle Gradients -->
+                    <linearGradient id="skinTone" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#e8beac"/>
+                        <stop offset="50%" style="stop-color:#d4a393"/>
+                        <stop offset="100%" style="stop-color:#c49282"/>
                     </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <linearGradient id="muscleRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#c92a2a"/>
+                        <stop offset="30%" style="stop-color:#a61e1e"/>
+                        <stop offset="70%" style="stop-color:#8b1a1a"/>
+                        <stop offset="100%" style="stop-color:#6b1414"/>
+                    </linearGradient>
+                    <linearGradient id="muscleDark" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8b1a1a"/>
+                        <stop offset="100%" style="stop-color:#5c1010"/>
+                    </linearGradient>
+                    <linearGradient id="muscleHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#e84545"/>
+                        <stop offset="100%" style="stop-color:#a61e1e"/>
+                    </linearGradient>
+                    <linearGradient id="tendon" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f5f5f4"/>
+                        <stop offset="100%" style="stop-color:#d6d3d1"/>
+                    </linearGradient>
+                    
+                    <!-- Filters for realism -->
+                    <filter id="muscleTexture" x="-20%" y="-20%" width="140%" height="140%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+                    </filter>
+                    <filter id="softGlow">
+                        <feGaussianBlur stdDeviation="2" result="glow"/>
                         <feMerge>
-                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="glow"/>
                             <feMergeNode in="SourceGraphic"/>
                         </feMerge>
                     </filter>
+                    <filter id="innerShadow">
+                        <feOffset dx="0" dy="2"/>
+                        <feGaussianBlur stdDeviation="2" result="shadow"/>
+                        <feComposite in="SourceGraphic" in2="shadow" operator="over"/>
+                    </filter>
                 </defs>
                 
-                <!-- Head -->
-                <ellipse cx="200" cy="60" rx="45" ry="55" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                <!-- HEAD with muscle detail -->
+                <ellipse cx="200" cy="55" rx="42" ry="52" fill="url(#muscleRed)" filter="url(#softGlow)"/>
+                <!-- Temporalis -->
+                <path d="M 165 35 Q 175 25 185 35 Q 180 50 170 55 Q 162 45 165 35" fill="url(#muscleHighlight)"/>
+                <path d="M 235 35 Q 225 25 215 35 Q 220 50 230 55 Q 238 45 235 35" fill="url(#muscleHighlight)"/>
+                <!-- Masseter -->
+                <ellipse cx="168" cy="70" rx="12" ry="18" fill="url(#muscleDark)"/>
+                <ellipse cx="232" cy="70" rx="12" ry="18" fill="url(#muscleDark)"/>
+                <!-- Frontalis -->
+                <path d="M 175 20 Q 200 10 225 20 Q 220 35 200 38 Q 180 35 175 20" fill="url(#muscleHighlight)" opacity="0.8"/>
                 
-                <!-- Neck muscles -->
-                <path d="M 175 110 Q 200 120 225 110 L 220 140 Q 200 145 180 140 Z" fill="url(#muscleGrad)"/>
+                <!-- NECK - Sternocleidomastoid -->
+                <path d="M 175 95 Q 165 110 160 140 L 170 145 Q 178 115 185 100 Z" fill="url(#muscleRed)" filter="url(#innerShadow)"/>
+                <path d="M 225 95 Q 235 110 240 140 L 230 145 Q 222 115 215 100 Z" fill="url(#muscleRed)" filter="url(#innerShadow)"/>
+                <!-- Tendons -->
+                <path d="M 162 138 L 155 150" stroke="url(#tendon)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 238 138 L 245 150" stroke="url(#tendon)" stroke-width="4" stroke-linecap="round"/>
                 
-                <!-- Trapezius -->
-                <path d="M 140 140 Q 200 160 260 140 Q 250 180 200 185 Q 150 180 140 140" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                <!-- TRAPEZIUS -->
+                <path d="M 145 145 Q 120 160 115 180 Q 130 185 145 175 Q 170 165 200 165 Q 230 165 255 175 Q 270 185 285 180 Q 280 160 255 145 Q 230 155 200 155 Q 170 155 145 145" fill="url(#muscleRed)" filter="url(#softGlow)"/>
+                <!-- Trapezius fiber lines -->
+                <path d="M 130 165 Q 165 165 200 160" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.5"/>
+                <path d="M 270 165 Q 235 165 200 160" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.5"/>
                 
-                <!-- Deltoids -->
-                <ellipse cx="130" cy="170" rx="30" ry="25" fill="url(#muscleGrad)"/>
-                <ellipse cx="270" cy="170" rx="30" ry="25" fill="url(#muscleGrad)"/>
+                <!-- DELTOIDS - Realistic 3-head structure -->
+                <!-- Anterior Deltoid -->
+                <path d="M 145 165 Q 125 175 115 195 Q 110 215 120 230 Q 135 225 145 200 Q 150 180 145 165" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <path d="M 255 165 Q 275 175 285 195 Q 290 215 280 230 Q 265 225 255 200 Q 250 180 255 165" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <!-- Lateral Deltoid -->
+                <path d="M 115 195 Q 100 210 98 235 Q 105 250 120 245 Q 115 220 115 195" fill="url(#muscleRed)"/>
+                <path d="M 285 195 Q 300 210 302 235 Q 295 250 280 245 Q 285 220 285 195" fill="url(#muscleRed)"/>
+                <!-- Posterior Deltoid -->
+                <path d="M 120 230 Q 110 245 115 260 Q 125 255 130 240 Q 125 232 120 230" fill="url(#muscleDark)"/>
+                <path d="M 280 230 Q 290 245 285 260 Q 275 255 270 240 Q 275 232 280 230" fill="url(#muscleDark)"/>
                 
-                <!-- Pectorals -->
-                <path d="M 155 175 Q 200 200 245 175 Q 240 220 200 230 Q 160 220 155 175" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                <!-- PECTORALIS MAJOR -->
+                <path d="M 155 175 Q 140 195 145 220 Q 165 240 200 245 Q 200 245 200 245 Q 200 220 185 200 Q 175 185 155 175" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <path d="M 245 175 Q 260 195 255 220 Q 235 240 200 245 Q 200 245 200 245 Q 200 220 215 200 Q 225 185 245 175" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <!-- Pec striations -->
+                <path d="M 150 200 Q 175 215 195 240" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.4"/>
+                <path d="M 250 200 Q 225 215 205 240" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.4"/>
+                <path d="M 155 210 Q 175 220 190 235" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.4"/>
+                <path d="M 245 210 Q 225 220 210 235" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.4"/>
                 
-                <!-- Biceps -->
-                <ellipse cx="115" cy="230" rx="18" ry="40" fill="url(#muscleGrad)"/>
-                <ellipse cx="285" cy="230" rx="18" ry="40" fill="url(#muscleGrad)"/>
+                <!-- BICEPS BRACHII -->
+                <ellipse cx="112" cy="265" rx="16" ry="45" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <ellipse cx="288" cy="265" rx="16" ry="45" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <!-- Bicep peak highlight -->
+                <ellipse cx="115" cy="250" rx="8" ry="15" fill="#e84545" opacity="0.5"/>
+                <ellipse cx="285" cy="250" rx="8" ry="15" fill="#e84545" opacity="0.5"/>
+                <!-- Bicep tendons -->
+                <path d="M 112 220 L 130 195" stroke="url(#tendon)" stroke-width="5" stroke-linecap="round"/>
+                <path d="M 288 220 L 270 195" stroke="url(#tendon)" stroke-width="5" stroke-linecap="round"/>
                 
-                <!-- Forearms -->
-                <ellipse cx="105" cy="310" rx="12" ry="35" fill="url(#muscleGrad)"/>
-                <ellipse cx="295" cy="310" rx="12" ry="35" fill="url(#muscleGrad)"/>
+                <!-- TRICEPS (visible from front) -->
+                <path d="M 95 235 Q 85 260 90 290 Q 95 280 100 260 Q 98 245 95 235" fill="url(#muscleDark)"/>
+                <path d="M 305 235 Q 315 260 310 290 Q 305 280 300 260 Q 302 245 305 235" fill="url(#muscleDark)"/>
                 
-                <!-- Abdominals -->
-                <rect x="175" y="235" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
-                <rect x="175" y="255" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
-                <rect x="175" y="275" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
-                <rect x="175" y="295" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
-                <rect x="175" y="315" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
-                <rect x="175" y="335" width="50" height="15" rx="5" fill="url(#muscleGrad)"/>
+                <!-- BRACHIALIS -->
+                <ellipse cx="105" cy="280" rx="10" ry="25" fill="url(#muscleDark)"/>
+                <ellipse cx="295" cy="280" rx="10" ry="25" fill="url(#muscleDark)"/>
                 
-                <!-- Obliques -->
-                <path d="M 155 240 Q 145 290 155 340 L 170 340 Q 165 290 170 240 Z" fill="url(#muscleGrad)"/>
-                <path d="M 245 240 Q 255 290 245 340 L 230 340 Q 235 290 230 240 Z" fill="url(#muscleGrad)"/>
+                <!-- FOREARM - Brachioradialis -->
+                <path d="M 100 305 Q 95 330 92 360 Q 88 390 95 400 L 105 395 Q 105 370 108 340 Q 110 315 105 305 Z" fill="url(#muscleRed)"/>
+                <path d="M 300 305 Q 305 330 308 360 Q 312 390 305 400 L 295 395 Q 295 370 292 340 Q 290 315 295 305 Z" fill="url(#muscleRed)"/>
                 
-                <!-- Quadriceps -->
-                <ellipse cx="170" cy="440" rx="28" ry="70" fill="url(#muscleGrad)" filter="url(#glow)"/>
-                <ellipse cx="230" cy="440" rx="28" ry="70" fill="url(#muscleGrad)" filter="url(#glow)"/>
+                <!-- Forearm flexors -->
+                <ellipse cx="108" cy="345" rx="12" ry="40" fill="url(#muscleDark)" transform="rotate(-5 108 345)"/>
+                <ellipse cx="292" cy="345" rx="12" ry="40" fill="url(#muscleDark)" transform="rotate(5 292 345)"/>
                 
-                <!-- Inner thigh -->
-                <ellipse cx="185" cy="430" rx="12" ry="50" fill="url(#muscleGrad)"/>
-                <ellipse cx="215" cy="430" rx="12" ry="50" fill="url(#muscleGrad)"/>
+                <!-- SERRATUS ANTERIOR -->
+                <path d="M 145 230 L 155 240 L 150 250 L 145 230" fill="url(#muscleDark)"/>
+                <path d="M 145 245 L 155 255 L 150 265 L 145 245" fill="url(#muscleDark)"/>
+                <path d="M 145 260 L 155 270 L 150 280 L 145 260" fill="url(#muscleDark)"/>
+                <path d="M 255 230 L 245 240 L 250 250 L 255 230" fill="url(#muscleDark)"/>
+                <path d="M 255 245 L 245 255 L 250 265 L 255 245" fill="url(#muscleDark)"/>
+                <path d="M 255 260 L 245 270 L 250 280 L 255 260" fill="url(#muscleDark)"/>
                 
-                <!-- Calves -->
-                <ellipse cx="165" cy="590" rx="18" ry="50" fill="url(#muscleGrad)"/>
-                <ellipse cx="235" cy="590" rx="18" ry="50" fill="url(#muscleGrad)"/>
+                <!-- RECTUS ABDOMINIS (6-pack) -->
+                <rect x="180" y="255" width="40" height="22" rx="8" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <rect x="180" y="282" width="40" height="22" rx="8" fill="url(#muscleRed)"/>
+                <rect x="180" y="309" width="40" height="22" rx="8" fill="url(#muscleHighlight)"/>
+                <rect x="180" y="336" width="40" height="22" rx="8" fill="url(#muscleRed)"/>
+                <rect x="180" y="363" width="40" height="22" rx="8" fill="url(#muscleHighlight)"/>
+                <rect x="180" y="390" width="40" height="22" rx="8" fill="url(#muscleRed)"/>
+                <!-- Linea alba -->
+                <line x1="200" y1="250" x2="200" y2="420" stroke="url(#tendon)" stroke-width="3"/>
+                <!-- Tendinous intersections -->
+                <line x1="180" y1="280" x2="220" y2="280" stroke="url(#tendon)" stroke-width="2"/>
+                <line x1="180" y1="307" x2="220" y2="307" stroke="url(#tendon)" stroke-width="2"/>
+                <line x1="180" y1="334" x2="220" y2="334" stroke="url(#tendon)" stroke-width="2"/>
+                <line x1="180" y1="361" x2="220" y2="361" stroke="url(#tendon)" stroke-width="2"/>
+                <line x1="180" y1="388" x2="220" y2="388" stroke="url(#tendon)" stroke-width="2"/>
                 
-                <!-- Tibialis -->
-                <ellipse cx="175" cy="600" rx="10" ry="40" fill="url(#muscleGrad)"/>
-                <ellipse cx="225" cy="600" rx="10" ry="40" fill="url(#muscleGrad)"/>
+                <!-- EXTERNAL OBLIQUES -->
+                <path d="M 155 260 Q 145 300 148 350 Q 155 400 165 415 L 178 415 Q 170 380 172 330 Q 175 280 170 260 Z" fill="url(#muscleRed)"/>
+                <path d="M 245 260 Q 255 300 252 350 Q 245 400 235 415 L 222 415 Q 230 380 228 330 Q 225 280 230 260 Z" fill="url(#muscleRed)"/>
+                <!-- Oblique fiber direction -->
+                <path d="M 150 280 L 170 300" stroke="#6b1414" stroke-width="1" opacity="0.5"/>
+                <path d="M 148 310 L 172 335" stroke="#6b1414" stroke-width="1" opacity="0.5"/>
+                <path d="M 150 345 L 175 375" stroke="#6b1414" stroke-width="1" opacity="0.5"/>
+                <path d="M 250 280 L 230 300" stroke="#6b1414" stroke-width="1" opacity="0.5"/>
+                <path d="M 252 310 L 228 335" stroke="#6b1414" stroke-width="1" opacity="0.5"/>
+                <path d="M 250 345 L 225 375" stroke="#6b1414" stroke-width="1" opacity="0.5"/>
                 
-                <!-- Hands -->
-                <ellipse cx="95" cy="370" rx="12" ry="18" fill="url(#muscleGrad)"/>
-                <ellipse cx="305" cy="370" rx="12" ry="18" fill="url(#muscleGrad)"/>
+                <!-- QUADRICEPS -->
+                <!-- Rectus Femoris -->
+                <ellipse cx="175" cy="510" rx="22" ry="75" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <ellipse cx="225" cy="510" rx="22" ry="75" fill="url(#muscleHighlight)" filter="url(#softGlow)"/>
+                <!-- Vastus Lateralis -->
+                <ellipse cx="155" cy="500" rx="18" ry="70" fill="url(#muscleRed)"/>
+                <ellipse cx="245" cy="500" rx="18" ry="70" fill="url(#muscleRed)"/>
+                <!-- Vastus Medialis -->
+                <ellipse cx="188" cy="530" rx="15" ry="40" fill="url(#muscleDark)"/>
+                <ellipse cx="212" cy="530" rx="15" ry="40" fill="url(#muscleDark)"/>
+                <!-- Quad tendon -->
+                <path d="M 160 575 Q 175 585 175 595" stroke="url(#tendon)" stroke-width="6" stroke-linecap="round"/>
+                <path d="M 240 575 Q 225 585 225 595" stroke="url(#tendon)" stroke-width="6" stroke-linecap="round"/>
                 
-                <!-- Feet -->
-                <ellipse cx="165" cy="690" rx="20" ry="12" fill="url(#muscleGrad)"/>
-                <ellipse cx="235" cy="690" rx="20" ry="12" fill="url(#muscleGrad)"/>
+                <!-- SARTORIUS -->
+                <path d="M 150 430 Q 170 480 180 540 Q 185 580 175 610" stroke="url(#muscleRed)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                <path d="M 250 430 Q 230 480 220 540 Q 215 580 225 610" stroke="url(#muscleRed)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                
+                <!-- ADDUCTORS -->
+                <ellipse cx="190" cy="480" rx="12" ry="50" fill="url(#muscleDark)"/>
+                <ellipse cx="210" cy="480" rx="12" ry="50" fill="url(#muscleDark)"/>
+                
+                <!-- PATELLA REGION -->
+                <ellipse cx="175" cy="600" rx="14" ry="16" fill="url(#tendon)"/>
+                <ellipse cx="225" cy="600" rx="14" ry="16" fill="url(#tendon)"/>
+                
+                <!-- TIBIALIS ANTERIOR -->
+                <ellipse cx="170" cy="670" rx="12" ry="50" fill="url(#muscleHighlight)"/>
+                <ellipse cx="230" cy="670" rx="12" ry="50" fill="url(#muscleHighlight)"/>
+                
+                <!-- GASTROCNEMIUS (Calf) -->
+                <ellipse cx="175" cy="660" rx="18" ry="55" fill="url(#muscleRed)" filter="url(#softGlow)"/>
+                <ellipse cx="225" cy="660" rx="18" ry="55" fill="url(#muscleRed)" filter="url(#softGlow)"/>
+                <!-- Calf heads -->
+                <ellipse cx="168" cy="640" rx="10" ry="25" fill="url(#muscleHighlight)"/>
+                <ellipse cx="182" cy="640" rx="10" ry="25" fill="url(#muscleHighlight)"/>
+                <ellipse cx="218" cy="640" rx="10" ry="25" fill="url(#muscleHighlight)"/>
+                <ellipse cx="232" cy="640" rx="10" ry="25" fill="url(#muscleHighlight)"/>
+                
+                <!-- ACHILLES TENDON -->
+                <path d="M 175 715 L 175 760" stroke="url(#tendon)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M 225 715 L 225 760" stroke="url(#tendon)" stroke-width="8" stroke-linecap="round"/>
+                
+                <!-- HANDS -->
+                <ellipse cx="95" cy="430" rx="14" ry="22" fill="url(#muscleRed)"/>
+                <ellipse cx="305" cy="430" rx="14" ry="22" fill="url(#muscleRed)"/>
+                
+                <!-- FEET -->
+                <ellipse cx="175" cy="790" rx="25" ry="14" fill="url(#muscleRed)"/>
+                <ellipse cx="225" cy="790" rx="25" ry="14" fill="url(#muscleRed)"/>
             </svg>
         </div>
 
-        <!-- Layer 2: Skeletal System -->
+        <!-- Layer 2: Skeletal System - REALISTIC -->
         <div class="anatomy-layer" id="layer-skeleton" data-layer="2">
-            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
+            <svg class="anatomy-svg" viewBox="0 0 400 850" width="320">
                 <defs>
-                    <linearGradient id="boneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#f5f5f4;stop-opacity:0.9" />
-                        <stop offset="100%" style="stop-color:#a8a29e;stop-opacity:0.8" />
+                    <linearGradient id="boneLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fefefe"/>
+                        <stop offset="30%" style="stop-color:#f5f5f4"/>
+                        <stop offset="70%" style="stop-color:#e7e5e4"/>
+                        <stop offset="100%" style="stop-color:#d6d3d1"/>
                     </linearGradient>
+                    <linearGradient id="boneShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#d6d3d1"/>
+                        <stop offset="100%" style="stop-color:#a8a29e"/>
+                    </linearGradient>
+                    <linearGradient id="boneDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#a8a29e"/>
+                        <stop offset="100%" style="stop-color:#78716c"/>
+                    </linearGradient>
+                    <filter id="boneTexture">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2"/>
+                        <feDisplacementMap in="SourceGraphic" scale="1"/>
+                    </filter>
                 </defs>
                 
-                <!-- Skull -->
-                <ellipse cx="200" cy="55" rx="40" ry="50" fill="url(#boneGrad)" filter="url(#glow)"/>
-                <ellipse cx="185" cy="45" rx="8" ry="6" fill="#1a1a2e"/>
-                <ellipse cx="215" cy="45" rx="8" ry="6" fill="#1a1a2e"/>
-                <path d="M 190 70 Q 200 75 210 70" stroke="#1a1a2e" stroke-width="2" fill="none"/>
-                <ellipse cx="200" cy="60" rx="6" ry="4" fill="#1a1a2e"/>
+                <!-- SKULL -->
+                <!-- Cranium -->
+                <ellipse cx="200" cy="50" rx="38" ry="45" fill="url(#boneLight)" filter="url(#softGlow)"/>
+                <!-- Frontal bone detail -->
+                <path d="M 165 35 Q 200 20 235 35" stroke="url(#boneShadow)" stroke-width="2" fill="none"/>
+                <!-- Temporal lines -->
+                <path d="M 165 40 Q 170 60 165 80" stroke="url(#boneShadow)" stroke-width="1" fill="none"/>
+                <path d="M 235 40 Q 230 60 235 80" stroke="url(#boneShadow)" stroke-width="1" fill="none"/>
+                <!-- Eye sockets -->
+                <ellipse cx="182" cy="55" rx="14" ry="10" fill="#1a1a2e"/>
+                <ellipse cx="218" cy="55" rx="14" ry="10" fill="#1a1a2e"/>
+                <!-- Orbital ridge -->
+                <path d="M 168 48 Q 182 44 196 48" stroke="url(#boneLight)" stroke-width="3" fill="none"/>
+                <path d="M 204 48 Q 218 44 232 48" stroke="url(#boneLight)" stroke-width="3" fill="none"/>
+                <!-- Nasal bone -->
+                <path d="M 195 55 L 200 75 L 205 55" fill="url(#boneShadow)"/>
+                <ellipse cx="200" cy="72" rx="8" ry="5" fill="#1a1a2e"/>
+                <!-- Zygomatic (cheekbones) -->
+                <ellipse cx="165" cy="68" rx="12" ry="8" fill="url(#boneLight)"/>
+                <ellipse cx="235" cy="68" rx="12" ry="8" fill="url(#boneLight)"/>
+                <!-- Maxilla -->
+                <path d="M 175 80 Q 200 85 225 80 L 220 95 Q 200 100 180 95 Z" fill="url(#boneShadow)"/>
+                <!-- Mandible (jaw) -->
+                <path d="M 168 95 Q 165 110 175 120 Q 200 128 225 120 Q 235 110 232 95 L 225 90 Q 200 95 175 90 Z" fill="url(#boneLight)"/>
+                <!-- Teeth line -->
+                <path d="M 180 95 Q 200 98 220 95" stroke="url(#boneDeep)" stroke-width="2" fill="none"/>
                 
-                <!-- Jaw -->
-                <path d="M 170 75 Q 200 100 230 75 L 225 65 Q 200 85 175 65 Z" fill="url(#boneGrad)"/>
+                <!-- CERVICAL SPINE -->
+                <ellipse cx="200" cy="135" rx="8" ry="6" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="148" rx="8" ry="6" fill="url(#boneShadow)"/>
+                <ellipse cx="200" cy="161" rx="8" ry="6" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="174" rx="9" ry="6" fill="url(#boneShadow)"/>
+                <!-- Spinous processes -->
+                <line x1="200" y1="130" x2="200" y2="125" stroke="url(#boneShadow)" stroke-width="3"/>
+                <line x1="200" y1="143" x2="200" y2="138" stroke="url(#boneDeep)" stroke-width="3"/>
+                <line x1="200" y1="156" x2="200" y2="151" stroke="url(#boneShadow)" stroke-width="3"/>
                 
-                <!-- Cervical Spine -->
-                <rect x="195" y="105" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="115" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="125" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="135" width="10" height="8" rx="2" fill="url(#boneGrad)"/>
+                <!-- CLAVICLES -->
+                <path d="M 200 180 Q 165 185 125 195" stroke="url(#boneLight)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                <path d="M 200 180 Q 235 185 275 195" stroke="url(#boneLight)" stroke-width="10" fill="none" stroke-linecap="round"/>
                 
-                <!-- Clavicles -->
-                <path d="M 200 145 Q 160 150 120 160" stroke="url(#boneGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
-                <path d="M 200 145 Q 240 150 280 160" stroke="url(#boneGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <!-- SCAPULAE -->
+                <path d="M 130 195 L 145 260 L 160 195 Z" fill="url(#boneShadow)"/>
+                <path d="M 270 195 L 255 260 L 240 195 Z" fill="url(#boneShadow)"/>
+                <!-- Scapular spine -->
+                <line x1="135" y1="215" x2="155" y2="210" stroke="url(#boneLight)" stroke-width="4"/>
+                <line x1="265" y1="215" x2="245" y2="210" stroke="url(#boneLight)" stroke-width="4"/>
                 
-                <!-- Scapulae -->
-                <path d="M 130 160 L 145 210 L 160 160 Z" fill="url(#boneGrad)"/>
-                <path d="M 270 160 L 255 210 L 240 160 Z" fill="url(#boneGrad)"/>
+                <!-- STERNUM -->
+                <rect x="192" y="185" width="16" height="25" rx="4" fill="url(#boneLight)"/>
+                <rect x="190" y="210" width="20" height="70" rx="3" fill="url(#boneShadow)"/>
+                <ellipse cx="200" cy="290" rx="8" ry="12" fill="url(#boneLight)"/>
                 
-                <!-- Ribcage -->
-                <ellipse cx="200" cy="220" rx="55" ry="70" fill="none" stroke="url(#boneGrad)" stroke-width="3"/>
-                <ellipse cx="200" cy="220" rx="45" ry="60" fill="none" stroke="url(#boneGrad)" stroke-width="2"/>
-                <ellipse cx="200" cy="220" rx="35" ry="50" fill="none" stroke="url(#boneGrad)" stroke-width="2"/>
-                <ellipse cx="200" cy="220" rx="25" ry="40" fill="none" stroke="url(#boneGrad)" stroke-width="2"/>
+                <!-- RIBS (12 pairs) -->
+                <!-- Upper ribs -->
+                <path d="M 200 195 Q 155 200 140 230" stroke="url(#boneLight)" stroke-width="4" fill="none"/>
+                <path d="M 200 195 Q 245 200 260 230" stroke="url(#boneLight)" stroke-width="4" fill="none"/>
+                <path d="M 200 210 Q 150 220 135 255" stroke="url(#boneShadow)" stroke-width="4" fill="none"/>
+                <path d="M 200 210 Q 250 220 265 255" stroke="url(#boneShadow)" stroke-width="4" fill="none"/>
+                <path d="M 200 225 Q 145 240 135 280" stroke="url(#boneLight)" stroke-width="4" fill="none"/>
+                <path d="M 200 225 Q 255 240 265 280" stroke="url(#boneLight)" stroke-width="4" fill="none"/>
+                <!-- Lower ribs -->
+                <path d="M 200 240 Q 150 255 145 295" stroke="url(#boneShadow)" stroke-width="3" fill="none"/>
+                <path d="M 200 240 Q 250 255 255 295" stroke="url(#boneShadow)" stroke-width="3" fill="none"/>
+                <path d="M 200 255 Q 155 270 155 300" stroke="url(#boneLight)" stroke-width="3" fill="none"/>
+                <path d="M 200 255 Q 245 270 245 300" stroke="url(#boneLight)" stroke-width="3" fill="none"/>
+                <!-- Floating ribs -->
+                <path d="M 200 270 Q 165 285 165 300" stroke="url(#boneShadow)" stroke-width="3" fill="none"/>
+                <path d="M 200 270 Q 235 285 235 300" stroke="url(#boneShadow)" stroke-width="3" fill="none"/>
                 
-                <!-- Sternum -->
-                <rect x="195" y="150" width="10" height="100" rx="3" fill="url(#boneGrad)"/>
+                <!-- THORACIC & LUMBAR SPINE -->
+                <ellipse cx="200" cy="195" rx="10" ry="7" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="212" rx="10" ry="7" fill="url(#boneShadow)"/>
+                <ellipse cx="200" cy="229" rx="10" ry="7" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="246" rx="10" ry="7" fill="url(#boneShadow)"/>
+                <ellipse cx="200" cy="263" rx="10" ry="7" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="280" rx="11" ry="8" fill="url(#boneShadow)"/>
+                <!-- Lumbar -->
+                <ellipse cx="200" cy="300" rx="12" ry="9" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="320" rx="13" ry="9" fill="url(#boneShadow)"/>
+                <ellipse cx="200" cy="340" rx="13" ry="9" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="360" rx="14" ry="10" fill="url(#boneShadow)"/>
+                <ellipse cx="200" cy="380" rx="14" ry="10" fill="url(#boneLight)"/>
                 
-                <!-- Thoracic/Lumbar Spine -->
-                <rect x="195" y="260" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="272" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="284" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="296" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="308" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
-                <rect x="195" y="320" width="10" height="10" rx="2" fill="url(#boneGrad)"/>
+                <!-- SACRUM -->
+                <path d="M 180 395 L 220 395 L 215 450 Q 200 460 185 450 Z" fill="url(#boneShadow)"/>
+                <!-- Sacral foramina -->
+                <circle cx="190" cy="410" r="3" fill="url(#boneDeep)"/>
+                <circle cx="210" cy="410" r="3" fill="url(#boneDeep)"/>
+                <circle cx="190" cy="425" r="3" fill="url(#boneDeep)"/>
+                <circle cx="210" cy="425" r="3" fill="url(#boneDeep)"/>
                 
-                <!-- Pelvis -->
-                <path d="M 150 340 Q 130 370 145 400 Q 200 420 255 400 Q 270 370 250 340 Q 200 360 150 340" fill="url(#boneGrad)" filter="url(#glow)"/>
-                <ellipse cx="165" cy="385" rx="12" ry="15" fill="#1a1a2e"/>
-                <ellipse cx="235" cy="385" rx="12" ry="15" fill="#1a1a2e"/>
+                <!-- COCCYX -->
+                <ellipse cx="200" cy="465" rx="6" ry="8" fill="url(#boneLight)"/>
+                <ellipse cx="200" cy="478" rx="4" ry="5" fill="url(#boneShadow)"/>
                 
-                <!-- Humerus -->
-                <rect x="108" y="170" width="12" height="80" rx="6" fill="url(#boneGrad)"/>
-                <rect x="280" y="170" width="12" height="80" rx="6" fill="url(#boneGrad)"/>
+                <!-- PELVIS (Os Coxae) -->
+                <!-- Ilium -->
+                <path d="M 180 395 Q 140 380 130 400 Q 125 430 140 460 Q 160 475 180 465" fill="url(#boneLight)"/>
+                <path d="M 220 395 Q 260 380 270 400 Q 275 430 260 460 Q 240 475 220 465" fill="url(#boneLight)"/>
+                <!-- Iliac crest detail -->
+                <path d="M 145 385 Q 165 375 180 380" stroke="url(#boneShadow)" stroke-width="3" fill="none"/>
+                <path d="M 255 385 Q 235 375 220 380" stroke="url(#boneShadow)" stroke-width="3" fill="none"/>
+                <!-- Ischium -->
+                <path d="M 160 465 Q 155 490 165 505 Q 180 510 190 495" fill="url(#boneShadow)"/>
+                <path d="M 240 465 Q 245 490 235 505 Q 220 510 210 495" fill="url(#boneShadow)"/>
+                <!-- Pubis -->
+                <path d="M 190 495 Q 200 510 210 495 Q 205 480 200 475 Q 195 480 190 495" fill="url(#boneLight)"/>
+                <!-- Acetabulum -->
+                <circle cx="162" cy="470" r="18" fill="url(#boneDeep)"/>
+                <circle cx="238" cy="470" r="18" fill="url(#boneDeep)"/>
+                <!-- Obturator foramen -->
+                <ellipse cx="170" cy="490" rx="10" ry="15" fill="#1a1a2e"/>
+                <ellipse cx="230" cy="490" rx="10" ry="15" fill="#1a1a2e"/>
                 
-                <!-- Radius/Ulna -->
-                <rect x="103" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
-                <rect x="112" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
-                <rect x="280" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
-                <rect x="289" y="255" width="8" height="70" rx="4" fill="url(#boneGrad)"/>
+                <!-- HUMERUS -->
+                <ellipse cx="120" cy="200" rx="12" ry="10" fill="url(#boneLight)"/>
+                <rect x="112" y="205" width="16" height="90" rx="8" fill="url(#boneShadow)"/>
+                <ellipse cx="120" cy="300" rx="14" ry="12" fill="url(#boneLight)"/>
+                <ellipse cx="280" cy="200" rx="12" ry="10" fill="url(#boneLight)"/>
+                <rect x="272" y="205" width="16" height="90" rx="8" fill="url(#boneShadow)"/>
+                <ellipse cx="280" cy="300" rx="14" ry="12" fill="url(#boneLight)"/>
                 
-                <!-- Hands -->
-                <ellipse cx="110" cy="340" rx="15" ry="20" fill="url(#boneGrad)"/>
-                <ellipse cx="290" cy="340" rx="15" ry="20" fill="url(#boneGrad)"/>
+                <!-- RADIUS & ULNA -->
+                <rect x="108" y="305" width="10" height="95" rx="5" fill="url(#boneLight)"/>
+                <rect x="120" y="305" width="8" height="95" rx="4" fill="url(#boneShadow)"/>
+                <rect x="272" y="305" width="10" height="95" rx="5" fill="url(#boneLight)"/>
+                <rect x="282" y="305" width="8" height="95" rx="4" fill="url(#boneShadow)"/>
                 
-                <!-- Femurs -->
-                <rect x="160" y="400" width="18" height="110" rx="9" fill="url(#boneGrad)" filter="url(#glow)"/>
-                <rect x="222" y="400" width="18" height="110" rx="9" fill="url(#boneGrad)" filter="url(#glow)"/>
+                <!-- HANDS (Carpals, Metacarpals, Phalanges) -->
+                <ellipse cx="115" cy="415" rx="18" ry="25" fill="url(#boneLight)"/>
+                <ellipse cx="285" cy="415" rx="18" ry="25" fill="url(#boneLight)"/>
+                <!-- Fingers -->
+                <rect x="100" y="435" width="4" height="20" rx="2" fill="url(#boneShadow)"/>
+                <rect x="108" y="432" width="4" height="25" rx="2" fill="url(#boneLight)"/>
+                <rect x="116" y="430" width="4" height="28" rx="2" fill="url(#boneShadow)"/>
+                <rect x="124" y="432" width="4" height="24" rx="2" fill="url(#boneLight)"/>
+                <rect x="130" y="435" width="4" height="18" rx="2" fill="url(#boneShadow)"/>
+                <rect x="270" y="435" width="4" height="20" rx="2" fill="url(#boneShadow)"/>
+                <rect x="278" y="432" width="4" height="25" rx="2" fill="url(#boneLight)"/>
+                <rect x="286" y="430" width="4" height="28" rx="2" fill="url(#boneShadow)"/>
+                <rect x="294" y="432" width="4" height="24" rx="2" fill="url(#boneLight)"/>
+                <rect x="300" y="435" width="4" height="18" rx="2" fill="url(#boneShadow)"/>
                 
-                <!-- Patella -->
-                <ellipse cx="169" cy="520" rx="10" ry="12" fill="url(#boneGrad)"/>
-                <ellipse cx="231" cy="520" rx="10" ry="12" fill="url(#boneGrad)"/>
+                <!-- FEMUR -->
+                <circle cx="162" cy="470" r="15" fill="url(#boneLight)"/>
+                <circle cx="238" cy="470" r="15" fill="url(#boneLight)"/>
+                <rect x="155" y="485" width="20" height="130" rx="10" fill="url(#boneShadow)"/>
+                <rect x="225" y="485" width="20" height="130" rx="10" fill="url(#boneShadow)"/>
+                <!-- Femoral condyles -->
+                <ellipse cx="165" cy="618" rx="18" ry="14" fill="url(#boneLight)"/>
+                <ellipse cx="235" cy="618" rx="18" ry="14" fill="url(#boneLight)"/>
                 
-                <!-- Tibia/Fibula -->
-                <rect x="162" y="535" width="10" height="100" rx="5" fill="url(#boneGrad)"/>
-                <rect x="172" y="535" width="6" height="100" rx="3" fill="url(#boneGrad)"/>
-                <rect x="224" y="535" width="10" height="100" rx="5" fill="url(#boneGrad)"/>
-                <rect x="234" y="535" width="6" height="100" rx="3" fill="url(#boneGrad)"/>
+                <!-- PATELLA -->
+                <ellipse cx="165" cy="625" rx="12" ry="14" fill="url(#boneLight)" filter="url(#softGlow)"/>
+                <ellipse cx="235" cy="625" rx="12" ry="14" fill="url(#boneLight)" filter="url(#softGlow)"/>
                 
-                <!-- Feet -->
-                <path d="M 145 650 L 190 650 L 185 680 L 150 680 Z" fill="url(#boneGrad)"/>
-                <path d="M 210 650 L 255 650 L 250 680 L 215 680 Z" fill="url(#boneGrad)"/>
+                <!-- TIBIA & FIBULA -->
+                <rect x="158" y="635" width="14" height="115" rx="7" fill="url(#boneShadow)"/>
+                <rect x="148" y="640" width="8" height="105" rx="4" fill="url(#boneLight)"/>
+                <rect x="228" y="635" width="14" height="115" rx="7" fill="url(#boneShadow)"/>
+                <rect x="244" y="640" width="8" height="105" rx="4" fill="url(#boneLight)"/>
+                <!-- Malleoli -->
+                <ellipse cx="155" cy="750" rx="8" ry="10" fill="url(#boneLight)"/>
+                <ellipse cx="175" cy="752" rx="6" ry="8" fill="url(#boneShadow)"/>
+                <ellipse cx="245" cy="750" rx="8" ry="10" fill="url(#boneLight)"/>
+                <ellipse cx="225" cy="752" rx="6" ry="8" fill="url(#boneShadow)"/>
+                
+                <!-- FEET (Tarsals, Metatarsals, Phalanges) -->
+                <path d="M 140 760 L 190 760 L 185 790 L 145 790 Z" fill="url(#boneLight)"/>
+                <path d="M 210 760 L 260 760 L 255 790 L 215 790 Z" fill="url(#boneLight)"/>
+                <!-- Toes -->
+                <rect x="145" y="790" width="6" height="15" rx="3" fill="url(#boneShadow)"/>
+                <rect x="155" y="788" width="6" height="18" rx="3" fill="url(#boneLight)"/>
+                <rect x="165" y="786" width="6" height="20" rx="3" fill="url(#boneShadow)"/>
+                <rect x="175" y="788" width="6" height="17" rx="3" fill="url(#boneLight)"/>
+                <rect x="183" y="790" width="5" height="14" rx="2" fill="url(#boneShadow)"/>
+                <rect x="217" y="790" width="6" height="15" rx="3" fill="url(#boneShadow)"/>
+                <rect x="227" y="788" width="6" height="18" rx="3" fill="url(#boneLight)"/>
+                <rect x="237" y="786" width="6" height="20" rx="3" fill="url(#boneShadow)"/>
+                <rect x="247" y="788" width="6" height="17" rx="3" fill="url(#boneLight)"/>
+                <rect x="255" y="790" width="5" height="14" rx="2" fill="url(#boneShadow)"/>
             </svg>
         </div>
 
-        <!-- Layer 3: Nervous System -->
+        <!-- Layer 3: Nervous System - REALISTIC -->
         <div class="anatomy-layer" id="layer-nervous" data-layer="3">
-            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
+            <svg class="anatomy-svg" viewBox="0 0 400 850" width="320">
                 <defs>
-                    <linearGradient id="nerveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#facc15;stop-opacity:0.9" />
-                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.8" />
+                    <linearGradient id="brainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fbbf24"/>
+                        <stop offset="50%" style="stop-color:#f59e0b"/>
+                        <stop offset="100%" style="stop-color:#d97706"/>
                     </linearGradient>
-                    <filter id="nerveGlow">
-                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                    <linearGradient id="nerveGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fcd34d"/>
+                        <stop offset="100%" style="stop-color:#f59e0b"/>
+                    </linearGradient>
+                    <filter id="electricGlow">
+                        <feGaussianBlur stdDeviation="3" result="glow"/>
                         <feMerge>
-                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="glow"/>
                             <feMergeNode in="SourceGraphic"/>
                         </feMerge>
                     </filter>
                 </defs>
                 
-                <!-- Brain -->
-                <ellipse cx="200" cy="55" rx="38" ry="45" fill="url(#nerveGrad)" filter="url(#nerveGlow)"/>
-                <path d="M 170 40 Q 200 35 230 40 Q 210 50 200 45 Q 190 50 170 40" fill="#f59e0b"/>
-                <path d="M 170 55 Q 200 50 230 55" stroke="#f59e0b" stroke-width="2" fill="none"/>
-                <path d="M 175 65 Q 200 60 225 65" stroke="#f59e0b" stroke-width="2" fill="none"/>
+                <!-- BRAIN - Realistic with gyri and sulci -->
+                <ellipse cx="200" cy="50" rx="42" ry="48" fill="url(#brainGrad)" filter="url(#electricGlow)"/>
+                <!-- Cerebral fissures -->
+                <path d="M 200 15 L 200 95" stroke="#d97706" stroke-width="2" fill="none"/>
+                <!-- Gyri (brain folds) -->
+                <path d="M 165 30 Q 175 25 185 32 Q 175 40 165 30" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <path d="M 170 45 Q 180 40 190 47 Q 180 55 170 45" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <path d="M 168 60 Q 178 55 188 62 Q 178 70 168 60" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <path d="M 172 75 Q 182 70 192 77 Q 182 85 172 75" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <path d="M 235 30 Q 225 25 215 32 Q 225 40 235 30" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <path d="M 230 45 Q 220 40 210 47 Q 220 55 230 45" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <path d="M 232 60 Q 222 55 212 62 Q 222 70 232 60" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <path d="M 228 75 Q 218 70 208 77 Q 218 85 228 75" stroke="#d97706" stroke-width="1.5" fill="none"/>
+                <!-- Cerebellum -->
+                <ellipse cx="200" cy="90" rx="25" ry="12" fill="#d97706"/>
+                <path d="M 180 88 L 185 92 L 190 88 L 195 92 L 200 88 L 205 92 L 210 88 L 215 92 L 220 88" stroke="#b45309" stroke-width="1" fill="none"/>
                 
-                <!-- Brain Stem -->
-                <rect x="195" y="95" width="10" height="25" rx="5" fill="url(#nerveGrad)"/>
+                <!-- BRAIN STEM -->
+                <rect x="195" y="100" width="10" height="25" rx="5" fill="url(#brainGrad)"/>
                 
-                <!-- Spinal Cord -->
-                <rect x="197" y="120" width="6" height="280" rx="3" fill="url(#nerveGrad)" filter="url(#nerveGlow)"/>
+                <!-- SPINAL CORD -->
+                <rect x="196" y="125" width="8" height="290" rx="4" fill="url(#nerveGlow)" filter="url(#electricGlow)"/>
                 
-                <!-- Cervical Nerves -->
-                <path d="M 200 130 Q 150 135 120 150" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
-                <path d="M 200 130 Q 250 135 280 150" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
-                <path d="M 200 145 Q 150 150 115 170" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
-                <path d="M 200 145 Q 250 150 285 170" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <!-- CERVICAL PLEXUS (C1-C4) -->
+                <path d="M 200 135 Q 170 140 145 145" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
+                <path d="M 200 135 Q 230 140 255 145" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
+                <path d="M 200 148 Q 165 155 135 165" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
+                <path d="M 200 148 Q 235 155 265 165" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
                 
-                <!-- Brachial Plexus -->
-                <path d="M 200 160 Q 160 165 125 180 Q 115 220 110 280" stroke="url(#nerveGrad)" stroke-width="3" fill="none" filter="url(#nerveGlow)"/>
-                <path d="M 200 160 Q 240 165 275 180 Q 285 220 290 280" stroke="url(#nerveGrad)" stroke-width="3" fill="none" filter="url(#nerveGlow)"/>
+                <!-- BRACHIAL PLEXUS (C5-T1) - Detailed -->
+                <!-- Roots -->
+                <path d="M 200 165 Q 175 170 155 175" stroke="url(#nerveGlow)" stroke-width="3" fill="none" filter="url(#electricGlow)"/>
+                <path d="M 200 165 Q 225 170 245 175" stroke="url(#nerveGlow)" stroke-width="3" fill="none" filter="url(#electricGlow)"/>
+                <path d="M 200 175 Q 170 182 145 190" stroke="url(#nerveGlow)" stroke-width="3" fill="none"/>
+                <path d="M 200 175 Q 230 182 255 190" stroke="url(#nerveGlow)" stroke-width="3" fill="none"/>
+                <!-- Trunks -->
+                <ellipse cx="140" cy="195" rx="8" ry="5" fill="url(#brainGrad)" filter="url(#electricGlow)"/>
+                <ellipse cx="260" cy="195" rx="8" ry="5" fill="url(#brainGrad)" filter="url(#electricGlow)"/>
+                <!-- Cords & Terminal branches -->
+                <!-- Musculocutaneous -->
+                <path d="M 140 200 Q 130 220 125 250 Q 122 280 125 310" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
+                <path d="M 260 200 Q 270 220 275 250 Q 278 280 275 310" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
+                <!-- Median nerve -->
+                <path d="M 140 200 Q 125 240 115 290 Q 108 340 105 400" stroke="url(#nerveGlow)" stroke-width="3" fill="none" filter="url(#electricGlow)"/>
+                <path d="M 260 200 Q 275 240 285 290 Q 292 340 295 400" stroke="url(#nerveGlow)" stroke-width="3" fill="none" filter="url(#electricGlow)"/>
+                <!-- Ulnar nerve -->
+                <path d="M 140 200 Q 120 250 110 300 Q 100 360 95 420" stroke="url(#nerveGlow)" stroke-width="2.5" fill="none"/>
+                <path d="M 260 200 Q 280 250 290 300 Q 300 360 305 420" stroke="url(#nerveGlow)" stroke-width="2.5" fill="none"/>
+                <!-- Radial nerve -->
+                <path d="M 140 200 Q 115 230 105 260 Q 100 290 105 350 Q 110 380 115 420" stroke="url(#nerveGlow)" stroke-width="2.5" fill="none"/>
+                <path d="M 260 200 Q 285 230 295 260 Q 300 290 295 350 Q 290 380 285 420" stroke="url(#nerveGlow)" stroke-width="2.5" fill="none"/>
                 
-                <!-- Arm nerves -->
-                <path d="M 110 280 Q 108 310 105 360" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
-                <path d="M 290 280 Q 292 310 295 360" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
+                <!-- THORACIC NERVES (Intercostals) -->
+                <path d="M 200 195 Q 165 200 145 210" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 195 Q 235 200 255 210" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 215 Q 160 222 140 235" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 215 Q 240 222 260 235" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 235 Q 162 245 145 260" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 235 Q 238 245 255 260" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 255 Q 165 268 150 285" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
+                <path d="M 200 255 Q 235 268 250 285" stroke="url(#nerveGlow)" stroke-width="1.5" fill="none"/>
                 
-                <!-- Thoracic Nerves -->
-                <path d="M 200 200 Q 160 205 140 210" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
-                <path d="M 200 200 Q 240 205 260 210" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
-                <path d="M 200 220 Q 160 225 135 230" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
-                <path d="M 200 220 Q 240 225 265 230" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
-                <path d="M 200 240 Q 160 245 140 250" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
-                <path d="M 200 240 Q 240 245 260 250" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <!-- LUMBAR PLEXUS (L1-L4) -->
+                <ellipse cx="200" cy="395" rx="20" ry="15" fill="url(#brainGrad)" filter="url(#electricGlow)" opacity="0.8"/>
+                <!-- Femoral nerve -->
+                <path d="M 190 405 Q 175 440 172 490 Q 172 540 175 590 Q 178 630 175 680" stroke="url(#nerveGlow)" stroke-width="4" fill="none" filter="url(#electricGlow)"/>
+                <path d="M 210 405 Q 225 440 228 490 Q 228 540 225 590 Q 222 630 225 680" stroke="url(#nerveGlow)" stroke-width="4" fill="none" filter="url(#electricGlow)"/>
+                <!-- Obturator nerve -->
+                <path d="M 195 400 Q 185 430 185 460 Q 190 490 195 520" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
+                <path d="M 205 400 Q 215 430 215 460 Q 210 490 205 520" stroke="url(#nerveGlow)" stroke-width="2" fill="none"/>
                 
-                <!-- Lumbar Plexus -->
-                <ellipse cx="200" cy="360" rx="25" ry="20" fill="url(#nerveGrad)" filter="url(#nerveGlow)" opacity="0.7"/>
+                <!-- SACRAL PLEXUS (L4-S3) -->
+                <ellipse cx="200" cy="430" rx="18" ry="12" fill="url(#brainGrad)" filter="url(#electricGlow)" opacity="0.8"/>
+                <!-- SCIATIC NERVE (largest nerve in body) -->
+                <path d="M 185 440 Q 165 490 165 550 Q 165 610 168 670 Q 170 720 168 760" stroke="url(#nerveGlow)" stroke-width="6" fill="none" filter="url(#electricGlow)"/>
+                <path d="M 215 440 Q 235 490 235 550 Q 235 610 232 670 Q 230 720 232 760" stroke="url(#nerveGlow)" stroke-width="6" fill="none" filter="url(#electricGlow)"/>
+                <!-- Sciatic branches -->
+                <!-- Tibial nerve -->
+                <path d="M 168 670 Q 172 710 178 760 Q 182 790 180 820" stroke="url(#nerveGlow)" stroke-width="3" fill="none"/>
+                <path d="M 232 670 Q 228 710 222 760 Q 218 790 220 820" stroke="url(#nerveGlow)" stroke-width="3" fill="none"/>
+                <!-- Common peroneal -->
+                <path d="M 168 670 Q 155 700 150 740 Q 148 770 155 800" stroke="url(#nerveGlow)" stroke-width="2.5" fill="none"/>
+                <path d="M 232 670 Q 245 700 250 740 Q 252 770 245 800" stroke="url(#nerveGlow)" stroke-width="2.5" fill="none"/>
                 
-                <!-- Sciatic Nerve -->
-                <path d="M 185 380 Q 170 450 165 520 Q 165 580 165 640" stroke="url(#nerveGrad)" stroke-width="4" fill="none" filter="url(#nerveGlow)"/>
-                <path d="M 215 380 Q 230 450 235 520 Q 235 580 235 640" stroke="url(#nerveGrad)" stroke-width="4" fill="none" filter="url(#nerveGlow)"/>
-                
-                <!-- Leg nerve branches -->
-                <path d="M 165 520 Q 150 540 145 580" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
-                <path d="M 235 520 Q 250 540 255 580" stroke="url(#nerveGrad)" stroke-width="2" fill="none"/>
-                <path d="M 165 580 Q 160 620 155 660" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
-                <path d="M 235 580 Q 240 620 245 660" stroke="url(#nerveGrad)" stroke-width="1.5" fill="none"/>
+                <!-- Nerve ending points (synapses) -->
+                <circle cx="105" cy="420" r="4" fill="#fcd34d" filter="url(#electricGlow)"/>
+                <circle cx="295" cy="420" r="4" fill="#fcd34d" filter="url(#electricGlow)"/>
+                <circle cx="180" cy="820" r="4" fill="#fcd34d" filter="url(#electricGlow)"/>
+                <circle cx="220" cy="820" r="4" fill="#fcd34d" filter="url(#electricGlow)"/>
             </svg>
         </div>
 
-        <!-- Layer 4: Organs -->
+        <!-- Layer 4: Organs - REALISTIC -->
         <div class="anatomy-layer" id="layer-organs" data-layer="4">
-            <svg class="anatomy-svg" viewBox="0 0 400 800" width="300">
+            <svg class="anatomy-svg" viewBox="0 0 400 650" width="350">
                 <defs>
-                    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.9" />
-                        <stop offset="100%" style="stop-color:#dc2626;stop-opacity:0.8" />
+                    <linearGradient id="brainPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f9a8d4"/>
+                        <stop offset="50%" style="stop-color:#ec4899"/>
+                        <stop offset="100%" style="stop-color:#be185d"/>
                     </linearGradient>
-                    <linearGradient id="lungGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.8" />
-                        <stop offset="100%" style="stop-color:#be185d;stop-opacity:0.7" />
+                    <linearGradient id="heartRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ef4444"/>
+                        <stop offset="30%" style="stop-color:#dc2626"/>
+                        <stop offset="100%" style="stop-color:#991b1b"/>
                     </linearGradient>
-                    <linearGradient id="liverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.8" />
-                        <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.7" />
+                    <linearGradient id="lungPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fda4af"/>
+                        <stop offset="50%" style="stop-color:#fb7185"/>
+                        <stop offset="100%" style="stop-color:#e11d48"/>
                     </linearGradient>
-                    <linearGradient id="stomachGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.8" />
-                        <stop offset="100%" style="stop-color:#ea580c;stop-opacity:0.7" />
+                    <linearGradient id="liverBrown" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#a855f7"/>
+                        <stop offset="50%" style="stop-color:#7c3aed"/>
+                        <stop offset="100%" style="stop-color:#5b21b6"/>
                     </linearGradient>
-                    <linearGradient id="intestineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8" />
-                        <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.7" />
+                    <linearGradient id="stomachPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fbbf24"/>
+                        <stop offset="50%" style="stop-color:#f59e0b"/>
+                        <stop offset="100%" style="stop-color:#d97706"/>
                     </linearGradient>
-                    <linearGradient id="kidneyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
-                        <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.7" />
+                    <linearGradient id="kidneyRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f87171"/>
+                        <stop offset="100%" style="stop-color:#b91c1c"/>
+                    </linearGradient>
+                    <linearGradient id="intestineGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#86efac"/>
+                        <stop offset="50%" style="stop-color:#22c55e"/>
+                        <stop offset="100%" style="stop-color:#15803d"/>
                     </linearGradient>
                 </defs>
                 
-                <!-- Brain -->
-                <ellipse cx="200" cy="55" rx="35" ry="42" fill="#f472b6" filter="url(#glow)"/>
-                <path d="M 170 45 Q 200 40 230 45" stroke="#be185d" stroke-width="2" fill="none"/>
-                <path d="M 172 55 Q 200 50 228 55" stroke="#be185d" stroke-width="2" fill="none"/>
-                <path d="M 175 65 Q 200 60 225 65" stroke="#be185d" stroke-width="2" fill="none"/>
+                <!-- BRAIN -->
+                <ellipse cx="200" cy="55" rx="45" ry="50" fill="url(#brainPink)" filter="url(#softGlow)"/>
+                <!-- Brain folds -->
+                <path d="M 165 35 Q 180 30 195 38" stroke="#be185d" stroke-width="1.5" fill="none"/>
+                <path d="M 205 38 Q 220 30 235 35" stroke="#be185d" stroke-width="1.5" fill="none"/>
+                <path d="M 162 50 Q 177 45 192 52" stroke="#be185d" stroke-width="1.5" fill="none"/>
+                <path d="M 208 52 Q 223 45 238 50" stroke="#be185d" stroke-width="1.5" fill="none"/>
+                <path d="M 165 65 Q 180 60 195 68" stroke="#be185d" stroke-width="1.5" fill="none"/>
+                <path d="M 205 68 Q 220 60 235 65" stroke="#be185d" stroke-width="1.5" fill="none"/>
+                <line x1="200" y1="15" x2="200" y2="95" stroke="#be185d" stroke-width="2"/>
+                <!-- Cerebellum -->
+                <ellipse cx="200" cy="95" rx="28" ry="12" fill="#db2777"/>
                 
-                <!-- Lungs -->
-                <ellipse cx="160" cy="200" rx="35" ry="55" fill="url(#lungGrad)" filter="url(#glow)"/>
-                <ellipse cx="240" cy="200" rx="35" ry="55" fill="url(#lungGrad)" filter="url(#glow)"/>
-                <path d="M 140 180 Q 160 200 140 220" stroke="#be185d" stroke-width="1" fill="none"/>
-                <path d="M 145 175 Q 165 195 145 225" stroke="#be185d" stroke-width="1" fill="none"/>
-                <path d="M 260 180 Q 240 200 260 220" stroke="#be185d" stroke-width="1" fill="none"/>
-                <path d="M 255 175 Q 235 195 255 225" stroke="#be185d" stroke-width="1" fill="none"/>
+                <!-- TRACHEA -->
+                <rect x="193" y="115" width="14" height="45" rx="7" fill="#9ca3af"/>
+                <line x1="193" y1="125" x2="207" y2="125" stroke="#6b7280" stroke-width="1"/>
+                <line x1="193" y1="135" x2="207" y2="135" stroke="#6b7280" stroke-width="1"/>
+                <line x1="193" y1="145" x2="207" y2="145" stroke="#6b7280" stroke-width="1"/>
                 
-                <!-- Trachea -->
-                <rect x="195" y="120" width="10" height="50" rx="5" fill="#94a3b8"/>
+                <!-- LUNGS - Detailed lobes -->
+                <!-- Left Lung (2 lobes) -->
+                <path d="M 170 160 Q 130 180 120 230 Q 115 280 125 330 Q 135 355 160 360 Q 175 355 180 330 Q 185 280 180 220 Q 178 180 170 160" fill="url(#lungPink)" filter="url(#softGlow)"/>
+                <!-- Left lung fissure -->
+                <path d="M 130 260 Q 160 270 175 250" stroke="#be185d" stroke-width="2" fill="none"/>
+                <!-- Left bronchi -->
+                <path d="M 193 160 Q 170 180 155 220" stroke="#9ca3af" stroke-width="4" fill="none"/>
                 
-                <!-- Heart -->
-                <path d="M 200 180 Q 175 165 165 180 Q 155 195 170 215 Q 200 250 200 250 Q 200 250 230 215 Q 245 195 235 180 Q 225 165 200 180" fill="url(#heartGrad)" filter="url(#glow)"/>
+                <!-- Right Lung (3 lobes) -->
+                <path d="M 230 160 Q 270 180 280 230 Q 285 280 275 330 Q 265 355 240 360 Q 225 355 220 330 Q 215 280 220 220 Q 222 180 230 160" fill="url(#lungPink)" filter="url(#softGlow)"/>
+                <!-- Right lung fissures -->
+                <path d="M 270 230 Q 240 240 225 220" stroke="#be185d" stroke-width="2" fill="none"/>
+                <path d="M 265 290 Q 240 300 225 280" stroke="#be185d" stroke-width="2" fill="none"/>
+                <!-- Right bronchi -->
+                <path d="M 207 160 Q 230 180 245 220" stroke="#9ca3af" stroke-width="4" fill="none"/>
                 
-                <!-- Liver -->
-                <path d="M 150 280 Q 130 290 130 310 Q 130 340 180 350 Q 230 350 240 320 Q 245 290 220 280 Q 185 270 150 280" fill="url(#liverGrad)" filter="url(#glow)"/>
+                <!-- HEART - Anatomically accurate -->
+                <path d="M 200 200 
+                         Q 175 185 160 195 
+                         Q 145 210 155 235 
+                         Q 175 270 200 300 
+                         Q 225 270 245 235 
+                         Q 255 210 240 195 
+                         Q 225 185 200 200" 
+                      fill="url(#heartRed)" filter="url(#softGlow)"/>
+                <!-- Heart chambers -->
+                <path d="M 200 220 L 200 280" stroke="#7f1d1d" stroke-width="2"/>
+                <path d="M 170 240 Q 200 250 230 240" stroke="#7f1d1d" stroke-width="1.5" fill="none"/>
+                <!-- Aorta -->
+                <path d="M 200 200 Q 200 180 215 170 Q 235 160 250 175" stroke="#dc2626" stroke-width="6" fill="none"/>
+                <!-- Pulmonary arteries -->
+                <path d="M 185 195 Q 175 180 160 175" stroke="#3b82f6" stroke-width="4" fill="none"/>
+                <path d="M 215 195 Q 225 180 240 175" stroke="#3b82f6" stroke-width="4" fill="none"/>
+                <!-- Vena cava -->
+                <path d="M 175 205 Q 165 195 165 180" stroke="#1e40af" stroke-width="5" fill="none"/>
                 
-                <!-- Stomach -->
-                <path d="M 220 290 Q 250 300 260 330 Q 265 360 240 380 Q 210 390 190 370 Q 180 350 190 320 Q 200 295 220 290" fill="url(#stomachGrad)" filter="url(#glow)"/>
+                <!-- DIAPHRAGM -->
+                <path d="M 120 350 Q 200 380 280 350" stroke="#f472b6" stroke-width="8" fill="none" opacity="0.6"/>
                 
-                <!-- Kidneys -->
-                <ellipse cx="145" cy="340" rx="18" ry="28" fill="url(#kidneyGrad)"/>
-                <ellipse cx="255" cy="340" rx="18" ry="28" fill="url(#kidneyGrad)"/>
+                <!-- LIVER - Right side dominant -->
+                <path d="M 130 380 Q 120 390 125 420 Q 135 460 180 470 Q 230 475 260 450 Q 275 425 270 400 Q 260 380 220 375 Q 170 370 130 380" fill="url(#liverBrown)" filter="url(#softGlow)"/>
+                <!-- Liver lobes -->
+                <path d="M 200 380 Q 195 420 200 460" stroke="#4c1d95" stroke-width="2" fill="none"/>
+                <!-- Gallbladder -->
+                <ellipse cx="210" cy="450" rx="12" ry="18" fill="#22c55e"/>
                 
-                <!-- Small Intestine -->
-                <path d="M 180 400 Q 160 410 170 430 Q 180 440 200 435 Q 220 430 230 445 Q 235 460 215 470 Q 195 475 185 465 Q 175 455 190 445 Q 205 440 210 455 Q 215 470 195 475" stroke="url(#intestineGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <!-- STOMACH -->
+                <path d="M 225 390 Q 260 400 270 440 Q 275 480 250 510 Q 220 530 190 505 Q 170 480 180 440 Q 195 400 225 390" fill="url(#stomachPink)" filter="url(#softGlow)"/>
+                <!-- Stomach rugae -->
+                <path d="M 195 430 Q 230 440 250 460" stroke="#b45309" stroke-width="1.5" fill="none"/>
+                <path d="M 190 455 Q 220 465 245 480" stroke="#b45309" stroke-width="1.5" fill="none"/>
                 
-                <!-- Large Intestine -->
-                <path d="M 140 400 L 140 480 Q 140 500 160 500 L 240 500 Q 260 500 260 480 L 260 400" stroke="#22c55e" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.6"/>
+                <!-- SPLEEN -->
+                <ellipse cx="280" cy="420" rx="20" ry="30" fill="#a855f7" transform="rotate(-20 280 420)"/>
                 
-                <!-- Bladder -->
-                <ellipse cx="200" cy="530" rx="25" ry="20" fill="#06b6d4" opacity="0.7"/>
+                <!-- PANCREAS -->
+                <path d="M 145 460 Q 190 455 230 470" stroke="#fbbf24" stroke-width="12" fill="none" stroke-linecap="round"/>
+                
+                <!-- KIDNEYS -->
+                <ellipse cx="135" cy="450" rx="18" ry="30" fill="url(#kidneyRed)" transform="rotate(-10 135 450)"/>
+                <ellipse cx="265" cy="450" rx="18" ry="30" fill="url(#kidneyRed)" transform="rotate(10 265 450)"/>
+                <!-- Kidney hilum -->
+                <path d="M 148 445 Q 155 450 148 455" stroke="#7f1d1d" stroke-width="2" fill="none"/>
+                <path d="M 252 445 Q 245 450 252 455" stroke="#7f1d1d" stroke-width="2" fill="none"/>
+                <!-- Ureters -->
+                <path d="M 140 478 Q 155 520 170 570" stroke="#fbbf24" stroke-width="3" fill="none"/>
+                <path d="M 260 478 Q 245 520 230 570" stroke="#fbbf24" stroke-width="3" fill="none"/>
+                
+                <!-- SMALL INTESTINE -->
+                <path d="M 200 510 Q 170 520 180 545 Q 190 560 210 555 Q 230 550 225 575 Q 220 595 195 590 Q 170 585 180 560" stroke="url(#intestineGreen)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                
+                <!-- LARGE INTESTINE -->
+                <path d="M 140 485 L 140 580 Q 140 600 160 600 L 240 600 Q 260 600 260 580 L 260 485" stroke="#22c55e" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.7"/>
+                <!-- Cecum & Appendix -->
+                <ellipse cx="140" cy="490" rx="15" ry="20" fill="#86efac"/>
+                <path d="M 130 505 Q 120 520 115 540" stroke="#22c55e" stroke-width="4" fill="none"/>
+                
+                <!-- BLADDER -->
+                <ellipse cx="200" cy="600" rx="30" ry="25" fill="#38bdf8" opacity="0.8"/>
             </svg>
         </div>
 
         <!-- Layer 5: Tissues -->
         <div class="anatomy-layer" id="layer-tissue" data-layer="5">
-            <svg class="anatomy-svg" viewBox="0 0 400 500" width="350">
+            <svg class="anatomy-svg" viewBox="0 0 400 550" width="380">
                 <defs>
-                    <linearGradient id="tissueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#f472b6;stop-opacity:0.9" />
-                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.8" />
+                    <linearGradient id="epithelialGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f9a8d4"/>
+                        <stop offset="100%" style="stop-color:#ec4899"/>
                     </linearGradient>
-                    <pattern id="tissuePattern" patternUnits="userSpaceOnUse" width="20" height="20">
-                        <circle cx="10" cy="10" r="3" fill="rgba(124, 58, 237, 0.3)"/>
-                    </pattern>
+                    <linearGradient id="connectiveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#60a5fa"/>
+                        <stop offset="100%" style="stop-color:#2563eb"/>
+                    </linearGradient>
+                    <linearGradient id="muscleGradTissue" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f87171"/>
+                        <stop offset="100%" style="stop-color:#dc2626"/>
+                    </linearGradient>
+                    <linearGradient id="nervousGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fcd34d"/>
+                        <stop offset="100%" style="stop-color:#f59e0b"/>
+                    </linearGradient>
                 </defs>
                 
-                <!-- Tissue Title -->
-                <text x="200" y="40" text-anchor="middle" fill="#f472b6" font-size="18" font-weight="bold">TISSUE LAYER</text>
+                <!-- Title -->
+                <text x="200" y="35" text-anchor="middle" fill="url(#epithelialGrad)" font-size="22" font-weight="bold">TISSUE TYPES</text>
                 
-                <!-- Epithelial Tissue -->
-                <rect x="50" y="70" width="300" height="80" rx="10" fill="url(#tissueGrad)" filter="url(#glow)"/>
-                <text x="200" y="100" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Epithelial Tissue</text>
-                <text x="200" y="120" text-anchor="middle" fill="white" font-size="10">Covers body surfaces</text>
-                <!-- Cell representation -->
-                <rect x="70" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="90" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="110" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="130" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="150" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="170" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="190" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="210" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="230" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="250" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="270" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="290" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
-                <rect x="310" y="130" width="15" height="10" fill="rgba(255,255,255,0.5)" rx="2"/>
+                <!-- EPITHELIAL TISSUE -->
+                <rect x="30" y="60" width="340" height="100" rx="15" fill="url(#epithelialGrad)" filter="url(#softGlow)"/>
+                <text x="200" y="90" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Epithelial Tissue</text>
+                <text x="200" y="110" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">Protection • Absorption • Secretion</text>
+                <!-- Epithelial cells (columnar) -->
+                <g transform="translate(50, 120)">
+                    <rect x="0" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="22" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="44" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="66" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="88" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="110" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="132" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="154" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="176" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="198" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="220" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="242" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="264" y="0" width="18" height="30" rx="3" fill="rgba(255,255,255,0.6)" stroke="white" stroke-width="1"/>
+                    <!-- Nuclei -->
+                    <ellipse cx="9" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="31" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="53" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="75" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="97" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="119" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="141" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="163" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="185" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="207" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="229" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="251" cy="20" rx="4" ry="5" fill="#be185d"/>
+                    <ellipse cx="273" cy="20" rx="4" ry="5" fill="#be185d"/>
+                </g>
                 
-                <!-- Connective Tissue -->
-                <rect x="50" y="170" width="300" height="80" rx="10" fill="#3b82f6" opacity="0.7" filter="url(#glow)"/>
-                <text x="200" y="200" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Connective Tissue</text>
-                <text x="200" y="220" text-anchor="middle" fill="white" font-size="10">Supports and binds</text>
-                <!-- Fiber representation -->
-                <line x1="70" y1="230" x2="120" y2="240" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-                <line x1="90" y1="235" x2="150" y2="230" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-                <line x1="130" y1="228" x2="190" y2="238" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-                <line x1="170" y1="232" x2="230" y2="228" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-                <line x1="210" y1="230" x2="270" y2="235" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-                <line x1="250" y1="235" x2="320" y2="230" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                <!-- CONNECTIVE TISSUE -->
+                <rect x="30" y="180" width="340" height="100" rx="15" fill="url(#connectiveGrad)" filter="url(#softGlow)"/>
+                <text x="200" y="210" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Connective Tissue</text>
+                <text x="200" y="230" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">Support • Binding • Storage</text>
+                <!-- Collagen fibers -->
+                <g transform="translate(50, 240)">
+                    <path d="M 0 15 Q 50 5 100 20 Q 150 10 200 25 Q 250 8 280 18" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none"/>
+                    <path d="M 10 25 Q 60 35 110 22 Q 160 30 210 18 Q 260 28 280 22" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none"/>
+                    <path d="M 5 8 Q 55 18 105 5 Q 155 15 205 8 Q 255 18 275 12" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+                    <!-- Fibroblasts -->
+                    <ellipse cx="40" cy="18" rx="8" ry="5" fill="rgba(255,255,255,0.8)"/>
+                    <ellipse cx="120" cy="15" rx="8" ry="5" fill="rgba(255,255,255,0.8)"/>
+                    <ellipse cx="200" cy="20" rx="8" ry="5" fill="rgba(255,255,255,0.8)"/>
+                    <ellipse cx="260" cy="12" rx="8" ry="5" fill="rgba(255,255,255,0.8)"/>
+                </g>
                 
-                <!-- Muscle Tissue -->
-                <rect x="50" y="270" width="300" height="80" rx="10" fill="#ef4444" opacity="0.7" filter="url(#glow)"/>
-                <text x="200" y="300" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Muscle Tissue</text>
-                <text x="200" y="320" text-anchor="middle" fill="white" font-size="10">Movement and contraction</text>
-                <!-- Striation representation -->
-                <line x1="70" y1="330" x2="70" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="85" y1="330" x2="85" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="100" y1="330" x2="100" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="115" y1="330" x2="115" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="130" y1="330" x2="130" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="145" y1="330" x2="145" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="160" y1="330" x2="160" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="175" y1="330" x2="175" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="190" y1="330" x2="190" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="205" y1="330" x2="205" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="220" y1="330" x2="220" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="235" y1="330" x2="235" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="250" y1="330" x2="250" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="265" y1="330" x2="265" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="280" y1="330" x2="280" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="295" y1="330" x2="295" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
-                <line x1="310" y1="330" x2="310" y2="340" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
-                <line x1="325" y1="330" x2="325" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <!-- MUSCLE TISSUE -->
+                <rect x="30" y="300" width="340" height="100" rx="15" fill="url(#muscleGradTissue)" filter="url(#softGlow)"/>
+                <text x="200" y="330" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Muscle Tissue</text>
+                <text x="200" y="350" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">Contraction • Movement • Force</text>
+                <!-- Muscle fibers with striations -->
+                <g transform="translate(50, 360)">
+                    <rect x="0" y="0" width="280" height="8" rx="4" fill="rgba(255,255,255,0.3)"/>
+                    <rect x="0" y="12" width="280" height="8" rx="4" fill="rgba(255,255,255,0.3)"/>
+                    <rect x="0" y="24" width="280" height="8" rx="4" fill="rgba(255,255,255,0.3)"/>
+                    <!-- Z-lines (striations) -->
+                    <line x1="20" y1="0" x2="20" y2="32" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+                    <line x1="50" y1="0" x2="50" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                    <line x1="80" y1="0" x2="80" y2="32" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+                    <line x1="110" y1="0" x2="110" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                    <line x1="140" y1="0" x2="140" y2="32" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+                    <line x1="170" y1="0" x2="170" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                    <line x1="200" y1="0" x2="200" y2="32" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+                    <line x1="230" y1="0" x2="230" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                    <line x1="260" y1="0" x2="260" y2="32" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+                </g>
                 
-                <!-- Nervous Tissue -->
-                <rect x="50" y="370" width="300" height="80" rx="10" fill="#facc15" opacity="0.7" filter="url(#glow)"/>
-                <text x="200" y="400" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="bold">Nervous Tissue</text>
-                <text x="200" y="420" text-anchor="middle" fill="#1a1a2e" font-size="10">Transmits signals</text>
-                <!-- Neuron representation -->
-                <circle cx="100" cy="435" r="8" fill="rgba(26,26,46,0.5)"/>
-                <line x1="108" y1="435" x2="180" y2="435" stroke="rgba(26,26,46,0.5)" stroke-width="2"/>
-                <circle cx="200" cy="435" r="8" fill="rgba(26,26,46,0.5)"/>
-                <line x1="208" y1="435" x2="280" y2="435" stroke="rgba(26,26,46,0.5)" stroke-width="2"/>
-                <circle cx="300" cy="435" r="8" fill="rgba(26,26,46,0.5)"/>
+                <!-- NERVOUS TISSUE -->
+                <rect x="30" y="420" width="340" height="100" rx="15" fill="url(#nervousGrad)" filter="url(#softGlow)"/>
+                <text x="200" y="450" text-anchor="middle" fill="#1a1a2e" font-size="16" font-weight="bold">Nervous Tissue</text>
+                <text x="200" y="470" text-anchor="middle" fill="rgba(26,26,46,0.8)" font-size="11">Signal Transmission • Integration • Response</text>
+                <!-- Neuron -->
+                <g transform="translate(60, 480)">
+                    <!-- Cell body -->
+                    <ellipse cx="50" cy="15" rx="20" ry="15" fill="rgba(26,26,46,0.5)"/>
+                    <!-- Dendrites -->
+                    <path d="M 35 5 Q 20 -5 10 5" stroke="rgba(26,26,46,0.5)" stroke-width="2" fill="none"/>
+                    <path d="M 30 10 Q 15 5 5 15" stroke="rgba(26,26,46,0.5)" stroke-width="2" fill="none"/>
+                    <path d="M 35 25 Q 20 30 10 25" stroke="rgba(26,26,46,0.5)" stroke-width="2" fill="none"/>
+                    <!-- Axon -->
+                    <line x1="70" y1="15" x2="200" y2="15" stroke="rgba(26,26,46,0.5)" stroke-width="3"/>
+                    <!-- Myelin sheath -->
+                    <ellipse cx="95" cy="15" rx="10" ry="6" fill="rgba(26,26,46,0.3)"/>
+                    <ellipse cx="125" cy="15" rx="10" ry="6" fill="rgba(26,26,46,0.3)"/>
+                    <ellipse cx="155" cy="15" rx="10" ry="6" fill="rgba(26,26,46,0.3)"/>
+                    <ellipse cx="185" cy="15" rx="10" ry="6" fill="rgba(26,26,46,0.3)"/>
+                    <!-- Axon terminals -->
+                    <path d="M 200 15 L 215 5 M 200 15 L 220 15 M 200 15 L 215 25" stroke="rgba(26,26,46,0.5)" stroke-width="2" fill="none"/>
+                    <!-- Nucleus -->
+                    <ellipse cx="50" cy="15" rx="8" ry="6" fill="rgba(26,26,46,0.7)"/>
+                </g>
             </svg>
         </div>
 
         <!-- Layer 6: Cells -->
         <div class="anatomy-layer" id="layer-cells" data-layer="6">
-            <svg class="anatomy-svg" viewBox="0 0 400 400" width="400">
+            <svg class="anatomy-svg" viewBox="0 0 400 450" width="420">
                 <defs>
-                    <radialGradient id="cellGrad" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.3" />
-                        <stop offset="70%" style="stop-color:#7c3aed;stop-opacity:0.5" />
-                        <stop offset="100%" style="stop-color:#5b21b6;stop-opacity:0.7" />
+                    <radialGradient id="cellMembrane" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:rgba(124, 58, 237, 0.1)"/>
+                        <stop offset="80%" style="stop-color:rgba(124, 58, 237, 0.3)"/>
+                        <stop offset="95%" style="stop-color:rgba(124, 58, 237, 0.5)"/>
+                        <stop offset="100%" style="stop-color:rgba(124, 58, 237, 0.7)"/>
                     </radialGradient>
-                    <radialGradient id="nucleusGrad" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.9" />
-                        <stop offset="100%" style="stop-color:#be185d;stop-opacity:0.8" />
+                    <radialGradient id="nucleusGradient" cx="40%" cy="40%" r="60%">
+                        <stop offset="0%" style="stop-color:#f9a8d4"/>
+                        <stop offset="50%" style="stop-color:#ec4899"/>
+                        <stop offset="100%" style="stop-color:#be185d"/>
+                    </radialGradient>
+                    <radialGradient id="cytoplasmGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:rgba(147, 51, 234, 0.05)"/>
+                        <stop offset="100%" style="stop-color:rgba(147, 51, 234, 0.15)"/>
                     </radialGradient>
                 </defs>
                 
                 <!-- Title -->
-                <text x="200" y="30" text-anchor="middle" fill="#a855f7" font-size="18" font-weight="bold">CELLULAR LEVEL</text>
+                <text x="200" y="30" text-anchor="middle" fill="#a855f7" font-size="22" font-weight="bold">HUMAN CELL</text>
+                <text x="200" y="50" text-anchor="middle" fill="#64748b" font-size="11">The Fundamental Unit of Life</text>
                 
-                <!-- Main Cell -->
-                <ellipse cx="200" cy="200" rx="150" ry="130" fill="url(#cellGrad)" stroke="#7c3aed" stroke-width="3" filter="url(#glow)"/>
+                <!-- CELL MEMBRANE -->
+                <ellipse cx="200" cy="235" rx="165" ry="145" fill="url(#cellMembrane)" filter="url(#softGlow)"/>
+                <!-- Phospholipid bilayer representation -->
+                <ellipse cx="200" cy="235" rx="163" ry="143" fill="none" stroke="rgba(124, 58, 237, 0.4)" stroke-width="2" stroke-dasharray="8,4"/>
+                <ellipse cx="200" cy="235" rx="167" ry="147" fill="none" stroke="rgba(124, 58, 237, 0.4)" stroke-width="2" stroke-dasharray="8,4"/>
                 
-                <!-- Cell Membrane (double layer) -->
-                <ellipse cx="200" cy="200" rx="148" ry="128" fill="none" stroke="#9333ea" stroke-width="1" stroke-dasharray="5,5"/>
-                <ellipse cx="200" cy="200" rx="152" ry="132" fill="none" stroke="#9333ea" stroke-width="1" stroke-dasharray="5,5"/>
+                <!-- CYTOPLASM -->
+                <ellipse cx="200" cy="235" rx="155" ry="135" fill="url(#cytoplasmGrad)"/>
                 
-                <!-- Nucleus -->
-                <ellipse cx="200" cy="200" rx="45" ry="40" fill="url(#nucleusGrad)" filter="url(#glow)"/>
-                <ellipse cx="200" cy="200" rx="43" ry="38" fill="none" stroke="#f472b6" stroke-width="2"/>
+                <!-- NUCLEUS -->
+                <ellipse cx="200" cy="230" rx="50" ry="45" fill="url(#nucleusGradient)" filter="url(#softGlow)"/>
+                <!-- Nuclear envelope (double membrane) -->
+                <ellipse cx="200" cy="230" rx="48" ry="43" fill="none" stroke="#f472b6" stroke-width="2"/>
+                <ellipse cx="200" cy="230" rx="52" ry="47" fill="none" stroke="#f472b6" stroke-width="1"/>
+                <!-- Nuclear pores -->
+                <circle cx="155" cy="220" r="3" fill="#fce7f3"/>
+                <circle cx="160" cy="245" r="3" fill="#fce7f3"/>
+                <circle cx="240" cy="215" r="3" fill="#fce7f3"/>
+                <circle cx="245" cy="240" r="3" fill="#fce7f3"/>
                 
-                <!-- Nucleolus -->
-                <circle cx="210" cy="195" r="12" fill="#f9a8d4"/>
+                <!-- NUCLEOLUS -->
+                <circle cx="210" cy="225" r="15" fill="#f9a8d4"/>
+                <circle cx="210" cy="225" r="10" fill="#fce7f3" opacity="0.5"/>
                 
-                <!-- Chromatin -->
-                <path d="M 175 190 Q 185 200 175 210" stroke="#fce7f3" stroke-width="2" fill="none"/>
-                <path d="M 190 185 Q 200 195 190 205" stroke="#fce7f3" stroke-width="2" fill="none"/>
-                <path d="M 215 195 Q 225 205 215 215" stroke="#fce7f3" stroke-width="2" fill="none"/>
+                <!-- CHROMATIN -->
+                <path d="M 175 215 Q 185 220 175 230 Q 185 240 175 245" stroke="#fce7f3" stroke-width="3" fill="none"/>
+                <path d="M 195 210 Q 205 220 195 235" stroke="#fce7f3" stroke-width="3" fill="none"/>
+                <path d="M 220 220 Q 230 230 220 245" stroke="#fce7f3" stroke-width="3" fill="none"/>
                 
-                <!-- Endoplasmic Reticulum -->
-                <path d="M 80 180 Q 100 170 110 190 Q 120 210 100 220 Q 80 230 90 250" stroke="#06b6d4" stroke-width="3" fill="none" opacity="0.7"/>
-                <path d="M 85 175 Q 105 165 115 185 Q 125 205 105 215 Q 85 225 95 245" stroke="#06b6d4" stroke-width="3" fill="none" opacity="0.7"/>
-                
-                <!-- Rough ER with ribosomes -->
-                <path d="M 280 150 Q 300 160 290 180 Q 280 200 300 210" stroke="#3b82f6" stroke-width="4" fill="none" opacity="0.7"/>
-                <circle cx="285" cy="155" r="3" fill="#f472b6"/>
-                <circle cx="295" cy="165" r="3" fill="#f472b6"/>
-                <circle cx="290" cy="175" r="3" fill="#f472b6"/>
-                <circle cx="285" cy="190" r="3" fill="#f472b6"/>
-                <circle cx="295" cy="205" r="3" fill="#f472b6"/>
-                
-                <!-- Golgi Apparatus -->
-                <path d="M 290 240 Q 310 245 290 255" stroke="#22c55e" stroke-width="5" fill="none" opacity="0.8"/>
-                <path d="M 285 250 Q 305 255 285 265" stroke="#22c55e" stroke-width="5" fill="none" opacity="0.7"/>
-                <path d="M 280 260 Q 300 265 280 275" stroke="#22c55e" stroke-width="5" fill="none" opacity="0.6"/>
-                
-                <!-- Mitochondria -->
-                <ellipse cx="120" cy="280" rx="25" ry="12" fill="#ef4444" opacity="0.7" transform="rotate(-20 120 280)"/>
-                <path d="M 100 278 Q 110 285 100 290" stroke="#fca5a5" stroke-width="1" fill="none"/>
-                <path d="M 110 276 Q 120 283 110 288" stroke="#fca5a5" stroke-width="1" fill="none"/>
-                <path d="M 120 275 Q 130 282 120 287" stroke="#fca5a5" stroke-width="1" fill="none"/>
-                <path d="M 130 276 Q 140 283 130 288" stroke="#fca5a5" stroke-width="1" fill="none"/>
-                
-                <ellipse cx="310" cy="290" rx="22" ry="10" fill="#ef4444" opacity="0.7" transform="rotate(15 310 290)"/>
-                <path d="M 295 288 Q 305 295 295 300" stroke="#fca5a5" stroke-width="1" fill="none"/>
-                <path d="M 305 287 Q 315 294 305 299" stroke="#fca5a5" stroke-width="1" fill="none"/>
-                <path d="M 315 288 Q 325 295 315 300" stroke="#fca5a5" stroke-width="1" fill="none"/>
-                
-                <!-- Lysosomes -->
-                <circle cx="100" cy="140" r="12" fill="#f97316" opacity="0.7"/>
-                <circle cx="320" cy="180" r="10" fill="#f97316" opacity="0.7"/>
-                
-                <!-- Ribosomes (free) -->
-                <circle cx="150" cy="120" r="4" fill="#ec4899"/>
-                <circle cx="165" cy="130" r="4" fill="#ec4899"/>
-                <circle cx="180" cy="115" r="4" fill="#ec4899"/>
-                <circle cx="140" cy="270" r="4" fill="#ec4899"/>
-                <circle cx="160" cy="290" r="4" fill="#ec4899"/>
-                <circle cx="180" cy="280" r="4" fill="#ec4899"/>
-                <circle cx="250" cy="120" r="4" fill="#ec4899"/>
-                <circle cx="270" cy="110" r="4" fill="#ec4899"/>
-                
-                <!-- Centrioles -->
-                <rect x="250" cy="270" width="20" height="8" rx="4" fill="#8b5cf6" transform="rotate(30 260 274)"/>
-                <rect x="255" cy="280" width="20" height="8" rx="4" fill="#8b5cf6" transform="rotate(120 265 284)"/>
-                
-                <!-- Cytoskeleton -->
-                <line x1="70" y1="200" x2="140" y2="200" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
-                <line x1="260" y1="200" x2="330" y2="200" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
-                <line x1="200" y1="80" x2="200" y2="150" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
-                <line x1="200" y1="250" x2="200" y2="310" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1"/>
-                
-                <!-- Labels -->
-                <text x="200" y="360" text-anchor="middle" fill="#94a3b8" font-size="11">
-                    <tspan x="200" dy="0">Nucleus • Mitochondria • Golgi • ER</tspan>
-                    <tspan x="200" dy="15">Ribosomes • Lysosomes • Cytoskeleton</tspan>
-                </text>
-            </svg>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <div class="logo">BodyMind <span>Academy</span></div>
-            
-            <nav id="nav">
-                <!-- Home -->
-                <div class="nav-item">
-                    <a href="#hero" class="nav-link">Home</a>
-                </div>
-
-                <!-- Anatomy Dropdown -->
-                <div class="nav-item">
-                    <a href="#anatomy-section" class="nav-link">
-                        Anatomy <span class="arrow">▼</span>
-                    </a>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon purple">💪</div>
-                            <div class="dropdown-text">
-                                <h4>Muscular System</h4>
-                                <p>Over 600 muscles explained</p>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon blue">🦴</div>
-                            <div class="dropdown-text">
-                                <h4>Skeletal System</h4>
-                                <p>206 bones and joints</p>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon pink">🧠</div>
-                            <div class="dropdown-text">
-                                <h4>Nervous System</h4>
-                                <p>Brain, spine & nerves</p>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon cyan">🫀</div>
-                            <div class="dropdown-text">
-                                <h4>Organ Systems</h4>
-                                <p>Vital organs & functions</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Courses Dropdown -->
-                <div class="nav-item">
-                    <a href="#courses" class="nav-link">
-                        Courses <span class="arrow">▼</span>
-                    </a>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon purple">🧬</div>
-                            <div class="dropdown-text">
-                                <h4>Science Behind Pain</h4>
-                                <p>Understand pain neuroscience</p>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon pink">⚡</div>
-                            <div class="dropdown-text">
-                                <h4>Dopamine Mastery</h4>
-                                <p>Your motivation molecule</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon blue">🌊</div>
-                            <div class="dropdown-text">
-                                <h4>Nervous System Regulation</h4>
-                                <p>Master your autonomic response</p>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon cyan">🔄</div>
-                            <div class="dropdown-text">
-                                <h4>Neuroplasticity Masterclass</h4>
-                                <p>Rewire your brain</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon orange">🩺</div>
-                            <div class="dropdown-text">
-                                <h4>Kinesiology Taping</h4>
-                                <p>Professional taping techniques</p>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-icon green">🏋️</div>
-                            <div class="dropdown-text">
-                                <h4>Injury Prevention</h4>
-                                <p>Stay strong, stay safe</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Pricing -->
-                <div class="nav-item">
-                    <a href="#pricing" class="nav-link">Pricing</a>
-                </div>
-
-                <!-- Testimonials -->
-                <div class="nav-item">
-                    <a href="#testimonials" class="nav-link">Testimonials</a>
-                </div>
-
-                <!-- Contact -->
-                <div class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-            </nav>
-
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Hero Parallax Section -->
-    <section class="hero-parallax" id="hero">
-        <div class="hero-sticky">
-            <div class="hero-content">
-                <div class="hero-text-container">
-                    <!-- Text 1 -->
-                    <div class="hero-text-item active" data-index="0">
-                        <div class="hero-tagline">Welcome to BodyMind Academy</div>
-                        <h1 class="hero-title">Master Your Mind & Body</h1>
-                        <p class="hero-subtitle">The intersection of <span class="hero-highlight">neuroscience</span> and human performance</p>
-                    </div>
-
-                    <!-- Text 2 -->
-                    <div class="hero-text-item" data-index="1">
-                        <div class="hero-tagline">Pain Science</div>
-                        <h1 class="hero-title">Pain Is An Output</h1>
-                        <p class="hero-subtitle">Not a measure of tissue damage — it's your brain's <span class="hero-highlight">protective response</span></p>
-                    </div>
-
-                    <!-- Text 3 -->
-                    <div class="hero-text-item" data-index="2">
-                        <div class="hero-tagline">Dopamine</div>
-                        <h1 class="hero-title">Your Motivation Molecule</h1>
-                        <p class="hero-subtitle">The chemical that drives <span class="hero-highlight">desire, drive, and determination</span></p>
-                    </div>
-
-                    <!-- Text 4 -->
-                    <div class="hero-text-item" data-index="3">
-                        <div class="hero-tagline">Nervous System</div>
-                        <h1 class="hero-title">Regulate Your State</h1>
-                        <p class="hero-subtitle">From <span class="hero-highlight">fight-or-flight</span> to rest-and-digest mastery</p>
-                    </div>
-
-                    <!-- Text 5 -->
-                    <div class="hero-text-item" data-index="4">
-                        <div class="hero-tagline">Neuroplasticity</div>
-                        <h1 class="hero-title">Rewire Your Brain</h1>
-                        <p class="hero-subtitle">Your brain can <span class="hero-highlight">change at any age</span> — that's the science of hope</p>
-                    </div>
-
-                    <!-- Text 6 - CTA -->
-                    <div class="hero-text-item" data-index="5">
-                        <div class="hero-tagline">Begin Your Journey</div>
-                        <h1 class="hero-title">Transform Today</h1>
-                        <p class="hero-subtitle">Join <span class="hero-highlight">1000+</span> students already mastering their bodies</p>
-                        <div style="margin-top: 2rem;">
-                            <button class="cta-btn" style="padding: 1rem 2.5rem; font-size: 1.1rem; background: var(--gradient-main); border: none; border-radius: 12px; color: white; cursor: pointer;">Start Learning Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-scroll-indicator">
-                <div class="scroll-mouse"></div>
-                <span>Scroll to explore</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Courses Section -->
-        <section id="courses">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">Our Curriculum</div>
-                    <h2 class="section-title">Transformative Courses</h2>
-                    <p class="section-subtitle">Science-backed education to unlock your body's potential</p>
-                </div>
-
-                <div class="courses-container">
-                    <!-- Row 1 -->
-                    <div class="courses-row">
-                        <div class="course-card">
-                            <div class="course-icon">🧬</div>
-                            <h3>Science Behind Pain</h3>
-                            <p>Understand why pain persists and how to break the cycle. Learn the neurobiology that changes everything about managing chronic conditions.</p>
-                            <div class="course-meta">
-                                <span class="course-duration">⏱️ 8 weeks</span>
-                                <span class="course-price">$149.99</span>
-                            </div>
-                            <button class="course-btn">Enroll Now</button>
-                        </div>
-
-                        <div class="course-card">
-                            <div class="course-icon">⚡</div>
-                            <h3>Dopamine Mastery</h3>
-                            <p>Your motivation molecule decoded. Learn to optimize dopamine for focus, drive, and sustainable motivation without burnout.</p>
-                            <div class="course-meta">
-                                <span class="course-duration">⏱️ 6 weeks</span>
-                                <span class="course-price">$199.99</span>
-                            </div>
-                            <button class="course-btn">Enroll Now</button>
-                        </div>
-                    </div>
-
-                    <!-- Row 2 -->
-                    <div class="courses-row">
-                        <div class="course-card">
-                            <div class="course-icon">🌊</div>
-                            <h3>Nervous System Regulation</h3>
-                            <p>Master your autonomic nervous system. Move from chronic stress to calm, collected, and in control of your physiological state.</p>
-                            <div class="course-meta">
-                                <span class="course-duration">⏱️ 6 weeks</span>
-                                <span class="course-price">$179.99</span>
-                            </div>
-                            <button class="course-btn">Enroll Now</button>
-                        </div>
-
-                        <div class="course-card">
-                            <div class="course-icon">🔄</div>
-                            <h3>Neuroplasticity Masterclass</h3>
-                            <p>Your brain can change at any age. Learn advanced strategies to create lasting neurological changes and build new neural pathways.</p>
-                            <div class="course-meta">
-                                <span class="course-duration">⏱️ 10 weeks</span>
-                                <span class="course-price">$249.99</span>
-                            </div>
-                            <button class="course-btn">Enroll Now</button>
-                        </div>
-                    </div>
-
-                    <!-- Row 3 -->
-                    <div class="courses-row">
-                        <div class="course-card">
-                            <div class="course-icon">🩺</div>
-                            <h3>Kinesiology Taping</h3>
-                            <p>Professional taping techniques for pain relief, performance enhancement, and injury support. Learn the science behind the tape.</p>
-                            <div class="course-meta">
-                                <span class="course-duration">⏱️ 4 weeks</span>
-                                <span class="course-price">$129.99</span>
-                            </div>
-                            <button class="course-btn">Enroll Now</button>
-                        </div>
-
-                        <div class="course-card">
-                            <div class="course-icon">🏋️</div>
-                            <h3>Injury Prevention</h3>
-                            <p>Stay strong, stay safe. Evidence-based strategies to prevent injuries, including special tests of the shoulder and movement analysis.</p>
-                            <div class="course-meta">
-                                <span class="course-duration">⏱️ 5 weeks</span>
-                                <span class="course-price">$159.99</span>
-                            </div>
-                            <button class="course-btn">Enroll Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Section -->
-        <section id="pricing">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">Investment</div>
-                    <h2 class="section-title">Choose Your Path</h2>
-                    <p class="section-subtitle">Flexible options for every level of commitment</p>
-                </div>
-
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3 class="pricing-name">Starter</h3>
-                        <p class="pricing-description">Perfect for exploration</p>
-                        <div class="pricing-amount">$0<span>.00</span></div>
-                        <p class="pricing-period">Free forever</p>
-                        <ul class="pricing-features">
-                            <li>2 Free introductory courses</li>
-                            <li>Community forum access</li>
-                            <li>Basic resource library</li>
-                            <li>Email support</li>
-                        </ul>
-                        <button class="pricing-btn outline">Get Started Free</button>
-                    </div>
-
-                    <div class="pricing-card featured">
-                        <h3 class="pricing-name">Professional</h3>
-                        <p class="pricing-description">Most popular choice</p>
-                        <div class="pricing-amount">$299<span>.99</span></div>
-                        <p class="pricing-period">One-time payment</p>
-                        <ul class="pricing-features">
-                            <li>All 6 courses included</li>
-                            <li>Lifetime access</li>
-                            <li>Downloadable resources</li>
-                            <li>Priority support</li>
-                            <li>Certificate of completion</li>
-                            <li>Monthly Q&A sessions</li>
-                        </ul>
-                        <button class="pricing-btn">Get Professional</button>
-                    </div>
-
-                    <div class="pricing-card">
-                        <h3 class="pricing-name">Premium</h3>
-                        <p class="pricing-description">Ultimate transformation</p>
-                        <div class="pricing-amount">$999<span>.99</span></div>
-                        <p class="pricing-period">One-time payment</p>
-                        <ul class="pricing-features">
-                            <li>Everything in Professional</li>
-                            <li>1-on-1 coaching sessions</li>
-                            <li>Custom learning path</li>
-                            <li>Private community access</li>
-                            <li>VIP support line</li>
-                            <li>Future course updates</li>
-                        </ul>
-                        <button class="pricing-btn">Go Premium</button>
-                    </div>
-                </div>
-
-                <!-- Business Masterclass -->
-                <div class="business-section">
-                    <h3>🏢 Business Masterclass</h3>
-                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Connect your entire team with transformative workshops. Available online or in-person worldwide.</p>
-                    
-                    <div class="business-options">
-                        <div class="business-option">
-                            <h4>💻 Online Workshop</h4>
-                            <div class="price">$2,499.99</div>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Full-day virtual workshop for up to 50 team members. Includes recordings and materials.</p>
-                            <button class="pricing-btn" style="margin-top: 1rem;">Book Online</button>
-                        </div>
-
-                        <div class="business-option">
-                            <h4>✈️ In-Person Workshop</h4>
-                            <div class="price">$7,999.99+</div>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">On-site workshop at your location. Price includes travel and accommodation for Yazan.</p>
-                            <button class="pricing-btn" style="margin-top: 1rem;">Request Quote</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section id="testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">Success Stories</div>
-                    <h2 class="section-title">What Students Say</h2>
-                    <p class="section-subtitle">Real transformations from real people</p>
-                </div>
-
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">"The pain science course completely changed my understanding of chronic pain. I've been able to help my clients in ways I never thought possible. Yazan's teaching is exceptional."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">SJ</div>
-                            <div class="testimonial-info">
-                                <h4>Sarah Johnson</h4>
-                                <p>Physical Therapist</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">"The dopamine mastery content is incredible. As an entrepreneur, understanding my motivation system has transformed my productivity and helped me avoid burnout."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">MC</div>
-                            <div class="testimonial-info">
-                                <h4>Marcus Chen</h4>
-                                <p>Tech Entrepreneur</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">"Nervous system regulation techniques have transformed how I manage my anxiety. The science-backed approach made it click for me like nothing else has."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">ER</div>
-                            <div class="testimonial-info">
-                                <h4>Emily Rodriguez</h4>
-                                <p>Clinical Psychologist</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">Get In Touch</div>
-                    <h2 class="section-title">Let's Connect</h2>
-                    <p class="section-subtitle">Have questions? We'd love to hear from you.</p>
-                </div>
-
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <h3>Reach Out</h3>
-                        <p>Whether you have questions about our courses, need guidance on which program is right for you, or want to discuss corporate training opportunities, I'm here to help.</p>
-                        
-                        <div class="contact-links">
-                            <a href="mailto:info@bodymindacademy.com" class="contact-link">
-                                <div class="icon">📧</div>
-                                <span>info@bodymindacademy.com</span>
-                            </a>
-                            <a href="https://instagram.com/" target="_blank" class="contact-link">
-                                <div class="icon">📸</div>
-                                <span>Instagram</span>
-                            </a>
-                            <a href="https://tiktok.com/" target="_blank" class="contact-link">
-                                <div class="icon">🎵</div>
-                                <span>TikTok</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">BodyMind Academy</div>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Refund Policy</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-socials">
-                <a href="https://instagram.com/" target="_blank">📸</a>
-                <a href="https://tiktok.com/" target="_blank">🎵</a>
-                <a href="mailto:info@bodymindacademy.com">📧</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2024 BodyMind Academy. All rights reserved. Created by <strong>Yazan Jafari</strong></p>
-        </div>
-    </footer>
-
-    <script>
-        // ═══════════════════════════════════════════════════════════════
-        // SCROLL PROGRESS BAR
-        // ═══════════════════════════════════════════════════════════════
-        const scrollProgress = document.querySelector('.scroll-progress');
-        
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            scrollProgress.style.width = scrollPercent + '%';
-        });
-
-        // ═══════════════════════════════════════════════════════════════
-        // MOBILE MENU
-        // ═══════════════════════════════════════════════════════════════
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-
-        // ═══════════════════════════════════════════════════════════════
-        // HEADER SCROLL EFFECT
-        // ═══════════════════════════════════════════════════════════════
-        const header = document.querySelector('header');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // ═══════════════════════════════════════════════════════════════
-        // APPLE-STYLE HERO PARALLAX TEXT
-        // ═══════════════════════════════════════════════════════════════
-        const heroParallax = document.querySelector('.hero-parallax');
-        const heroTextItems = document.querySelectorAll('.hero-text-item');
-        const totalTexts = heroTextItems.length;
-
-        window.addEventListener('scroll', () => {
-            const heroRect = heroParallax.getBoundingClientRect();
-            const heroHeight = heroParallax.offsetHeight;
-            const scrolled = -heroRect.top;
-            const viewportHeight = window.innerHeight;
-            
-            // Calculate progress through the hero section (0 to 1)
-            const totalScrollableDistance = heroHeight - viewportHeight;
-            const progress = Math.max(0, Math.min(1, scrolled / totalScrollableDistance));
-            
-            // Determine which text should be active
-            const textIndex = Math.min(Math.floor(progress * totalTexts), totalTexts - 1);
-            
-            heroTextItems.forEach((item, index) => {
-                item.classList.remove('active', 'exit-up');
-                
-                if (index === textIndex) {
-                    item.classList.add('active');
-                } else if (index < textIndex) {
-                    item.classList.add('exit-up');
-                }
-            });
-        });
-
-        // ═══════════════════════════════════════════════════════════════
-        // ANATOMY LAYER TRANSITIONS
-        // ═══════════════════════════════════════════════════════════════
-        const anatomyLayers = document.querySelectorAll('.anatomy-layer');
-        const totalLayers = anatomyLayers.length;
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollProgress = scrollTop / docHeight;
-            
-            // Calculate which layer should be visible based on scroll
-            const layerIndex = Math.min(Math.floor(scrollProgress * totalLayers), totalLayers - 1);
-            
-            anatomyLayers.forEach((layer, index) => {
-                if (index === layerIndex) {
-                    layer.classList.add('active');
-                } else {
-                    layer.classList.remove('active');
-                }
-            });
-        });
-
-        // Initialize first layer
-        if (anatomyLayers.length > 0) {
-            anatomyLayers[0].classList.add('active');
-        }
-
-        // ═══════════════════════════════════════════════════════════════
-        // SCROLL ANIMATIONS
-        // ═══════════════════════════════════════════════════════════════
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe cards
-        document.querySelectorAll('.course-card, .pricing-card, .testimonial-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(card);
-        });
-
-        // ═══════════════════════════════════════════════════════════════
-        // FORM SUBMISSION
-        // ═══════════════════════════════════════════════════════════════
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            console.log('Form submitted:', { name, email, message });
-            
-            alert('Thank you for your message! Yazan will get back to you soon.');
-            e.target.reset();
-        });
-
-        // ═══════════════════════════════════════════════════════════════
-        // SMOOTH SCROLL FOR NAVIGATION
-        // ═══════════════════════════════════════════════════════════════
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        // Close mobile menu if open
-                        hamburger.classList.remove('active');
-                        nav.classList.remove('active');
-                        
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // ═══════════════════════════════════════════════════════════════
-        // INITIALIZE
-        // ═══════════════════════════════════════════════════════════════
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set first hero text as active
-            heroTextItems[0].classList.add('active');
-            
-            // Set first anatomy layer as active
-            anatomyLayers[0].classList.add('active');
-        });
-    </script>
-</body>
-</html>
+                <!-- ENDOPLASMIC RETICULUM -->
+                <!-- Rough ER (near nucleus) -->
+                <path d="M 260 200 Q 290 195 300 220 Q 305 245 285 260 Q 265 270 260 250" stroke="#3b82f6" stroke-width="5" fill="none"/>
+                <path d="M 265 205 Q 295 200 305 225 Q 310 250 290 265" stroke="#3b82f6" stroke-width="5" fill="none"/>
+                <!-- Ribosomes on rough ER -->
+                <circle cx="275" cy="200" r="3" fill="#ec4899"/>
+                <circle cx="290" cy="208" r="3" fill="#ec4899"/>
+                <circle cx="300" cy="220" r="3" fill="#ec4899"/>
+                <circle cx="302" cy="235" r="3" fill="#ec4899"/>
+                <circle cx="295" cy="250" r="3" fill="#ec4899"/>
+                <circle cx="280" cy="260" r="3
